@@ -38,6 +38,13 @@ public class Warehouse {
 		return res;
 	}
 	
+	public void getIngredient(String ingredientsName){
+		
+	}
+	
+	public void getKitchenTolls(String KitchenTollsname){
+		
+	}
 	
 
 }
