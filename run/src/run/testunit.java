@@ -1,5 +1,5 @@
 package run;
-//arnon was here
+
 import static org.junit.Assert.*;
 import java.util.Vector;
 
@@ -11,7 +11,7 @@ public class testunit {
 	public void test1() {
 		//test1
 		Warehouse test1=new Warehouse();
-		String[] test1arry={"ingredient1","1"};
+		Ingredient test1arry=new Ingredient("ingredient1",1);
 		test1.addIngredient(test1arry);
 		try{
 			test1.getNumberOfKitchenTolls("KitchenTolls");
@@ -37,10 +37,10 @@ public class testunit {
 		Warehouse test2=new Warehouse();
 		for (int i=1; i<50;i++){
 			String ingredient= "ingredient"+i;
-			String[] test2arry={ingredient,"5"};
+			Ingredient test2arry=new Ingredient(ingredient,5);
 			test2.addIngredient(test2arry);
 			String KitchenTolls="KitchenTolls"+i;
-			String[] KitchenTollsarry={KitchenTolls,"5"};
+			KitchenTool KitchenTollsarry=new KitchenTool(KitchenTolls,5);
 			test2.addKitchenTolls(KitchenTollsarry);
 		}
 		try{
@@ -66,14 +66,14 @@ public class testunit {
 	}
 	
 	public void test3(){
-		Vector<String[]> test3IngriedientVector=new Vector<String[]>();
-		Vector <String[]> test3KitchenTollsVector=new Vector<String[]>();
+		Vector<Ingredient> test3IngriedientVector=new Vector<Ingredient>();
+		Vector <KitchenTool> test3KitchenTollsVector=new Vector<KitchenTool>();
 		for (int i=1; i<50;i++){
 			String ingredient= "ingredient"+i;
-			String[] test2arry={ingredient,"5"};
+			Ingredient test2arry=new Ingredient(ingredient,5);
 			test3IngriedientVector.addElement(test2arry);
 			String KitchenTolls="KitchenTolls"+i;
-			String[] KitchenTollsarry={KitchenTolls,"5"};
+			KitchenTool KitchenTollsarry=new KitchenTool(KitchenTolls,5);
 			test3KitchenTollsVector.addElement(KitchenTollsarry);
 	}
 		Warehouse test3=new Warehouse(test3KitchenTollsVector, test3IngriedientVector);

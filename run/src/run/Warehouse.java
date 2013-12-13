@@ -5,22 +5,22 @@ import java.util.Vector;
 
 public class Warehouse {
 	
-	private Vector<String[]> kitchenCollectionTolls;
-	private Vector<String[]> ingredientsAvailable;
+	private Vector<KitchenTool> kitchenCollectionTolls;
+	private Vector<Ingredient> ingredientsAvailable;
 	
 	public Warehouse(){
 		
 	}
 	
-	public Warehouse(Vector<String[]> kitchenCollectionTolls, Vector<String[]> ingredientsAvailable){
+	public Warehouse(Vector<KitchenTool> kitchenCollectionTolls, Vector<Ingredient> ingredientsAvailable){
 		
 	}
 
 
-	public void addKitchenTolls(String[] newToll) {
+	public void addKitchenTolls(KitchenTool newToll) {
 	}
 	
-	public void addIngredient(String[] ingredient){
+	public void addIngredient(Ingredient ingredient){
 		
 	}
 	
