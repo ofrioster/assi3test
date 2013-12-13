@@ -1,6 +1,6 @@
 package run;
 
-public class Ingredient {
+public class Ingredient implements Ingredient_Interface{
 	
 	private String ingredientName;
 	private int ingredientAmount;

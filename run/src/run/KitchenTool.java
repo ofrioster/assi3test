@@ -1,6 +1,6 @@
 package run;
 
-public class KitchenTool {
+public class KitchenTool implements KitchenTool_Interface {
 
 	private String kitchenToolName;
 	private int kitchenToolAmount;
