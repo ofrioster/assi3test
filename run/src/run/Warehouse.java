@@ -51,5 +51,8 @@ public class Warehouse {
 		return res;
 	}
 	
+	public void returnKitchenTolls(String KitchenTollsname){
+		
+	}
 
 }

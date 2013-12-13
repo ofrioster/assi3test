@@ -13,5 +13,6 @@ public interface Warehouse_Interface {
 	public boolean  getIngredient(String ingredientsName);
 	//take one kitchen tool from the warehouse
 	public boolean  getKitchenTolls(String KitchenTollsname);
+	public void returnKitchenTolls(String KitchenTollsname);
 
 }
