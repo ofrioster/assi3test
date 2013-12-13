@@ -1,6 +1,6 @@
 package run;
 
-import java.util.Vector;
+
 
 
 public interface Warehouse_Interface {
@@ -9,7 +9,7 @@ public interface Warehouse_Interface {
 	public void addIngredient(Ingredient ingredient);
 	public int getNumberOfKitchenTolls(String KitchenTolls);
 	public int getNumberOfIngredientsAvailable(String ingredients);
-	public void getIngredient(String ingredientsName);
-	public void getKitchenTolls(String KitchenTollsname);
+	public boolean  getIngredient(String ingredientsName);
+	public boolean  getKitchenTolls(String KitchenTollsname);
 
 }

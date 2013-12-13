@@ -68,7 +68,7 @@ public class testunit {
 	public void test3(){
 		Vector<Ingredient> test3IngriedientVector=new Vector<Ingredient>();
 		Vector <KitchenTool> test3KitchenTollsVector=new Vector<KitchenTool>();
-		for (int i=1; i<50;i++){
+		for (int i=1; i<6;i++){
 			String ingredient= "ingredient"+i;
 			Ingredient test2arry=new Ingredient(ingredient,5);
 			test3IngriedientVector.addElement(test2arry);
@@ -92,6 +92,73 @@ public class testunit {
 			if(test3.getNumberOfKitchenTolls("KitchenToll3")!= 3){
 				fail("worng number of kitchen toll");
 			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			fail ("kitchen tolls faill");
+		}
+		
+	}
+	public void test4(){
+		Vector<Ingredient> test4IngriedientVector=new Vector<Ingredient>();
+		Vector <KitchenTool> test4KitchenTollsVector=new Vector<KitchenTool>();
+		for (int i=1; i<3;i++){
+			String ingredient= "ingredient"+i;
+			Ingredient test2arry=new Ingredient(ingredient,5);
+			test4IngriedientVector.addElement(test2arry);
+			String KitchenTolls="KitchenTolls"+i;
+			KitchenTool KitchenTollsarry=new KitchenTool(KitchenTolls,5);
+			test4KitchenTollsVector.addElement(KitchenTollsarry);
+		}
+		Warehouse test3=new Warehouse(test4KitchenTollsVector, test4IngriedientVector);
+		try{
+			test3.getIngredient("ingredient2");
+			if (test3.getNumberOfIngredientsAvailable("ingredient2")!=1){
+				fail ("worng number of ingredients");
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			fail("ingredients fail");
+		}
+		try{
+			test3.getIngredient("ingredient2");
+			if (test3.getNumberOfIngredientsAvailable("ingredient2")!=0){
+				fail ("worng number of ingredients");
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			fail("ingredients fail");
+		}
+		try{
+			if(test3.getIngredient("ingredient2")){
+				fail("worng number of ingredients");
+			}
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			fail("ingredients fail");
+		}
+		try{
+			test3.getKitchenTolls("KitchenToll3");
+			if(test3.getNumberOfKitchenTolls("KitchenToll3")!= 1){
+				fail("worng number of kitchen toll");
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			fail ("kitchen tolls faill");
+		}
+		try{
+			test3.getKitchenTolls("KitchenToll3");
+			if(test3.getNumberOfKitchenTolls("KitchenToll3")!= 0){
+				fail("worng number of kitchen toll");
+			}
+		}
+		catch (ArrayIndexOutOfBoundsException e){
+			fail ("kitchen tolls faill");
+		}
+		try{
+			if(test3.getKitchenTolls("KitchenToll3")){
+				fail("worng number of kitchen toll");
+			}
+			
 		}
 		catch (ArrayIndexOutOfBoundsException e){
 			fail ("kitchen tolls faill");

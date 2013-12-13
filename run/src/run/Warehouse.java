@@ -38,12 +38,17 @@ public class Warehouse {
 		return res;
 	}
 	
-	public void getIngredient(String ingredientsName){
+	public boolean  getIngredient(String ingredientsName){
+		boolean res=true;
+		
+		return res;
 		
 	}
 	
-	public void getKitchenTolls(String KitchenTollsname){
+	public boolean  getKitchenTolls(String KitchenTollsname){
+		boolean res=true;
 		
+		return res;
 	}
 	
 
