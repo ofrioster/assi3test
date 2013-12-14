@@ -1,5 +1,7 @@
 package run;
 
+import java.util.Vector;
+
 
 public interface OrderInterface {
 	
@@ -9,6 +11,7 @@ public interface OrderInterface {
 	public int getDifficultyRating();
 	public String getCustomerAddress();
 	public void changeOrderDifficultyRating(int difficultyRating);
+	public Vector<OrderOfDish> getOrderDish();
 	
 	
 

@@ -7,7 +7,7 @@ public class Dish implements DishInterface{
 	
 	private String dishName;
 	private Double dishExpectedCookTime;
-	private Vector<String> dishIngredients;
+	private Vector<Ingredient> dishIngredients;
 	private Vector<KitchenTool> dishKitchenTolls;
 	private int difficultyRating;
 	private int reward;
@@ -17,7 +17,7 @@ public class Dish implements DishInterface{
 		
 	}
 	
-	public Dish (String dishName,Double dishExpectedCookTime,Vector<String> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,int reward){
+	public Dish (String dishName,Double dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,int reward){
 		this.dishName=dishName;
 		this.dishExpectedCookTime=dishExpectedCookTime;
 		this.dishIngredients=dishIngredients;
@@ -36,6 +36,12 @@ public class Dish implements DishInterface{
 	
 	public int getDishDifficultyRating(){
 		return this.difficultyRating;
+	}
+	public Vector<Ingredient> getDishIngredients(){
+		return this.dishIngredients;
+	}
+	public Vector<KitchenTool> getDishKitchenTolls(){
+		return this.dishKitchenTolls;
 	}
 
 }

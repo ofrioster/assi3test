@@ -8,6 +8,7 @@ public class Management implements ManagementInterface {
 	private Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson;
 	private Warehouse warehouseName;
 	private Statistics statistics;
+	private long numberOfOrderThatProcess;
 	
 	public Management(){
 		

@@ -10,9 +10,9 @@ public interface Warehouse_Interface {
 	public int getNumberOfKitchenTolls(String KitchenTolls);
 	public int getNumberOfIngredientsAvailable(String ingredients);
 	//take one ingredient from the warehouse
-	public boolean  getIngredient(String ingredientsName);
+	public boolean getIngredient(Ingredient ingredientsName);
 	//take one kitchen tool from the warehouse
-	public boolean  getKitchenTolls(String KitchenTollsname);
-	public void returnKitchenTolls(String KitchenTollsname);
+	public boolean getKitchenTolls(KitchenTool KitchenTollsname);
+	public void returnKitchenTolls(KitchenTool KitchenTollsname);
 
 }

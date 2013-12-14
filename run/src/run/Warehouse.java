@@ -3,7 +3,7 @@ package run;
 
 import java.util.Vector;
 
-public class Warehouse {
+public class Warehouse implements Warehouse_Interface{
 	
 	private Vector<KitchenTool> kitchenCollectionTolls;
 	private Vector<Ingredient> ingredientsAvailable;
@@ -38,20 +38,28 @@ public class Warehouse {
 		return res;
 	}
 	
-	public boolean  getIngredient(String ingredientsName){
+	public boolean  getIngredient(Ingredient ingredientsName){
 		boolean res=true;
 		
 		return res;
 		
 	}
 	
-	public boolean  getKitchenTolls(String KitchenTollsname){
+	public boolean  getKitchenTolls(KitchenTool KitchenTollsname){
 		boolean res=true;
 		
 		return res;
 	}
 	
-	public void returnKitchenTolls(String KitchenTollsname){
+	public synchronized void returnKitchenTolls(KitchenTool KitchenTollsname){
+		Boolean found=false;
+		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
+			if (this.kitchenCollectionTolls.get(i)==KitchenTollsname){
+				this.kitchenCollectionTolls.get(i).returnKitchenTool();
+				found=true;
+				notifyAll();
+			}
+		}
 		
 	}
 

@@ -49,5 +49,8 @@ public class Order implements OrderInterface {
 	public void changeOrderDifficultyRating(int difficultyRating){
 		this.difficultyRating=difficultyRating;
 	}
+	public Vector<OrderOfDish> getOrderDish(){
+		return this.orderDish;
+	}
 
 }
