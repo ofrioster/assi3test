@@ -10,5 +10,6 @@ public interface DishInterface {
 	public int getDishDifficultyRating();
 	public Vector<Ingredient> getDishIngredients();
 	public Vector<KitchenTool> getDishKitchenTolls();
+	public int getreward();
 
 }

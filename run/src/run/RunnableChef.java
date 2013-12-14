@@ -1,13 +1,13 @@
 package run;
 import java.util.Vector;
 
-public class RunnableChef implements RunnableCookOneDishInterface{
+public class RunnableChef implements RunnableChefInterface{
 	
 	private String chefName;
 	private Double chefEfficiencyRating;
 	private Double enduranceRating;
-	private Double currectPressure;
-	private Vector<Order> collectionOfOrders;
+	private int currectPressure;
+	private Vector<Order> orderVector;
 	private Vector<Thread> poolOfThreads;
 	private Vector<CallableCookWholeOrder> CallableCookWholeOrder;
 	private Boolean shutDown;
@@ -17,7 +17,7 @@ public class RunnableChef implements RunnableCookOneDishInterface{
 		this.chefName=chefName;
 		this.chefEfficiencyRating=chefEfficiencyRating;
 		this.enduranceRating=enduranceRating;
-		this.currectPressure=0.0;
+		this.currectPressure=0;
 		this.shutDown=false;
 	}
 	
@@ -28,19 +28,37 @@ public class RunnableChef implements RunnableCookOneDishInterface{
 		return this.chefEfficiencyRating;
 	}
 	public Double getEnduranceRating(){
+
 		return this.enduranceRating;
 	}
-	public Double getCurrectPressure(){
+	public int getCurrectPressure(){
+		this.currectPressure=0;
+		for (int i=0; i<this.orderVector.size();i++){
+			if(this.poolOfThreads.get(i).isAlive()){
+				this.setCurrectPressure(this.orderVector.get(i));
+			}
+		}
 		return this.currectPressure;
 	}
+	public void setCurrectPressure(Order order){
+		for (int i=0; i< order.getOrderDish().size();i++){
+			this.chefEfficiencyRating=this.chefEfficiencyRating+order.getOrderDish().get(i).gestDish().getDishDifficultyRating();
+		}
+	}
+	
+	
 	//accept new order if dish difficuly< EnduranceRating - CurrectPressure
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
-		double dishDifficuly=newOrder.getDifficultyRating();
-		if (dishDifficuly< (enduranceRating-currectPressure)){
+		int dishDifficuly=newOrder.getDifficultyRating();
+		if ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown){
 			this.currectPressure=this.currectPressure+dishDifficuly;
-			this.collectionOfOrders.add(newOrder);
-			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder();///**** edit
+			this.orderVector.add(newOrder);
+			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse);
 			this.CallableCookWholeOrder.add(newWholeOrder);
+			Thread t=new Thread(newWholeOrder);
+			this.poolOfThreads.add(t);
+			t.start();
+	//		this.setChefEfficiencyRating(newOrder);
 			return true;
 		}
 		return false;

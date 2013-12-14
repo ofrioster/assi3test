@@ -1,7 +1,6 @@
 package run;
 import java.util.Vector;
 
-import javax.swing.plaf.SliderUI;
 
 public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnable{
 	

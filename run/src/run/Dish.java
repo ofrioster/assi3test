@@ -43,5 +43,8 @@ public class Dish implements DishInterface{
 	public Vector<KitchenTool> getDishKitchenTolls(){
 		return this.dishKitchenTolls;
 	}
+	public int getreward(){
+		return this.reward;
+	}
 
 }

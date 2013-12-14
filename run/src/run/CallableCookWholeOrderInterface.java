@@ -6,6 +6,7 @@ public interface CallableCookWholeOrderInterface {
 	// start threads to cook the orders
 	public Boolean IsOrderIsDone();
 	public void run();
+	public Long getTotalCookingTime();
 	
 
 }
