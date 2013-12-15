@@ -7,6 +7,7 @@ public interface KitchenTool_Interface {
 	public boolean getKitchenTool();
 	public void returnKitchenTool();
 	public int numberOfKitchenTools();
+	public int getNumberOfKitchenTool();
 
 
 }

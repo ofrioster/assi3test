@@ -68,7 +68,7 @@ public class RunnableChef implements RunnableChefInterface{
 //	public Boolean addCookWholeOrder(CallableCookWholeOrder newCookWholeOrder);
 	//finish all the cooking and do not start new ones
 	public void shutDown(){
-		
+		this.shutDown=true;
 	}
 
 }

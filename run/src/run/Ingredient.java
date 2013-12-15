@@ -37,7 +37,7 @@ public class Ingredient implements Ingredient_Interface{
 		this.ingredientAmount.release();
 	}
 	
-	public int numberOfIngredient(){
+	public int getNumberOfIngredient(){
 		return this.ingredientAmount.availablePermits();
 	}
 }

@@ -6,7 +6,7 @@ public interface RunnableChefInterface {
 	public Double getChefEfficiencyRating();
 	public Double getEnduranceRating();
 	public int getCurrectPressure();
-	//accept new order if dish difficuly< EnduranceRating - CurrectPressure
+	//accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	public Boolean addOrder(Order newOrder, Warehouse warehouse);
 	//finish all the cooking and do not start new ones
 	public void shutDown();

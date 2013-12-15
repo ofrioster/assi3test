@@ -20,7 +20,7 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 		
 	}
 	
-//	public void startCookOneDish();
+
 	
 	
 	//acquire all the kitchen tools
@@ -100,6 +100,9 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @ the start of a thread to cook the dish
+	 */
 	public void run(){
 		if (this.dishName.getQuantityLeft()>0){
 			try{

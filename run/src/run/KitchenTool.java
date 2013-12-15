@@ -40,6 +40,9 @@ public class KitchenTool implements KitchenTool_Interface {
 	public int numberOfKitchenTools(){
 		return this.kitchenToolSemaphore.availablePermits();
 	}
+	public int getNumberOfKitchenTool(){
+		return this.kitchenToolSemaphore.availablePermits();
+	}
 
 }
 	
