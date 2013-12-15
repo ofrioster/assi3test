@@ -24,14 +24,14 @@ public class Warehouse implements Warehouse_Interface{
 		
 	}
 	
-	public int getNumberOfKitchenTolls(String KitchenTolls){
+	public int getNumberOfKitchenTolls(KitchenTool KitchenTolls){
 		int res=-1;
 		
 		
 		return res;
 	}
 	
-	public int getNumberOfIngredientsAvailable(String ingredients){
+	public int getNumberOfIngredientsAvailable(Ingredient ingredients){
 		int res=-1;
 		
 		
