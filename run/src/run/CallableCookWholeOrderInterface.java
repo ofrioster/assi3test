@@ -2,7 +2,7 @@ package run;
 
 public interface CallableCookWholeOrderInterface {
 	
-	public void addDish(Dish newDish);
+	public void addDish(OrderOfDish newDish);
 	// start threads to cook the orders
 	public Boolean IsOrderIsDone();
 	public void run();

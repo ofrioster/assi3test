@@ -1,6 +1,5 @@
 package run;
 
-import java.awt.geom.Arc2D.Double;
 import java.util.Vector;
 
 public interface DishInterface {
@@ -10,6 +9,6 @@ public interface DishInterface {
 	public int getDishDifficultyRating();
 	public Vector<Ingredient> getDishIngredients();
 	public Vector<KitchenTool> getDishKitchenTolls();
-	public int getreward();
+	public Double getReward();
 
 }

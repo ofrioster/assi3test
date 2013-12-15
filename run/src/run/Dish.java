@@ -1,6 +1,6 @@
 package run;
 
-import java.awt.geom.Arc2D.Double;
+
 import java.util.Vector;
 
 public class Dish implements DishInterface{
@@ -10,14 +10,14 @@ public class Dish implements DishInterface{
 	private Vector<Ingredient> dishIngredients;
 	private Vector<KitchenTool> dishKitchenTolls;
 	private int difficultyRating;
-	private int reward;
+	private Double reward;
 	
 	
 	public Dish(){
 		
 	}
 	
-	public Dish (String dishName,Double dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,int reward){
+	public Dish (String dishName,Double dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,Double reward){
 		this.dishName=dishName;
 		this.dishExpectedCookTime=dishExpectedCookTime;
 		this.dishIngredients=dishIngredients;
@@ -43,7 +43,7 @@ public class Dish implements DishInterface{
 	public Vector<KitchenTool> getDishKitchenTolls(){
 		return this.dishKitchenTolls;
 	}
-	public int getreward(){
+	public Double getReward(){
 		return this.reward;
 	}
 

@@ -4,15 +4,15 @@ import java.util.Vector;
 
 public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnable{
 	
-	private Dish dishName;
+	private OrderOfDish dishName;
 	private Warehouse warehouseName;
 	private RunnableChef Chef;
 	private Boolean allKitchenToolsAcquire;
 	private Boolean allIngredientsAcquire;
 	private Vector<KitchenTool> kitchenToolsInUse;
 	
-	public RunnableCookOneDish(Dish runnableCookOneDish,Warehouse warehouseName,RunnableChef Chef){
-		this.dishName=runnableCookOneDish;
+	public RunnableCookOneDish(OrderOfDish dishName,Warehouse warehouseName,RunnableChef Chef){
+		this.dishName=dishName;
 		this.warehouseName=warehouseName;
 		this.Chef=Chef;
 		this.allKitchenToolsAcquire=false;
@@ -26,7 +26,7 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 	//acquire all the kitchen tools
 	public Boolean acquireAllKitchenTools(){
 		Boolean res=true;
-		Vector <KitchenTool> kitchenToolsForThisDish=dishName.getDishKitchenTolls();
+		Vector <KitchenTool> kitchenToolsForThisDish=dishName.gestDish().getDishKitchenTolls();
 		for (int i=0; i<kitchenToolsForThisDish.size();i++){
 			while (!acquireKitchenTool(kitchenToolsForThisDish.get(i))){
 				try {
@@ -65,7 +65,7 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 	//acquire all the ingredients
 	public Boolean acquireAllIngredients(){
 		Boolean res=true;
-		Vector <Ingredient> ingredientsForThisDish=dishName.getDishIngredients();
+		Vector <Ingredient> ingredientsForThisDish=dishName.gestDish().getDishIngredients();
 		for (int i=0; i<ingredientsForThisDish.size();i++){
 			if (!acquireIngredients(ingredientsForThisDish.get(i))){
 				System.out.println("EROR!!! ingredient " +ingredientsForThisDish.get(i).getIngredientName()+ "missing");
@@ -101,20 +101,22 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 	}
 	
 	public void run(){
-		try{
-			acquireAllIngredients();
-			acquireAllKitchenTools();
-			cookDish();
-			returnAllKitchenTools();
+		if (this.dishName.getQuantityLeft()>0){
+			try{
+				this.dishName.setOrderStatus(2);
+				acquireAllIngredients();
+				acquireAllKitchenTools();
+				cookDish();
+				returnAllKitchenTools();
+				this.dishName.setOrderStatus(3);
+			}
+			catch (Exception e){
+				System.out.println("EROR IN COOK ONE DISH");
+			}
 		}
-		catch (Exception e){
-			System.out.println("EROR IN COOK ONE DISH");
-		}
-		
-		}
-	
+	}
 	public Dish getDish(){
-		return this.dishName;
+		return this.dishName.gestDish();
 	}
 
 }

@@ -51,6 +51,7 @@ public class RunnableChef implements RunnableChefInterface{
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
 		int dishDifficuly=newOrder.getDifficultyRating();
 		if ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown){
+			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
 			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse);
@@ -60,6 +61,7 @@ public class RunnableChef implements RunnableChefInterface{
 			t.start();
 	//		this.setChefEfficiencyRating(newOrder);
 			return true;
+			
 		}
 		return false;
 	}

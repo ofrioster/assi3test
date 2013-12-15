@@ -7,11 +7,24 @@ public interface OrderInterface {
 	
 	public void addDish(OrderOfDish orderDish);
 	public int getOrderStatus();
-	public int getOrderID();
+	public String getOrderID();
 	public int getDifficultyRating();
-	public String getCustomerAddress();
+	public Double[] getCustomerAddress();
 	public void changeOrderDifficultyRating(int difficultyRating);
 	public Vector<OrderOfDish> getOrderDish();
+	public void setOrderStatus(int status);
+	public void setOrderStatus(String status);
+	public void setExpectedDeliveryTime(long deliveryTime);
+	public long getExpectedDeliveryTime();
+	public void setActualCookTime(long cookTime);
+	public long getActualCookTime();
+	public void setActualDeliveryTime(long deliveryTime);
+	public long getActualDeliveryTime();
+	public void setExpectedCookTime(long cookTime);
+	public long getExpectedCookTime();
+	public void setTotalReward();
+	public Double getTotalReward();
+	
 	
 	
 

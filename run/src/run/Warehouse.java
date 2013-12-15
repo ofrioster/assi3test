@@ -38,14 +38,14 @@ public class Warehouse implements Warehouse_Interface{
 		return res;
 	}
 	
-	public boolean  getIngredient(Ingredient ingredientsName){
+	public synchronized boolean  getIngredient(Ingredient ingredientsName){
 		boolean res=true;
 		
 		return res;
 		
 	}
 	
-	public boolean  getKitchenTolls(KitchenTool KitchenTollsname){
+	public synchronized boolean  getKitchenTolls(KitchenTool KitchenTollsname){
 		boolean res=true;
 		
 		return res;
