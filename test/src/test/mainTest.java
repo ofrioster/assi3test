@@ -12,5 +12,6 @@ public class mainTest {
 		System.out.println(y);
 		Double res=Math.sqrt(x+y);
 		System.out.println(res);
+		
 	}
 }

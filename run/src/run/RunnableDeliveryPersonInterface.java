@@ -12,5 +12,6 @@ public interface RunnableDeliveryPersonInterface {
 	public void addOrder(Order newOrder);
 	public void shutDown();
 	public void run();
+	public long getTotalDeliveryTime();
 
 }

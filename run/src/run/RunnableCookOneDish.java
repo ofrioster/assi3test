@@ -1,8 +1,10 @@
 package run;
 import java.util.Vector;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnable{
+public class RunnableCookOneDish extends Observable implements RunnableCookOneDishInterface,Runnable{
 	
 	private OrderOfDish dishName;
 	private Warehouse warehouseName;
@@ -112,6 +114,7 @@ public class RunnableCookOneDish implements RunnableCookOneDishInterface,Runnabl
 				cookDish();
 				returnAllKitchenTools();
 				this.dishName.setOrderStatus(3);
+				notifyObservers(true);
 			}
 			catch (Exception e){
 				System.out.println("EROR IN COOK ONE DISH");

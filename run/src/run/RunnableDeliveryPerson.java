@@ -9,6 +9,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	private Double speedOfDeliveryPerson;
 	private Vector<Order> collectionDeliverdOrders;
 	private Boolean shutDown;
+	private long totalDeliveryTime;
 	
 	public RunnableDeliveryPerson(){
 		
@@ -19,6 +20,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.restaurantAddres=restaurantAddres;
 		this.speedOfDeliveryPerson=speedOfDeliveryPerson;
 		this.shutDown=false;
+		this.totalDeliveryTime=0;
 	}
 	
 	public String getDeliveryPersonName(){
@@ -67,6 +69,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 
 	public void addOrder(Order newOrder){
+		this.totalDeliveryTime=this.totalDeliveryTime+ this.calculateDeliveryTime(calculateDeliveryDistance(newOrder.getCustomerAddress()));
 		newOrder.setActualDeliveryTime(System.currentTimeMillis());
 		this.collectionDeliverdOrders.add(newOrder);
 	}
@@ -80,6 +83,14 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 			}
 			
 		}
+	}
+
+
+	/* (non-Javadoc)
+	 * @totalDeliveryTime in milis
+	 */
+	public long getTotalDeliveryTime() {
+		return this.totalDeliveryTime;
 	}
 
 }

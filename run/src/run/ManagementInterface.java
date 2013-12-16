@@ -8,7 +8,7 @@ public interface ManagementInterface {
 	public void addDeliveryPerson (RunnableDeliveryPerson newDeliveryPerson);
 	public void addWarehouse(Warehouse newWarehouse);
 	//start all the cook and the threads
-	public void startCooking();
+//	public void startCooking();
 	//send order to the chef
 	public void startToCookDish(Order orderToCook);
 	//find a not not busy chef
@@ -17,4 +17,5 @@ public interface ManagementInterface {
 	public void addOrderToStatistics(Order finishOrder);
 	//return the total money the gain
 	public Double getMoneyGain();
+	public RunnableDeliveryPerson findUnBusyDeliveryPerson();
 }

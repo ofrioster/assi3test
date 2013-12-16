@@ -81,7 +81,6 @@ public class RunnableChef implements RunnableChefInterface{
 		int dishDifficuly=newOrder.getDifficultyRating();
 		return ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown);
 	}
-	
-	
+
 
 }

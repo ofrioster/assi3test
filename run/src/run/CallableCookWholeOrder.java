@@ -1,7 +1,10 @@
 package run;
 import java.util.Vector;
+import java.util.Observable;
+import java.util.Observer;
 
-public class CallableCookWholeOrder implements CallableCookWholeOrderInterface, Runnable{
+
+public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable{
 
 	//private Vector<Dish> dishVector;
 	private Vector<OrderOfDish> dishOrderVector;
@@ -56,15 +59,34 @@ public class CallableCookWholeOrder implements CallableCookWholeOrderInterface, 
 				this.threadsVector.add(t);
 			}
 		}
+		/*/// doing that in update
 		while (!this.IsOrderIsDone());
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
-		///*** deliver order***////
-		
-		
+		notifyObservers(this.order);
+		*/
 	}
+	  public void update(Observable obj, Boolean finish) {
+		  long endTime=System.currentTimeMillis();
+		  if (finish){
+			  Boolean orderFinish=true;
+			  for (int i=0; i<this.dishOrderVector.size() && orderFinish;i++){
+				  if (this.dishOrderVector.get(i).getOrderStatus()!=3){
+					  orderFinish=false;
+				  }
+			  }
+			  if (orderFinish){
+				  this.endTime=endTime;
+				  this.totalTime=this.endTime-this.startTime;
+				  this.order.setActualCookTime(this.totalTime);
+				  order.setOrderStatus(3);
+				  notifyObservers(this.order); 
+			  }
+			  
+		  }
+	  }
 	
 	public Long getTotalCookingTime(){
 		return this.totalTime;
