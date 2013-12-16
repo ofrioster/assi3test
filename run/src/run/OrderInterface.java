@@ -24,6 +24,8 @@ public interface OrderInterface {
 	public long getExpectedCookTime();
 	public void setTotalReward();
 	public Double getTotalReward();
+	public long calculateCookTime(Vector<OrderOfDish> orderDish);
+	public long calculateCookTime(OrderOfDish orderDish);
 	
 	
 	

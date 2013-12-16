@@ -11,11 +11,18 @@ public class Ingredient implements Ingredient_Interface{
 		this.ingredientAmount=new Semaphore(amount);
 		this.ingredientName=name;
 	}
+	/**
+	 * @param ingredientToCopy
+	 * @ copy constructor
+	 */
+	public Ingredient(Ingredient ingredientToCopy) {
+		this.ingredientAmount=new Semaphore(ingredientToCopy.getNumberOfIngredient());
+		this.ingredientName=ingredientToCopy.getIngredientName();
+	}
 
 
 	
 	public Ingredient(){
-		
 	}
 	
 	

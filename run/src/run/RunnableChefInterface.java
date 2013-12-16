@@ -8,6 +8,7 @@ public interface RunnableChefInterface {
 	public int getCurrectPressure();
 	//accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	public Boolean addOrder(Order newOrder, Warehouse warehouse);
+	public Boolean canTheChefTakeOrder(Order newOrder);
 	//finish all the cooking and do not start new ones
 	public void shutDown();
 //	public void sendFinishOrderToDelivery(Order finishOrder);  //can be in Management

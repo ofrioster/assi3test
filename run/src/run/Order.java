@@ -26,6 +26,7 @@ public class Order implements OrderInterface {
 		this.orderStatus=orderStatus;
 		this.orderDish=orderDish;
 		this.customerAddress=customerAddress;
+		this.expectedcookTime=this.calculateCookTime(orderDish);
 	}
 	
 	public Order(String orderID,int difficultyRating, int orderStatus,Double[] customerAddress){
@@ -37,6 +38,7 @@ public class Order implements OrderInterface {
 	
 	public void addDish(OrderOfDish orderDish){
 		this.orderDish.add(orderDish);
+		this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
@@ -136,6 +138,21 @@ public class Order implements OrderInterface {
 		for (int i=0; i<this.orderDish.size();i++){
 			res= res+this.orderDish.get(i).gestDish().getReward();
 		}
+		return res;
+	}
+	
+	public long calculateCookTime(Vector<OrderOfDish> orderDish){
+		long res=0;
+		for (int i=0; i<orderDish.size();i++){
+			long quantity=(long)orderDish.get(i).getquantity();
+			res=res+(orderDish.get(i).gestDish().getdishExpectedCookTime() * quantity);
+		}
+		return res;
+	}
+	public long calculateCookTime(OrderOfDish orderDish){
+		long res=0;
+			long quantity=(long)orderDish.getquantity();
+			res=res+(orderDish.gestDish().getdishExpectedCookTime() * quantity);
 		return res;
 	}
 

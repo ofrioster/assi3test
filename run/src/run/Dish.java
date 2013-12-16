@@ -6,7 +6,7 @@ import java.util.Vector;
 public class Dish implements DishInterface{
 	
 	private String dishName;
-	private Double dishExpectedCookTime;
+	private long dishExpectedCookTime;
 	private Vector<Ingredient> dishIngredients;
 	private Vector<KitchenTool> dishKitchenTolls;
 	private int difficultyRating;
@@ -17,7 +17,7 @@ public class Dish implements DishInterface{
 		
 	}
 	
-	public Dish (String dishName,Double dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,Double reward){
+	public Dish (String dishName,long dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,Double reward){
 		this.dishName=dishName;
 		this.dishExpectedCookTime=dishExpectedCookTime;
 		this.dishIngredients=dishIngredients;
@@ -30,7 +30,7 @@ public class Dish implements DishInterface{
 		return this.dishName;
 	}
 	
-	public Double getdishExpectedCookTime(){
+	public long getdishExpectedCookTime(){
 		return this.dishExpectedCookTime;
 	}
 	

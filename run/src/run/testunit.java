@@ -28,9 +28,6 @@ public class testunit {
 		catch (ArrayIndexOutOfBoundsException e){
 			fail("get ingredients fail");
 		}
-		finally{
-			test2();
-		}
 	}
 		
 		////test2

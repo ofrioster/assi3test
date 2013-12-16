@@ -12,7 +12,9 @@ public class RunnableChef implements RunnableChefInterface{
 	private Vector<CallableCookWholeOrder> CallableCookWholeOrder;
 	private Boolean shutDown;
 	
-	
+	public RunnableChef(){
+		
+	}
 	public RunnableChef ( String chefName, Double chefEfficiencyRating, Double enduranceRating){
 		this.chefName=chefName;
 		this.chefEfficiencyRating=chefEfficiencyRating;
@@ -47,7 +49,10 @@ public class RunnableChef implements RunnableChefInterface{
 	}
 	
 	
-	//accept new order if dish difficuly< EnduranceRating - CurrectPressure
+	
+	/** (non-Javadoc)
+	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
+	 */
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
 		int dishDifficuly=newOrder.getDifficultyRating();
 		if ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown){
@@ -65,10 +70,18 @@ public class RunnableChef implements RunnableChefInterface{
 		}
 		return false;
 	}
-//	public Boolean addCookWholeOrder(CallableCookWholeOrder newCookWholeOrder);
-	//finish all the cooking and do not start new ones
+
+	/** (non-Javadoc)
+	 * @	finish all the cooking and do not start new ones
+	 */
 	public void shutDown(){
 		this.shutDown=true;
 	}
+	public Boolean canTheChefTakeOrder(Order newOrder){
+		int dishDifficuly=newOrder.getDifficultyRating();
+		return ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown);
+	}
+	
+	
 
 }
