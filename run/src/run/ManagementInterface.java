@@ -21,6 +21,6 @@ public interface ManagementInterface {
 	public void run();
 	public void setReceiveAllOrders(Boolean receiveAllOrders);
 	public Boolean getReceiveAllOrders();
-	public void setShutDown(Boolean shutDown);
+	public void ShutDown();
 	public Boolean getShutDown();
 }

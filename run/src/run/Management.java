@@ -139,7 +139,7 @@ public class Management implements ManagementInterface,Observer {
 	public Boolean getReceiveAllOrders(){
 		return this.receiveAllOrders;
 	}
-	public synchronized void setShutDown(Boolean shutDown){
+	public synchronized void ShutDown( ){
 		this.shutDown=true;
 		for (int i=0;i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).shutDown();
