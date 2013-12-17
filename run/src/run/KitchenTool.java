@@ -14,6 +14,8 @@ public class KitchenTool implements KitchenTool_Interface {
 		this.kitchenToolSemaphore=new Semaphore(amount);
 	}
 	
+	
+	
 	public KitchenTool(){
 		
 	}

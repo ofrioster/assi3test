@@ -61,8 +61,7 @@ public class Dish implements DishInterface{
 	}
 	
 	public void setDishIngredients(Vector<Ingredient> dishIngredients){
-		
-		this.difficultyRating=difficultyRating;
+		this.dishIngredients=dishIngredients;
 		}
 	
 	public void setDishKitchenTolls(Vector<KitchenTool> dishKitchenTolls){
