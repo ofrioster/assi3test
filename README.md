@@ -15,5 +15,4 @@ if one of the vector is empty some function return empty objects
 does we need to implement full blocking queue?
 add Address object
 
-
 observer, observable - to implements from.... a well as runnable

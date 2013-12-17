@@ -8,9 +8,12 @@ public class Management implements ManagementInterface,Observer {
 	private Vector<Order> collectionOfOrders;
 	private Vector<RunnableChef> collectionOfChefs;
 	private Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson;
+	private Vector<Order> collectionOfOrdersToDeliver;
 	private Warehouse warehouseName;
 	private Statistics statistics;
 	private long numberOfOrderThatProcess;
+	private Boolean receiveAllOrders; 
+	private Boolean shutDown;
 	
 	public Management(){
 		
@@ -18,13 +21,17 @@ public class Management implements ManagementInterface,Observer {
 	
 	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName){
 		this.collectionOfOrders=collectionOfOrders;
+		this.collectionOfOrdersToDeliver=collectionOfOrders;
 		this.collectionOfChefs=collectionOfChefs;
 		this.collectionOfDeliveryPerson=collectionOfDeliveryPerson;
 		this.warehouseName=warehouseName;
+		this.receiveAllOrders=false;
+		this.shutDown=false;
 	}
 	
 	public void addOrder(Order newOrder){
 		this.collectionOfOrders.add(newOrder);
+		this.collectionOfOrdersToDeliver.add(newOrder);
 	}
 	
 	public void addNewChef(RunnableChef newChef){
@@ -113,8 +120,36 @@ public class Management implements ManagementInterface,Observer {
 		}
 		
 	}
-
-
-
+	/* (non-Javadoc)
+	 * @start the Management that will stop only when the orders has finish
+	 */
+	public void run(){
+		while (!this.shutDown || (!this.collectionOfOrdersToDeliver.isEmpty() && this.receiveAllOrders)){
+			if (!this.collectionOfOrdersToDeliver.isEmpty()){
+				synchronized (collectionOfOrdersToDeliver) {
+					this.addOrder(this.collectionOfOrdersToDeliver.get(0));
+					this.collectionOfOrdersToDeliver.remove(0);
+				}
+			}
+		}
+	}
+	public void setReceiveAllOrders(Boolean receiveAllOrders){
+		this.receiveAllOrders=receiveAllOrders;
+	}
+	public Boolean getReceiveAllOrders(){
+		return this.receiveAllOrders;
+	}
+	public synchronized void setShutDown(Boolean shutDown){
+		this.shutDown=true;
+		for (int i=0;i<this.collectionOfChefs.size();i++){
+			this.collectionOfChefs.get(i).shutDown();
+		}
+		for (int i=0;i<this.collectionOfDeliveryPerson.size();i++){
+			this.collectionOfDeliveryPerson.get(i).shutDown();
+		}
+	}
+	public Boolean getShutDown(){
+		return this.shutDown;
+	}
 
 }

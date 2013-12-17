@@ -18,4 +18,9 @@ public interface ManagementInterface {
 	//return the total money the gain
 	public Double getMoneyGain();
 	public RunnableDeliveryPerson findUnBusyDeliveryPerson();
+	public void run();
+	public void setReceiveAllOrders(Boolean receiveAllOrders);
+	public Boolean getReceiveAllOrders();
+	public void setShutDown(Boolean shutDown);
+	public Boolean getShutDown();
 }

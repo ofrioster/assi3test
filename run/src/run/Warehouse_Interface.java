@@ -14,5 +14,6 @@ public interface Warehouse_Interface {
 	//take one kitchen tool from the warehouse
 	public boolean getKitchenTolls(KitchenTool KitchenTollsname);
 	public void returnKitchenTolls(KitchenTool KitchenTollsname);
+	
 
 }
