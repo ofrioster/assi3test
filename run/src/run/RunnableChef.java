@@ -21,6 +21,9 @@ public class RunnableChef implements RunnableChefInterface{
 		this.enduranceRating=enduranceRating;
 		this.currectPressure=0;
 		this.shutDown=false;
+		this.orderVector=new Vector<Order>();
+		this.poolOfThreads=new Vector<Thread>();
+		this.CallableCookWholeOrder=new Vector<CallableCookWholeOrder>();
 	}
 	
 	public String gerChefName(){
@@ -56,6 +59,7 @@ public class RunnableChef implements RunnableChefInterface{
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
 		int dishDifficuly=newOrder.getDifficultyRating();
 		if ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown){
+			System.out.println("here");
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
@@ -65,6 +69,7 @@ public class RunnableChef implements RunnableChefInterface{
 			this.poolOfThreads.add(t);
 			t.start();
 	//		this.setChefEfficiencyRating(newOrder);
+			System.out.println("here");
 			return true;
 			
 		}
