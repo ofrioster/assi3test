@@ -1,57 +1,125 @@
 package run;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
+
+
 import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
  
 public class ReadXMLFile {
  
-  public static void main(String argv[]) {
+  public static void main(String[] args) {
  
     try {
  
-	File fXmlFile = new File("menu.xml");
-	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	Document doc = dBuilder.parse(fXmlFile);
+	File file = new File("menu.xml");
  
-	//optional, but recommended
-	//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-	doc.getDocumentElement().normalize();
+	DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
+                             .newDocumentBuilder();
+ 
+	Document doc = dBuilder.parse(file);
  
 	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
  
-	NodeList nList = doc.getElementsByTagName("Dish");
+	if (doc.hasChildNodes()) {
  
-	System.out.println("----------------------------");
+		printNote(doc.getChildNodes());
  
-	for (int temp = 0; temp < nList.getLength(); temp++) {
- 
-		Node nNode = nList.item(temp);
- 
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
- 
-		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
- 
-			Element eElement = (Element) nNode;
- 
-			//System.out.println("Staff id : " + eElement.getAttribute("id"));
-			//System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-			//System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-			System.out.println("name : " + eElement.getElementsByTagName("name").item(0).getTextContent());
-			System.out.println("dificulityRating : " + eElement.getElementsByTagName("dificulityRating").item(0).getTextContent());
-			System.out.println("expectedCookTime : " + eElement.getElementsByTagName("expectedCookTime").item(0).getTextContent());
-			System.out.println("reward : " + eElement.getElementsByTagName("reward").item(0).getTextContent());
-
-		}
 	}
+ 
     } catch (Exception e) {
-	e.printStackTrace();
+	System.out.println(e.getMessage());
     }
+ 
+  }
+ 
+  private static void printNote(NodeList nodeList) {
+ 
+    for (int count = 0; count < nodeList.getLength(); count++) {
+ 
+	Node tempNode = nodeList.item(count);
+ 
+	// make sure it's element node.
+	if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+ 
+        switch (tempNode.getNodeName()) {
+        case "Dish":
+        	Dish tempdish = new Dish();
+            break;
+        case "name":
+        	tempdish.setDishName(tempNode.getTextContent());
+            break;
+        case "march":
+            monthNumber = 3;
+            break;
+        case "april":
+            monthNumber = 4;
+            break;
+        case "may":
+            monthNumber = 5;
+            break;
+        case "june":
+            monthNumber = 6;
+            break;
+        case "july":
+            monthNumber = 7;
+            break;
+        case "august":
+            monthNumber = 8;
+            break;
+        case "september":
+            monthNumber = 9;
+            break;
+        case "october":
+            monthNumber = 10;
+            break;
+        case "november":
+            monthNumber = 11;
+            break;
+        case "december":
+            monthNumber = 12;
+            break;
+        default:
+            monthNumber = 0;
+            break;
+    }
+        
+		// get node name and value
+		System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
+		System.out.println("Node Value =" + tempNode.getTextContent());
+ 
+		if (tempNode.hasAttributes()) {
+ 
+			// get attributes names and values
+			NamedNodeMap nodeMap = tempNode.getAttributes();
+ 
+			for (int i = 0; i < nodeMap.getLength(); i++) {
+ 
+				Node node = nodeMap.item(i);
+				System.out.println("attr name : " + node.getNodeName());
+				System.out.println("attr value : " + node.getNodeValue());
+ 
+			}
+ 
+		}
+ 
+		if (tempNode.hasChildNodes()) {
+ 
+			// loop again if has child nodes
+			printNote(tempNode.getChildNodes());
+ 
+		}
+ 
+		System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
+ 
+	}
+ 
+    }
+ 
   }
  
 }

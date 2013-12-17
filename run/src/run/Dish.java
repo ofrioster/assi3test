@@ -29,6 +29,10 @@ public class Dish implements DishInterface{
 		return this.dishName;
 	}
 	
+	public void setDishName(String dishName){
+		this.dishName=dishName;
+	}
+	
 	public long getdishExpectedCookTime(){
 		return this.dishExpectedCookTime;
 	}
@@ -36,14 +40,40 @@ public class Dish implements DishInterface{
 	public int getDishDifficultyRating(){
 		return this.difficultyRating;
 	}
+	
+	public void setdishExpectedCookTime(long dishExpectedCookTime){
+		this.dishExpectedCookTime=dishExpectedCookTime;
+	}
+	
+	public void setDishDifficultyRating(int difficultyRating){
+		this.difficultyRating=difficultyRating;
+	}
+	
+	
+	
+	
+	
 	public Vector<Ingredient> getDishIngredients(){
 		return this.dishIngredients;
 	}
 	public Vector<KitchenTool> getDishKitchenTolls(){
 		return this.dishKitchenTolls;
 	}
+	
+	public void setDishIngredients(Vector<Ingredient> dishIngredients){
+		
+		this.difficultyRating=difficultyRating;
+		}
+	
+	public void setDishKitchenTolls(Vector<KitchenTool> dishKitchenTolls){
+		this.dishKitchenTolls=dishKitchenTolls;
+		}
+	
+	
 	public Double getReward(){
 		return this.reward;
 	}
-
+	public void setReward(Double reward){
+		this.reward=reward;
+	}
 }
