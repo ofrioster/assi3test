@@ -7,7 +7,7 @@ public class Order implements OrderInterface {
 	private int difficultyRating;
 	private int orderStatus;
 	private Vector<OrderOfDish> orderDish;
-	private Double[] customerAddress;
+	private Address customerAddress;
 	// the status are:
 	private final int incomplete=1;
 	private final int inProgress=2;
@@ -20,7 +20,7 @@ public class Order implements OrderInterface {
 	private Double totalReward;
 	
 	
-	public Order(String orderID,int difficultyRating, int orderStatus, Vector<OrderOfDish> orderDish,Double[] customerAddress){
+	public Order(String orderID,int difficultyRating, int orderStatus, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
 		this.difficultyRating=difficultyRating;
 		this.orderStatus=orderStatus;
@@ -29,7 +29,7 @@ public class Order implements OrderInterface {
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 	}
 	
-	public Order(String orderID,int difficultyRating, int orderStatus,Double[] customerAddress){
+	public Order(String orderID,int difficultyRating, int orderStatus,Address customerAddress){
 		this.orderID=orderID;
 		this.difficultyRating=difficultyRating;
 		this.orderStatus=orderStatus;
@@ -56,7 +56,7 @@ public class Order implements OrderInterface {
 	public int getDifficultyRating(){
 		return this.difficultyRating;
 	}
-	public Double[] getCustomerAddress(){
+	public Address getCustomerAddress(){
 		return this.customerAddress;
 		
 	}

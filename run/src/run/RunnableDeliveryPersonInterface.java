@@ -3,10 +3,10 @@ package run;
 public interface RunnableDeliveryPersonInterface {
 	
 	public String getDeliveryPersonName();
-	public Double[] getRestaurantAddres();
+	public Address getRestaurantAddres();
 	public Double getSpeedOfDeliveryPerson();
 	public void addDeliverdOrder(Order order);
-	public Double calculateDeliveryDistance(Double[] deliveryAddress);
+	public Double calculateDeliveryDistance(Address deliveryAddress);
 	public long calculateDeliveryTime(Double distance);
 	public void deliverOrder(Order orderToDeliver);
 	public void addOrder(Order newOrder);

@@ -9,7 +9,7 @@ public interface OrderInterface {
 	public int getOrderStatus();
 	public String getOrderID();
 	public int getDifficultyRating();
-	public Double[] getCustomerAddress();
+	public Address getCustomerAddress();
 	public void changeOrderDifficultyRating(int difficultyRating);
 	public Vector<OrderOfDish> getOrderDish();
 	public void setOrderStatus(int status);

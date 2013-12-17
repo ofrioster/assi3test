@@ -22,4 +22,5 @@ arnon:
  if shutDown call function ShutDown in management
  to start the management run one thread after the warehouse, the chef and delivery person are load
  when you finish to load al the orders call to function: setReceiveAllOrders(Boolean receiveAllOrders); when receiveAllOrders=true
+ do the logger
  

@@ -5,7 +5,7 @@ import java.lang.Math;
 public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, Runnable{
 	
 	private String deliveryPersonName;
-	private Double[] restaurantAddres; //the type might change we get (x,y)
+	private Address restaurantAddres; //the type might change we get (x,y)
 	private Double speedOfDeliveryPerson;
 	private Vector<Order> collectionDeliverdOrders;
 	private Boolean shutDown;
@@ -15,7 +15,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		
 	}
 	
-	public RunnableDeliveryPerson(String deliveryPersonName,Double[] restaurantAddres,Double speedOfDeliveryPerson){
+	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson){
 		this.deliveryPersonName=deliveryPersonName;
 		this.restaurantAddres=restaurantAddres;
 		this.speedOfDeliveryPerson=speedOfDeliveryPerson;
@@ -26,7 +26,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public String getDeliveryPersonName(){
 		return this.deliveryPersonName;
 	}
-	public Double[] getRestaurantAddres(){
+	public Address getRestaurantAddres(){
 		return this.restaurantAddres;
 	}
 	public Double getSpeedOfDeliveryPerson(){
@@ -35,14 +35,9 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void addDeliverdOrder(Order order){
 		this.collectionDeliverdOrders.add(order);
 	}
-	public Double calculateDeliveryDistance(Double[] deliveryAddress){
-		Double x=this.restaurantAddres[0]-deliveryAddress[0];
-		Double y=this.restaurantAddres[1]-deliveryAddress[1];
-		x=x*x;
-		y=y*y;
-		Double res=Math.sqrt(x+y);
-		return res;
-	}
+	public Double calculateDeliveryDistance(Address deliveryAddress){
+		return this.restaurantAddres.calculateDistance(deliveryAddress);
+		}
 	public long calculateDeliveryTime(Double distance){
 		long res;
 		res=Math.round(distance/this.speedOfDeliveryPerson);
