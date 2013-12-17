@@ -8,6 +8,9 @@ public class Statistics implements StatisticsInterface{
 	private Vector<Order> deliveredOrders;
 	private Vector<Ingredient> ingredientsConsumed;
 	
+	public Statistics(){
+		this.moneyGain=0.0;
+	}
 	/**
 	 * @param newOrder that has been finish
 	 * 
@@ -19,7 +22,7 @@ public class Statistics implements StatisticsInterface{
 			this.addinConsumedIgredients(newOrder);
 		}
 		else{
-			System.out.println("Priblem with order");
+			System.out.println("Problem with order");
 		}
 	}
 	/** (non-Javadoc)

@@ -48,9 +48,18 @@ public class assi3 {
 		//***chef***//
 		RunnableChef chef1=new RunnableChef("chef1", 5.0, 2.0);
 		RunnableChef chef2=new RunnableChef("chef2", 4.0, 3.0);
+		Vector<RunnableChef> chefVector=new Vector<RunnableChef>();
+		chefVector.add(chef2);
+		chefVector.add(chef1);
 		///***  DeliveryPerson **// 
 		RunnableDeliveryPerson deliveryP1=new RunnableDeliveryPerson("deliveryP1", restaurantAddress, 3.2, latchObject);
 		RunnableDeliveryPerson deliveryP2=new RunnableDeliveryPerson("deliveryP2", restaurantAddress, 5.2, latchObject);
+		Vector<RunnableDeliveryPerson> deliveryPerson=new Vector<RunnableDeliveryPerson>();
+		deliveryPerson.add(deliveryP2);
+		deliveryPerson.add(deliveryP1);
+		System.out.println("chef1.getEnduranceRating() "+chef1.getEnduranceRating());
+		System.out.println("chef1.getChefEfficiencyRating() " +chef1.getChefEfficiencyRating());
+		System.out.println("chef1.gerChefName() "+chef1.gerChefName());
 		
 		////****Dish***//
 		Vector<KitchenTool> dish1KitchenTools=new Vector<KitchenTool>();
@@ -74,7 +83,25 @@ public class assi3 {
 		System.out.println("order1.getExpectedCookTime() "+order1.getExpectedCookTime());
 		System.out.println("order1.getDifficultyRating() "+order1.getDifficultyRating());
 		System.out.println("order1.getOrderID() "+order1.getOrderID());
+		Vector<Order> orderVector=new Vector<Order>();
+		orderVector.add(order1);
 		
+		
+		
+		
+		///***management **//
+		Management managementTest=new Management(orderVector, chefVector, deliveryPerson, warehouseTest, latchObject);
+		System.out.println("managementTest.getMoneyGain() "+managementTest.getMoneyGain());
+		managementTest.setReceiveAllOrders(true);
+		Thread t=new Thread(managementTest);
+		t.start();
+		
+		try{
+			latchObject.await();
+		}
+		catch(InterruptedException e){
+			System.out.println("thread main problam");
+		}
 		
 		
 		System.out.println("end");

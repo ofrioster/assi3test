@@ -4,7 +4,7 @@ import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
 
-public class Management implements ManagementInterface,Observer {
+public class Management implements ManagementInterface,Observer,Runnable {
 	
 	private Vector<Order> collectionOfOrders;
 	private Vector<RunnableChef> collectionOfChefs;
@@ -30,6 +30,7 @@ public class Management implements ManagementInterface,Observer {
 		this.receiveAllOrders=false;
 		this.shutDown=false;
 		this.ordersLatch=ordersLatch;
+		this.statistics=new Statistics();
 	}
 	
 	public void addOrder(Order newOrder){
@@ -130,8 +131,9 @@ public class Management implements ManagementInterface,Observer {
 		while (!this.shutDown || (!this.collectionOfOrdersToDeliver.isEmpty() && this.receiveAllOrders)){
 			if (!this.collectionOfOrdersToDeliver.isEmpty()){
 				synchronized (collectionOfOrdersToDeliver) {
-					this.addOrder(this.collectionOfOrdersToDeliver.get(0));
+					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
+					System.out.println(this.collectionOfOrders.size());
 				}
 			}
 		}
