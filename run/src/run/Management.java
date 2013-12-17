@@ -4,7 +4,7 @@ import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
 
-public class Management implements ManagementInterface,Observer {
+public class Management implements ManagementInterface,Observer,Runnable {
 	
 	private Vector<Order> collectionOfOrders;
 	private Vector<RunnableChef> collectionOfChefs;
@@ -30,6 +30,7 @@ public class Management implements ManagementInterface,Observer {
 		this.receiveAllOrders=false;
 		this.shutDown=false;
 		this.ordersLatch=ordersLatch;
+		this.statistics=new Statistics();
 	}
 	
 	public void addOrder(Order newOrder){
@@ -52,6 +53,7 @@ public class Management implements ManagementInterface,Observer {
 	 * @add order to chef
 	 */
 	public synchronized void startToCookDish(Order orderToCook){
+		System.out.println("this.startToCookDish()");
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
 		chef.addOrder(orderToCook, this.warehouseName);
 	}
@@ -66,6 +68,7 @@ public class Management implements ManagementInterface,Observer {
 		try{
 			RunnableChef res=this.collectionOfChefs.get(0);
 			for (int i=0; i<this.collectionOfChefs.size();i++){
+				this.collectionOfChefs.get(i).getCurrectPressure();
 				if (res.getCurrectPressure()<this.collectionOfChefs.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
 					res=this.collectionOfChefs.get(i);
 				}
@@ -126,12 +129,19 @@ public class Management implements ManagementInterface,Observer {
 	/* (non-Javadoc)
 	 * @start the Management that will stop only when the orders has finish
 	 */
-	public void run(){
-		while (!this.shutDown || (!this.collectionOfOrdersToDeliver.isEmpty() && this.receiveAllOrders)){
-			if (!this.collectionOfOrdersToDeliver.isEmpty()){
+	public synchronized void run(){
+		System.out.println("1 "+this.collectionOfOrdersToDeliver.get(0).getOrderID());
+		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
+			System.out.println("what ths?? "+this.collectionOfOrdersToDeliver.size());
+			if(this.collectionOfOrdersToDeliver.size()>0){
 				synchronized (collectionOfOrdersToDeliver) {
-					this.addOrder(this.collectionOfOrdersToDeliver.get(0));
+					//delete
+					System.out.println("what ths?? "+this.collectionOfOrdersToDeliver.size());
+					Order testOrder=this.collectionOfOrders.get(0);
+					System.out.println("1 2 "+testOrder.getDifficultyRating());
+					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
+					System.out.println("1 this.collectionOfOrders.size() " +this.collectionOfOrders.size());
 				}
 			}
 		}

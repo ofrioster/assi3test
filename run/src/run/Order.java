@@ -20,20 +20,31 @@ public class Order implements OrderInterface {
 	private Double totalReward;
 
 	
-	public Order(String orderID,int difficultyRating, int orderStatus, Vector<OrderOfDish> orderDish,Address customerAddress){
+	public Order(String orderID, int orderStatus, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
-		this.difficultyRating=difficultyRating;
+		this.difficultyRating=0;
 		this.orderStatus=orderStatus;
 		this.orderDish=orderDish;
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
+		this.setDifficultyRating();
+	}
+	public Order(String orderID, Vector<OrderOfDish> orderDish,Address customerAddress){
+		this.orderID=orderID;
+		this.difficultyRating=0;
+		this.orderStatus=1;
+		this.orderDish=orderDish;
+		this.customerAddress=customerAddress;
+		this.expectedcookTime=this.calculateCookTime(orderDish);
+		this.setDifficultyRating();
 	}
 	
-	public Order(String orderID,int difficultyRating, int orderStatus,Address customerAddress){
+	public Order(String orderID, int orderStatus,Address customerAddress){
 		this.orderID=orderID;
-		this.difficultyRating=difficultyRating;
+		this.difficultyRating=0;
 		this.orderStatus=orderStatus;
 		this.customerAddress=customerAddress;
+		this.setDifficultyRating();
 	}
 	
 	public void addDish(OrderOfDish orderDish){
@@ -111,16 +122,16 @@ public class Order implements OrderInterface {
 		return this.actualCookTime;
 	}
 	public void setActualDeliveryTime(long deliveryTime){
-		this.expectedDeliveryTime=deliveryTime;
+		this.actualDeliveryTime=deliveryTime;
 	}
 	public long getActualDeliveryTime(){
-		return this.expectedDeliveryTime;
+		return this.actualDeliveryTime;
 	}
 	public void setExpectedCookTime(long cookTime){
 		this.actualCookTime=cookTime;
 	}
 	public long getExpectedCookTime(){
-		return this.actualCookTime;
+		return this.expectedcookTime;
 	}
 	public void setTotalReward(){
 		if ((this.actualCookTime+this.actualDeliveryTime)>(1.15*(this.expectedcookTime+this.expectedDeliveryTime))){
@@ -159,6 +170,11 @@ public class Order implements OrderInterface {
 			long quantity=(long)orderDish.getquantity();
 			res=res+(orderDish.gestDish().getdishExpectedCookTime() * quantity);
 		return res;
+	}
+	public void setDifficultyRating(){
+		for (int i=0;i<this.orderDish.size();i++){
+			this.difficultyRating=this.difficultyRating+ (this.orderDish.get(i).gestDish().getDishDifficultyRating()*this.orderDish.get(i).getquantity());
+		}
 	}
 
 }

@@ -4,20 +4,26 @@ import java.util.concurrent.*;
 public class KitchenTool implements KitchenTool_Interface {
 
 	private String kitchenToolName;
-//	private int kitchenToolAmount;
 	private Semaphore kitchenToolSemaphore;
 	
 	
 	public KitchenTool(String name,int amount) {
-	//	this.kitchenToolAmount=amount;
 		this.kitchenToolName=name;
 		this.kitchenToolSemaphore=new Semaphore(amount);
 	}
 	
+<<<<<<< HEAD
 	
 	
 	public KitchenTool(){
 		
+=======
+	public KitchenTool(){	
+	}
+	public KitchenTool(KitchenTool kitchenTool){
+		this.kitchenToolName=kitchenTool.getKitchenToolName();
+		this.kitchenToolSemaphore=new Semaphore(kitchenTool.getNumberOfKitchenTool());
+>>>>>>> 49131add2ce93285c7ab667196365bf42faa2997
 	}
 	
 	

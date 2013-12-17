@@ -50,7 +50,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		Boolean res=false;
 		while(!res){
 			try{
-				if (warehouseName.getKitchenTolls(kitchenToolToacquire)){
+				if (this.warehouseName.getKitchenTolls(kitchenToolToacquire)){
 					return true;
 				}
 				else{
