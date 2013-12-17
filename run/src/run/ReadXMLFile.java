@@ -37,10 +37,10 @@ public class ReadXMLFile {
  
   }
  
-  private static void printNote(NodeList nodeList) {
+  private static void ParseMenu(NodeList nodeList) {
  
     for (int count = 0; count < nodeList.getLength(); count++) {
- 
+    Dish tempdish = null;
 	Node tempNode = nodeList.item(count);
  
 	// make sure it's element node.
@@ -48,20 +48,21 @@ public class ReadXMLFile {
  
         switch (tempNode.getNodeName()) {
         case "Dish":
-        	Dish tempdish = new Dish();
+        	tempdish = new Dish();
             break;
         case "name":
         	tempdish.setDishName(tempNode.getTextContent());
             break;
-        case "march":
-            monthNumber = 3;
+        case "dificulityRating":
+        	tempdish.setDishDifficultyRating(Integer.parseInt(tempNode.getTextContent()));
             break;
-        case "april":
-            monthNumber = 4;
+        case "expectedCookTime":
+        	tempdish.setdishExpectedCookTime(Integer.parseInt(tempNode.getTextContent()));
             break;
-        case "may":
-            monthNumber = 5;
+        case "reward":
+        	tempdish.setReward(Double.parseDouble(tempNode.getTextContent()));
             break;
+        /*
         case "june":
             monthNumber = 6;
             break;
@@ -83,29 +84,16 @@ public class ReadXMLFile {
         case "december":
             monthNumber = 12;
             break;
+         */
         default:
-            monthNumber = 0;
             break;
+            
     }
-        
+       
 		// get node name and value
 		System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
 		System.out.println("Node Value =" + tempNode.getTextContent());
- 
-		if (tempNode.hasAttributes()) {
- 
-			// get attributes names and values
-			NamedNodeMap nodeMap = tempNode.getAttributes();
- 
-			for (int i = 0; i < nodeMap.getLength(); i++) {
- 
-				Node node = nodeMap.item(i);
-				System.out.println("attr name : " + node.getNodeName());
-				System.out.println("attr value : " + node.getNodeValue());
- 
-			}
- 
-		}
+
  
 		if (tempNode.hasChildNodes()) {
  
