@@ -141,11 +141,16 @@ public class Order implements OrderInterface {
 		return res;
 	}
 	
+	/** (non-Javadoc)
+	 * @update the ExpectedCookTime by take the dish that take the longest time to cook
+	 */
 	public long calculateCookTime(Vector<OrderOfDish> orderDish){
 		long res=0;
 		for (int i=0; i<orderDish.size();i++){
-			long quantity=(long)orderDish.get(i).getquantity();
-			res=res+(orderDish.get(i).gestDish().getdishExpectedCookTime() * quantity);
+			long getdishExpectedCookTime=orderDish.get(i).gestDish().getdishExpectedCookTime();
+			if (res<getdishExpectedCookTime){
+				res=getdishExpectedCookTime;
+			}
 		}
 		return res;
 	}

@@ -14,7 +14,6 @@ there might be a problem in the constructor in create new vectors
 if one of the vector is empty some function return empty objects
 does we need to implement full blocking queue?
 add Address object
-to fix expected cook time,its the longest cook time of the longest dish
 
 
 observer, observable - to implements from.... a well as runnable
