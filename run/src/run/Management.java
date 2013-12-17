@@ -1,4 +1,5 @@
 package run;
+import java.util.concurrent.*;
 import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
@@ -14,12 +15,13 @@ public class Management implements ManagementInterface,Observer {
 	private long numberOfOrderThatProcess;
 	private Boolean receiveAllOrders; 
 	private Boolean shutDown;
+	private CountDownLatch ordersLatch;
 	
 	public Management(){
 		
 	}
 	
-	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName){
+	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch){
 		this.collectionOfOrders=collectionOfOrders;
 		this.collectionOfOrdersToDeliver=collectionOfOrders;
 		this.collectionOfChefs=collectionOfChefs;
@@ -27,6 +29,7 @@ public class Management implements ManagementInterface,Observer {
 		this.warehouseName=warehouseName;
 		this.receiveAllOrders=false;
 		this.shutDown=false;
+		this.ordersLatch=ordersLatch;
 	}
 	
 	public void addOrder(Order newOrder){

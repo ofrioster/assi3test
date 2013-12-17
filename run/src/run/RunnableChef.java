@@ -15,7 +15,7 @@ public class RunnableChef implements RunnableChefInterface{
 	public RunnableChef(){
 		
 	}
-	public RunnableChef ( String chefName, Double chefEfficiencyRating, Double enduranceRating){
+	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating){
 		this.chefName=chefName;
 		this.chefEfficiencyRating=chefEfficiencyRating;
 		this.enduranceRating=enduranceRating;

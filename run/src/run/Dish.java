@@ -14,7 +14,6 @@ public class Dish implements DishInterface{
 	
 	
 	public Dish(){
-		
 	}
 	
 	public Dish (String dishName,long dishExpectedCookTime,Vector<Ingredient> dishIngredients,Vector<KitchenTool> dishKitchenTolls,int difficultyRating,Double reward){

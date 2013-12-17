@@ -1,5 +1,6 @@
 package run;
 import java.util.Vector;
+import java.util.concurrent.CountDownLatch;
 import java.lang.Math;
 
 public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, Runnable{
@@ -10,12 +11,13 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	private Vector<Order> collectionDeliverdOrders;
 	private Boolean shutDown;
 	private long totalDeliveryTime;
+	CountDownLatch ordersLatch;
 	
 	public RunnableDeliveryPerson(){
 		
 	}
 	
-	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson){
+	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson,CountDownLatch ordersLatch){
 		this.deliveryPersonName=deliveryPersonName;
 		this.restaurantAddres=restaurantAddres;
 		this.speedOfDeliveryPerson=speedOfDeliveryPerson;
@@ -58,6 +60,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		orderToDeliver.setActualCookTime(System.currentTimeMillis()-orderToDeliver.getActualDeliveryTime());
 		orderToDeliver.setTotalReward();
 		this.collectionDeliverdOrders.remove(orderToDeliver);
+		this.ordersLatch.countDown();
 		
 		
 		

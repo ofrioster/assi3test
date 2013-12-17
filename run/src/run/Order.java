@@ -18,7 +18,7 @@ public class Order implements OrderInterface {
 	private long expectedDeliveryTime;
 	private long expectedcookTime;
 	private Double totalReward;
-	
+
 	
 	public Order(String orderID,int difficultyRating, int orderStatus, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
