@@ -25,6 +25,7 @@ public interface OrderInterface {
 	public void setTotalReward();
 	public Double getTotalReward();
 	public long calculateCookTime(Vector<OrderOfDish> orderDish);
+	public void setDifficultyRating();
 	public long calculateCookTime(OrderOfDish orderDish);
 	
 	

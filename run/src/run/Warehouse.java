@@ -9,7 +9,8 @@ public class Warehouse implements Warehouse_Interface{
 	private Vector<Ingredient> ingredientsAvailable;
 	
 	public Warehouse(){
-		
+		Vector<KitchenTool> kitchenCollectionTolls=new Vector<KitchenTool>();
+		Vector<Ingredient> ingredientsAvailable=new Vector<Ingredient>();
 	}
 	
 	public Warehouse(Vector<KitchenTool> kitchenCollectionTolls, Vector<Ingredient> ingredientsAvailable){
