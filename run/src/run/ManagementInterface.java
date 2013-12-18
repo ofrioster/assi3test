@@ -1,4 +1,5 @@
 package run;
+import java.util.Vector;
 
 public interface ManagementInterface {
 
@@ -23,4 +24,5 @@ public interface ManagementInterface {
 	public Boolean getReceiveAllOrders();
 	public void ShutDown();
 	public Boolean getShutDown();
+	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy);
 }

@@ -23,7 +23,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	
 	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch){
 		this.collectionOfOrders=collectionOfOrders;
-		this.collectionOfOrdersToDeliver=collectionOfOrders;
+		this.collectionOfOrdersToDeliver=this.copyOrdersVector(collectionOfOrders);
 		this.collectionOfChefs=collectionOfChefs;
 		this.collectionOfDeliveryPerson=collectionOfDeliveryPerson;
 		this.warehouseName=warehouseName;
@@ -131,12 +131,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public synchronized void run(){
 		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
+			System.out.println(this.collectionOfOrders.size());
+			System.out.println(this.collectionOfOrdersToDeliver.size());
 			if(this.collectionOfOrdersToDeliver.size()>0){
 				synchronized (collectionOfOrdersToDeliver) {
 					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
 				}
 			}
+			System.out.println(this.collectionOfOrders.size());
+			System.out.println(this.collectionOfOrdersToDeliver.size());
 			this.update1();
 		}
 		while(!this.receiveAllOrders){
@@ -144,6 +148,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		}
 		System.out.println("management END");
 	}
+	
+	
 	public void setReceiveAllOrders(Boolean receiveAllOrders){
 		this.receiveAllOrders=receiveAllOrders;
 	}
@@ -162,12 +168,14 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public Boolean getShutDown(){
 		return this.shutDown;
 	}
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @if the observe dont work we use this
 	 */
 	public void update1() {
 		this.receiveAllOrders=true;
 		System.out.println("management update");
+		System.out.println(this.collectionOfOrders.size());
+		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
 		for (int i=0;i<this.collectionOfOrders.size();i++){
 			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
@@ -177,6 +185,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				this.receiveAllOrders=false;
 			}
 		}
+	}
+
+	
+	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy) {
+		Vector<Order> res= new Vector<Order>();
+		for (int i=0;i<vectorToCopy.size();i++){
+			//Order newOrder=new Order(vectorToCopy.get(i));
+			res.add(vectorToCopy.get(i));
+		}
+		return res;
 	}
 
 }

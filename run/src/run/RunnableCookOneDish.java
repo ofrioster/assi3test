@@ -113,10 +113,10 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	 */
 	public void run(){
 		System.out.println("run cook one dish has start");
-		int k=this.dishName.getQuantityLeft();
-		String j=this.dishName.gestDish().getDishName();
-		int w=this.dishName.getquantity();
-		if (this.dishName.getQuantityLeft()>0){
+		int k=this.dishName.getQuantityLeft();		//delete
+		String j=this.dishName.gestDish().getDishName();  //delete
+		int w=this.dishName.getquantity();  //delete
+//		if (this.dishName.getQuantityLeft()>0){
 			this.dishName.setOrderStatus(2);
 			acquireAllIngredients();
 			acquireAllKitchenTools();
@@ -140,7 +140,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			catch (Exception e){
 				System.out.println("EROR IN COOK ONE DISH");
 			}
-		}
+	//	}
 		System.out.println("run cook one dish has finish");
 		System.out.println("this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
 	//	this.notifyAll();

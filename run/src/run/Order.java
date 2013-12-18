@@ -46,6 +46,16 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.setDifficultyRating();
 	}
+	public Order(Order order){
+		this.orderID=order.getOrderID();
+		this.difficultyRating=order.getDifficultyRating();
+		this.orderStatus=order.getOrderStatus();
+		this.orderDish=order.getOrderDish();
+		this.customerAddress=order.getCustomerAddress();
+		this.expectedcookTime=this.calculateCookTime(orderDish);
+		this.setDifficultyRating();
+		
+	}
 	
 	public void addDish(OrderOfDish orderDish){
 		this.orderDish.add(orderDish);
