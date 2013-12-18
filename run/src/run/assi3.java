@@ -13,13 +13,13 @@ public class assi3 {
 		KitchenTool KitchenTool1=new KitchenTool("KitchenTol",3);
 		Ingredient ingredient2=new Ingredient("ingredient2",3);
 		KitchenTool KitchenTool2=new KitchenTool("KitchenTo2",3);
-		Ingredient ingredient3=new Ingredient("ingredient3",3);
+		Ingredient ingredient3=new Ingredient("ingredient3",9);
 		KitchenTool KitchenTool3=new KitchenTool("KitchenTo3",3);
-		Ingredient ingredient4=new Ingredient("ingredient4",3);
+		Ingredient ingredient4=new Ingredient("ingredient4",6);
 		KitchenTool KitchenTool4=new KitchenTool("KitchenTo4",3);
-		Ingredient ingredient5=new Ingredient("ingredient5",3);
-		KitchenTool KitchenTool5=new KitchenTool("KitchenTo5",3);
-		Ingredient ingredient6=new Ingredient("ingredient6",3);
+		Ingredient ingredient5=new Ingredient("ingredient5",66);
+		KitchenTool KitchenTool5=new KitchenTool("KitchenTo5",6);
+		Ingredient ingredient6=new Ingredient("ingredient6",66);
 		KitchenTool KitchenTool6=new KitchenTool("KitchenTo6",3);
 		
 		Vector<KitchenTool> kitchenToolsVector=new Vector<KitchenTool>();
@@ -64,11 +64,13 @@ public class assi3 {
 		////****Dish***//
 		Vector<KitchenTool> dish1KitchenTools=new Vector<KitchenTool>();
 		System.out.println(" size of dish kitchen vector "+dish1KitchenTools.size());
+		Ingredient ingredient7=new Ingredient("ingredient6",3);
+		Ingredient ingredient8=new Ingredient("ingredient5",3);
 		dish1KitchenTools.add(KitchenTool6);
 		dish1KitchenTools.add(KitchenTool5);
 		Vector<Ingredient> dish1ingredients=new Vector<Ingredient>();
-		dish1ingredients.add(ingredient6);
-		dish1ingredients.add(ingredient5);
+		dish1ingredients.add(ingredient7);
+		dish1ingredients.add(ingredient8);
 		Dish dish1=new Dish("dish1", 5222, dish1ingredients, kitchenToolsVector, 1, 6.7);
 		System.out.println("dish1.getDishDifficultyRating() "+dish1.getDishDifficultyRating());
 		System.out.println("dish1.getdishExpectedCookTime()" +dish1.getdishExpectedCookTime());

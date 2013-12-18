@@ -69,8 +69,10 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		Boolean res=true;
 		Vector <Ingredient> ingredientsForThisDish=dishName.gestDish().getDishIngredients();
 		for (int i=0; i<ingredientsForThisDish.size();i++){
+			System.out.println("ingredientsForThisDish.size() "+ingredientsForThisDish.size());
+			System.out.println("ingredient to find: "+ingredientsForThisDish.get(i).getIngredientName());
 			if (!acquireIngredients(ingredientsForThisDish.get(i))){
-				System.out.println("EROR!!! ingredient " +ingredientsForThisDish.get(i).getIngredientName()+ "missing");
+				System.out.println("EROR!!! ingredient " +ingredientsForThisDish.get(i).getIngredientName()+ " missing");
 			}
 		}
 		allIngredientsAcquire=true;
@@ -78,9 +80,11 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	}
 	//acquire one ingredients
 	public synchronized Boolean acquireIngredients(Ingredient ingredientToacquire){
-		Boolean res=false;
-		if (this.warehouseName.getIngredient(ingredientToacquire)){
-			System.out.println("EROR!!! ingredient " +ingredientToacquire.getIngredientName()+ "missing");
+		Boolean res=true;
+		if (!this.warehouseName.getIngredient(ingredientToacquire)){
+			System.out.println("number of ingredients " + ingredientToacquire.getIngredientName()+ " " +this.warehouseName.getNumberOfIngredientsAvailable(ingredientToacquire));
+			System.out.println("EROR!!! ingredient " +ingredientToacquire.getIngredientName()+ " is missing");
+			res=false;
 		}
 		
 		return res;
@@ -112,9 +116,10 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 				this.dishName.setOrderStatus(2);
 				acquireAllIngredients();
 				acquireAllKitchenTools();
-				cookDish();
+				this.cookDish();
 				returnAllKitchenTools();
 				this.dishName.setOrderStatus(3);
+		
 				notifyObservers(true);
 			}
 			catch (Exception e){

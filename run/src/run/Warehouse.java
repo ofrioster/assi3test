@@ -56,14 +56,13 @@ public class Warehouse implements Warehouse_Interface{
 	 * @return true if you can have the ingredient
 	 */
 	public synchronized boolean  getIngredient(Ingredient ingredientsName){
-		boolean res=true;
+		boolean res=false;
 		for (int i=0; i<this.ingredientsAvailable.size();i++){
 			if(this.ingredientsAvailable.get(i).getIngredientName()==ingredientsName.getIngredientName()){
 				if(this.ingredientsAvailable.get(i).getIngredient()){
 					return true;
 				}
 		}
-			return false;
 		}
 		return res;
 		

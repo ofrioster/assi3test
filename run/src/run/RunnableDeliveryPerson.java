@@ -48,6 +48,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		
 	}
 	public void deliverOrder(Order orderToDeliver){
+		System.out.println("deliverOrder(Order orderToDeliver)");
 		long startTime=System.currentTimeMillis();
 		try {
 			Thread.sleep(calculateDeliveryTime(calculateDeliveryDistance(orderToDeliver.getCustomerAddress())));
@@ -67,6 +68,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 
 	public void addOrder(Order newOrder){
+		System.out.println("addOrder(Order newOrder)");
 		this.totalDeliveryTime=this.totalDeliveryTime+ this.calculateDeliveryTime(calculateDeliveryDistance(newOrder.getCustomerAddress()));
 		newOrder.setActualDeliveryTime(System.currentTimeMillis());
 		this.collectionDeliverdOrders.add(newOrder);
@@ -75,6 +77,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.shutDown=true;
 	}
 	public void run(){
+		System.out.println("run");
 		while (!this.shutDown){
 			if (!this.collectionDeliverdOrders.isEmpty()){
 				this.deliverOrder(this.collectionDeliverdOrders.get(0));
