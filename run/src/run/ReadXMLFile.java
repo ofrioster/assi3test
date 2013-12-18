@@ -49,8 +49,7 @@ public class ReadXMLFile {
 
 			if (doc.hasChildNodes()) {
 
-				Vector<Restaurant> Restaurant = ParseRestaurant(doc
-						.getChildNodes());
+				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes());
 				System.out.println(Restaurant.toString());
 			}
 
@@ -59,9 +58,191 @@ public class ReadXMLFile {
 		}
 	}
 
-	private static Vector<Restaurant> ParseRestaurant(NodeList childNodes) {
+	private static Restaurant ParseRestaurant(NodeList nodeList) {
+		Restaurant retRestaurant = new Restaurant();
+		Vector<KitchenTool> tmpTools = new Vector<KitchenTool>();
+		Vector<Ingredient> tmpIngredients = new Vector<Ingredient>();
+		Address tmpAddress = null;
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			// Dish tempdish = null;
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+				switch (tempNode.getNodeName()) {
+				case "Restaurant":
+					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
+
+					retRestaurant = ParseRestaurant(tempNode.getChildNodes());
+					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
+
+					break;
+				case "Address":
+					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
+					 //System.out.println("\nNode Name =" + tempNode.getNodeName() +" [ADD]");
+					break;
+				case "Repository":
+					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
+					retRestaurant = ParseRestaurant(tempNode.getChildNodes());
+					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
+					break;
+				case "Tools":
+					retRestaurant.setKitchenTolls(ParseTools(tempNode.getChildNodes()));
+					break;
+				case "Ingredients":
+					retRestaurant.setIngredients(ParseIngredients(tempNode
+							.getChildNodes()));
+					break;
+				case "Staff":
+					retRestaurant = ParseRestaurant(tempNode.getChildNodes());
+					break;
+				case "Chefs":
+					retRestaurant.setChefs(ParseChefs(tempNode.getChildNodes()));
+					break;
+				case "DeliveryPersonals":
+					retRestaurant.setRunnableDeliveryPerson(ParseDeliveryPersonals(tempNode.getChildNodes()));
+					break;
+				default:
+					break;
+				}
+			}
+
+		}
+		if (tmpAddress!=null){
+		retRestaurant.setAddress(tmpAddress);
+		}
+		return retRestaurant;
+	}
+
+
+	private static Vector<RunnableDeliveryPerson> ParseDeliveryPersonals(NodeList nodeList) {
+		Vector<RunnableDeliveryPerson> DeliveryPersonals = new Vector<RunnableDeliveryPerson>();
+
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+
+			// make sure it's element node.
+			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
+					&& ((tempNode.getNodeName() == "Chef"))) {
+
+				if (tempNode.hasChildNodes()) {
+
+					// loop again if has child nodes
+					DeliveryPersonals.add(ParseDeliveryPerson(tempNode.getChildNodes()));
+					// System.out.println("----------------------------------------");
+
+				}
+
+			}
+
+		}
+		return DeliveryPersonals;
+		//return null;
+	}
+
+	private static RunnableDeliveryPerson ParseDeliveryPerson(
+			NodeList nodeList) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	private static RunnableChef ParseChef(NodeList nodeList) {
+		String tmpName = null;
+		RunnableChef tempChef = null;
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				switch (tempNode.getNodeName()) {
+				case "name":
+					// tempdish = new Dish();
+					//tempChef
+					System.out.println("----------------------------------------");
+					break;
+
+				case "efficiencyRating":
+
+					tmpName = tempNode.getTextContent();
+
+					break;
+
+				case "enduranceRating":
+					
+					Integer.parseInt(tempNode.getTextContent());
+
+					break;
+
+				default:
+					break;
+
+				}
+
+			}
+
+		}
+		return tempChef;
+
+
+	}
+	
+	private static Vector<RunnableChef> ParseChefs(NodeList nodeList) {
+		Vector<RunnableChef> Chefs = new Vector<RunnableChef>();
+
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+
+			// make sure it's element node.
+			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
+					&& ((tempNode.getNodeName() == "Chef"))) {
+
+				if (tempNode.hasChildNodes()) {
+
+					// loop again if has child nodes
+					Chefs.add(ParseChef(tempNode.getChildNodes()));
+					// System.out.println("----------------------------------------");
+
+				}
+
+			}
+
+		}
+		return Chefs;
+		//return null;
+	}
+
+
+	private static Restaurant ParseRepository(NodeList childNodes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static Address ParseAddress(NodeList nodeList) {
+		Address tmpAddress = new Address();
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			// Dish tempdish = null;
+			Node tempNode = nodeList.item(count);
+
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+				String temp = tempNode.getNodeName();
+				switch (tempNode.getNodeName()) {
+				case "x":
+					tmpAddress.setXAddress(Integer.parseInt(tempNode.getTextContent()));
+					break;
+				case "y":
+					tmpAddress.setYAddress(Integer.parseInt(tempNode.getTextContent()));
+					break;
+
+				}
+			}
+
+		}
+
+		return tmpAddress;
 	}
 
 	private static Vector<Dish> ParseMenu(NodeList nodeList) {
@@ -91,7 +272,6 @@ public class ReadXMLFile {
 
 		}
 		return Dishes;
-
 	}
 
 	private static Dish ParseDish(NodeList nodeList) {
@@ -240,7 +420,8 @@ public class ReadXMLFile {
 
 			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
-					&& (tempNode.getNodeName() == "KitchenTool")) {
+					&& ((tempNode.getNodeName() == "KitchenTool"))
+					|| (tempNode.getNodeName() == "Tool")) {
 
 				if (tempNode.hasChildNodes()) {
 

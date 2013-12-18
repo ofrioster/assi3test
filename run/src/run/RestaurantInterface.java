@@ -8,7 +8,7 @@ public interface RestaurantInterface{
 	
 	
 	public Vector<RunnableChef> getChefs();
-	public Vector<RunnableDeliveryPerson> setDeliveryPersonals();
+	public Vector<RunnableDeliveryPerson> getDeliveryPersonals();
 
 	
 	public void setAddress(Address addr);
@@ -18,6 +18,6 @@ public interface RestaurantInterface{
 	
 	
 	public  void setChefs(Vector<RunnableChef> Chefs);
-	public  void RunnableDeliveryPerson(Vector<RunnableDeliveryPerson> DeliveryPersonals);
+	public  void setRunnableDeliveryPerson(Vector<RunnableDeliveryPerson> DeliveryPersonals);
 
 }

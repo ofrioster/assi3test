@@ -34,11 +34,15 @@ public class Restaurant implements RestaurantInterface {
 		// TODO Auto-generated method stub
 		return this.Chefs;
 	}
-
 	@Override
-	public Vector<RunnableDeliveryPerson> setDeliveryPersonals() {
+	public Vector<RunnableDeliveryPerson> getDeliveryPersonals() {
 		// TODO Auto-generated method stub
 		return this.DeliveryPersonals;
+	}
+	@Override
+	public void setRunnableDeliveryPerson(Vector<RunnableDeliveryPerson> RunnableDeliveryPersons) {
+		// TODO Auto-generated method stub
+		this.DeliveryPersonals = RunnableDeliveryPersons;
 	}
 
 	@Override
@@ -68,12 +72,6 @@ public class Restaurant implements RestaurantInterface {
 		
 	}
 
-	@Override
-	public void RunnableDeliveryPerson(
-			Vector<RunnableDeliveryPerson> DeliveryPersonals) {
-		// TODO Auto-generated method stub
-		this.DeliveryPersonals = DeliveryPersonals;
-	}
 
 
 

@@ -16,6 +16,16 @@ public class Address implements AddressInterface{
 		this.x=x;
 		this.y=y;
 	}
+	
+	public void setXAddress(int x){
+		this.x=x;
+	}
+	
+	
+	public void setYAddress(int y){
+		this.y=y;
+	}
+	
 	public int getXAddress(){
 		return this.x;
 	}
