@@ -109,11 +109,6 @@ public class RunnableChef implements RunnableChefInterface{
 	public void addManagement(Management management){
 		this.management=management;
 	}
-	@Override
-	public String gerChefName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

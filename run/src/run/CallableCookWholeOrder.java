@@ -61,9 +61,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				System.out.println(this.dishOrderVector.get(i).getquantity());
 				this.dishOrderVector.get(i).setOneDishIsDone();
 				System.out.println("this "+ this.chef.getChefName());
-=======
 	//			this.dishOrderVector.get(i).setOneDishIsDone();
->>>>>>> 605402023374a3120885181cbe4e4cc7d5fb168d
 				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef);
 				Thread t= new Thread(r);
 				t.start();
