@@ -29,7 +29,7 @@ public class RunnableChef implements RunnableChefInterface{
 		this.CallableCookWholeOrder=new Vector<CallableCookWholeOrder>();
 	}
 	
-	public String gerChefName(){
+	public String getChefName(){
 		return this.chefName;
 	}
 	public Double getChefEfficiencyRating(){
@@ -40,6 +40,18 @@ public class RunnableChef implements RunnableChefInterface{
 
 		return this.enduranceRating;
 	}
+	public void setChefName(String chefName){
+		 this.chefName =chefName;
+	}
+	public void setChefEfficiencyRating(Double chefEfficiencyRating){
+		//System.out.println("time "+this.chefEfficiencyRating);
+		 this.chefEfficiencyRating=chefEfficiencyRating;
+	}
+	public void setEnduranceRating(Double enduranceRating){
+		 this.enduranceRating= enduranceRating;
+	}
+	
+	
 	public int getCurrectPressure(){
 		this.currectPressure=0;
 		for (int i=0; i<this.orderVector.size();i++){

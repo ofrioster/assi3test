@@ -2,10 +2,18 @@ package run;
 
 public interface RunnableChefInterface {
 	
-	public String gerChefName();
+	public String getChefName();
 	public Double getChefEfficiencyRating();
 	public Double getEnduranceRating();
+	public void setChefName(String chefName);
+	public void setChefEfficiencyRating(Double chefEfficiencyRating);
+	public void setEnduranceRating(Double enduranceRating);
+	
 	public int getCurrectPressure();
+	
+	
+	
+	
 	//accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	public Boolean addOrder(Order newOrder, Warehouse warehouse);
 	public Boolean canTheChefTakeOrder(Order newOrder);

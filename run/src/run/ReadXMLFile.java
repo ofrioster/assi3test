@@ -148,8 +148,8 @@ public class ReadXMLFile {
 	}
 
 	private static RunnableChef ParseChef(NodeList nodeList) {
-		String tmpName = null;
-		RunnableChef tempChef = null;
+		//String tmpName = null;
+		RunnableChef tempChef = new RunnableChef();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
 			String temp = tempNode.getNodeName();
@@ -161,19 +161,21 @@ public class ReadXMLFile {
 				case "name":
 					// tempdish = new Dish();
 					//tempChef
-					System.out.println("----------------------------------------");
+					//System.out.println("----------------------------------------");
+					tempChef.setChefName(tempNode.getTextContent());
+					
 					break;
 
 				case "efficiencyRating":
 
-					tmpName = tempNode.getTextContent();
+					tempChef.setChefEfficiencyRating(Double.parseDouble(tempNode.getTextContent()));
 
 					break;
 
 				case "enduranceRating":
 					
-					Integer.parseInt(tempNode.getTextContent());
-
+					//Double.parseDouble(tempNode.getTextContent());
+					tempChef.setEnduranceRating(Double.parseDouble(tempNode.getTextContent()));
 					break;
 
 				default:

@@ -59,7 +59,7 @@ public class assi3 {
 		deliveryPerson.add(deliveryP1);
 		System.out.println("chef1.getEnduranceRating() "+chef1.getEnduranceRating());
 		System.out.println("chef1.getChefEfficiencyRating() " +chef1.getChefEfficiencyRating());
-		System.out.println("chef1.gerChefName() "+chef1.gerChefName());
+		System.out.println("chef1.gerChefName() "+chef1.getChefName());
 		
 		////****Dish***//
 		Vector<KitchenTool> dish1KitchenTools=new Vector<KitchenTool>();
