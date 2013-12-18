@@ -19,6 +19,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		this.Chef=Chef;
 		this.allKitchenToolsAcquire=false;
 		this.allIngredientsAcquire=false;
+		this.kitchenToolsInUse=new Vector<KitchenTool>();
 		
 	}
 	
@@ -80,7 +81,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		return res;
 	}
 	//acquire one ingredients
-	public  Boolean acquireIngredients(Ingredient ingredientToacquire){
+	public Boolean acquireIngredients(Ingredient ingredientToacquire){
 		Boolean res=true;
 		if (!this.warehouseName.getIngredient(ingredientToacquire)){
 			System.out.println("number of ingredients " + ingredientToacquire.getIngredientName()+ " " +this.warehouseName.getNumberOfIngredientsAvailable(ingredientToacquire));
@@ -93,6 +94,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	
 	//put to sleep while cooking, multiplay Chef Efficiency Factor by  dish cooking time
 	public void cookDish(){
+		System.out.println("time "+this.Chef.gerChefName());
 		Long cookingTime=Math.round(this.Chef.getChefEfficiencyRating()); 
 		try{
 			Thread.sleep(cookingTime);
@@ -113,15 +115,23 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	public void run(){
 		System.out.println("run cook one dish has start");
 		if (this.dishName.getQuantityLeft()>0){
+			this.dishName.setOrderStatus(2);
+			acquireAllIngredients();
+			acquireAllKitchenTools();
+			this.cookDish();
+			returnAllKitchenTools();
+			this.dishName.setOrderStatus(3);
+			System.out.println("1this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
+		
 			try{
-				this.dishName.setOrderStatus(2);
+		/*		this.dishName.setOrderStatus(2);
 				acquireAllIngredients();
 				acquireAllKitchenTools();
-			//	this.cookDish();
-			//	returnAllKitchenTools();
+				this.cookDish();
+				returnAllKitchenTools();
 				this.dishName.setOrderStatus(3);
-		
-				notifyObservers(true);
+				System.out.println("1this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
+			*///	notifyObservers(true);
 				
 			}
 			catch (Exception e){
@@ -129,6 +139,8 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			}
 		}
 		System.out.println("run cook one dish has finish");
+		System.out.println("this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
+	//	this.notifyAll();
 	}
 	public Dish getDish(){
 		return this.dishName.gestDish();

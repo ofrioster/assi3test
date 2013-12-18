@@ -1,5 +1,8 @@
 package run;
 
+import java.util.Observable;
+import java.util.Observer;
+
 public interface CallableCookWholeOrderInterface {
 	
 	public void addDish(OrderOfDish newDish);
@@ -7,6 +10,9 @@ public interface CallableCookWholeOrderInterface {
 	public Boolean IsOrderIsDone();
 	public void run();
 	public Long getTotalCookingTime();
+	public void update1();
+	public void update(Observable obj, Boolean finish);
+	public void addObserver(Observer o);
 	
 
 }

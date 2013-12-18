@@ -1,5 +1,7 @@
 package run;
 import java.util.Vector;
+import java.util.Observer;
+import java.util.concurrent.*;
 
 public class RunnableChef implements RunnableChefInterface{
 	
@@ -30,6 +32,7 @@ public class RunnableChef implements RunnableChefInterface{
 		return this.chefName;
 	}
 	public Double getChefEfficiencyRating(){
+		System.out.println("time "+this.chefEfficiencyRating);
 		return this.chefEfficiencyRating;
 	}
 	public Double getEnduranceRating(){
@@ -65,8 +68,9 @@ public class RunnableChef implements RunnableChefInterface{
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
-			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse);
+			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this);
 			this.CallableCookWholeOrder.add(newWholeOrder);
+			this.CallableCookWholeOrder.
 			Thread t=new Thread(newWholeOrder);
 			this.poolOfThreads.add(t);
 			t.start();

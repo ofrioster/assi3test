@@ -114,6 +114,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @ if the Order have been finish, send it to the delivery person
 	 */
 	public void update(Observable o, Object arg) {
+		System.out.println("management update");
 		try{
 			Order order=(Order)arg;
 			if(order.getOrderStatus()==3){
