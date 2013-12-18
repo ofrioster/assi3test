@@ -71,7 +71,7 @@ public class RunnableChef implements RunnableChefInterface{
 			this.orderVector.add(newOrder);
 			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this);
 			this.CallableCookWholeOrder.add(newWholeOrder);
-			this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
+		//	this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
 			Thread t=new Thread(newWholeOrder);
 			this.poolOfThreads.add(t);
 			t.start();

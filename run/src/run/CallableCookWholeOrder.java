@@ -41,12 +41,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	public synchronized Boolean IsOrderIsDone(){
 		if (!this.orderFinish){
 			this.orderFinish=true;
-			System.out.println("dishOrderVector status in 0 "+this.dishOrderVector.get(0).getOrderStatus());
 			for (int i=0; i<this.dishOrderVector.size() ;i++){
-				System.out.println("size "+this.dishOrderVector.size());
-				System.out.println("i= "+i);
-				System.out.println("dishOrderVector status "+this.dishOrderVector.get(i).getquantity());
-				System.out.println("dishOrderVector status "+this.dishOrderVector.get(i).getOrderStatus());
 				int k=this.dishOrderVector.get(i).getOrderStatus();
 				if(k!=3){
 					this.orderFinish=false;
@@ -62,9 +57,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
 			for (int k=0; k<this.dishOrderVector.get(i).getquantity();k++){
-				System.out.println(this.dishOrderVector.get(i).getquantity());
-				this.dishOrderVector.get(i).setOneDishIsDone();
-				System.out.println("this "+ this.chef.gerChefName());
+	//			this.dishOrderVector.get(i).setOneDishIsDone();
 				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef);
 				Thread t= new Thread(r);
 				t.start();

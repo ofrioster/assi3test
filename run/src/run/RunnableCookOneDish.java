@@ -114,12 +114,16 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	 */
 	public void run(){
 		System.out.println("run cook one dish has start");
+		int k=this.dishName.getQuantityLeft();
+		String j=this.dishName.gestDish().getDishName();
+		int w=this.dishName.getquantity();
 		if (this.dishName.getQuantityLeft()>0){
 			this.dishName.setOrderStatus(2);
 			acquireAllIngredients();
 			acquireAllKitchenTools();
 			this.cookDish();
 			returnAllKitchenTools();
+			this.dishName.setOneDishIsDone();
 			this.dishName.setOrderStatus(3);
 			System.out.println("1this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
 		

@@ -53,7 +53,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @add order to chef
 	 */
 	public synchronized void startToCookDish(Order orderToCook){
-		System.out.println("this.startToCookDish()");
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
 		chef.addOrder(orderToCook, this.warehouseName);
 	}
@@ -131,18 +130,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-		System.out.println("1 "+this.collectionOfOrdersToDeliver.get(0).getOrderID());
 		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
-			System.out.println("what ths?? "+this.collectionOfOrdersToDeliver.size());
 			if(this.collectionOfOrdersToDeliver.size()>0){
 				synchronized (collectionOfOrdersToDeliver) {
-					//delete
-					System.out.println("what ths?? "+this.collectionOfOrdersToDeliver.size());
 					Order testOrder=this.collectionOfOrders.get(0);
-					System.out.println("1 2 "+testOrder.getDifficultyRating());
 					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
-					System.out.println("1 this.collectionOfOrders.size() " +this.collectionOfOrders.size());
 				}
 			}
 			this.update1();
