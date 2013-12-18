@@ -106,6 +106,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	 * @ the start of a thread to cook the dish
 	 */
 	public void run(){
+		System.out.println("run cook one dish has start");
 		if (this.dishName.getQuantityLeft()>0){
 			try{
 				this.dishName.setOrderStatus(2);
@@ -120,6 +121,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 				System.out.println("EROR IN COOK ONE DISH");
 			}
 		}
+		System.out.println("run cook one dish has finish");
 	}
 	public Dish getDish(){
 		return this.dishName.gestDish();

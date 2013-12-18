@@ -12,19 +12,7 @@ public class KitchenTool implements KitchenTool_Interface {
 		this.kitchenToolSemaphore=new Semaphore(amount);
 	}
 	
-<<<<<<< HEAD
-	
-	
-	public KitchenTool(){
-		
-=======
-	public KitchenTool(){	
-	}
-	public KitchenTool(KitchenTool kitchenTool){
-		this.kitchenToolName=kitchenTool.getKitchenToolName();
-		this.kitchenToolSemaphore=new Semaphore(kitchenTool.getNumberOfKitchenTool());
->>>>>>> 49131add2ce93285c7ab667196365bf42faa2997
-	}
+
 	
 	
 	public String getKitchenToolName(){

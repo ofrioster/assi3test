@@ -69,7 +69,7 @@ public class assi3 {
 		Vector<Ingredient> dish1ingredients=new Vector<Ingredient>();
 		dish1ingredients.add(ingredient6);
 		dish1ingredients.add(ingredient5);
-		Dish dish1=new Dish("dish1", 5222, dish1ingredients, kitchenToolsVector, 3, 6.7);
+		Dish dish1=new Dish("dish1", 5222, dish1ingredients, kitchenToolsVector, 1, 6.7);
 		System.out.println("dish1.getDishDifficultyRating() "+dish1.getDishDifficultyRating());
 		System.out.println("dish1.getdishExpectedCookTime()" +dish1.getdishExpectedCookTime());
 		

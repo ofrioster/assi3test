@@ -26,7 +26,10 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.warehouseName=warehouseName;
 		this.orderFinish=false;
 		this.totalTime=-1;
+		this.dishOrderVector=new Vector<OrderOfDish>();
+		this.threadsVector=new Vector<Thread>();
 		for(int i=0;i<order.getOrderDish().size();i++){
+			System.out.println("order.getOrderDish().size() "+order.getOrderDish().size());
 			this.dishOrderVector.add(order.getOrderDish().get(i));
 		}
 	}
@@ -48,6 +51,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
+		System.out.println("run cook whole order has start");
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
@@ -59,6 +63,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.threadsVector.add(t);
 			}
 		}
+		System.out.println("run cook whole order has finish");
 		/*/// doing that in update
 		while (!this.IsOrderIsDone());
 		this.endTime=System.currentTimeMillis();
