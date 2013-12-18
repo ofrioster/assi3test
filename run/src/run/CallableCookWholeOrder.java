@@ -57,7 +57,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
 			for (int k=0; k<this.dishOrderVector.get(i).getquantity();k++){
-<<<<<<< HEAD
+
 				System.out.println(this.dishOrderVector.get(i).getquantity());
 				this.dishOrderVector.get(i).setOneDishIsDone();
 				System.out.println("this "+ this.chef.getChefName());

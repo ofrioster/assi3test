@@ -133,7 +133,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
 			if(this.collectionOfOrdersToDeliver.size()>0){
 				synchronized (collectionOfOrdersToDeliver) {
-					Order testOrder=this.collectionOfOrders.get(0);
 					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
 				}
@@ -143,6 +142,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		while(!this.receiveAllOrders){
 			this.update1();
 		}
+		System.out.println("management END");
 	}
 	public void setReceiveAllOrders(Boolean receiveAllOrders){
 		this.receiveAllOrders=receiveAllOrders;

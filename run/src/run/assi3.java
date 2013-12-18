@@ -62,10 +62,10 @@ public class assi3 {
 <<<<<<< HEAD
 		System.out.println("chef1.gerChefName() "+chef1.getChefName());
 		
-=======
+
 		System.out.println("chef1.gerChefName() "+chef1.gerChefName());
 	*/	
->>>>>>> 605402023374a3120885181cbe4e4cc7d5fb168d
+
 		////****Dish***//
 		Vector<KitchenTool> dish1KitchenTools=new Vector<KitchenTool>();
 		System.out.println(" size of dish kitchen vector "+dish1KitchenTools.size());
