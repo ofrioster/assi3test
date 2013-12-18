@@ -134,9 +134,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	public Long getTotalCookingTime(){
 		return this.totalTime;
 	}
-	
-	public synchronized void addObserver(Observer o) {
-		// TODO Auto-generated method stub
-		super.addObserver(o);
+	public void addObserver1(Observer o) {
+		
 	}
 }

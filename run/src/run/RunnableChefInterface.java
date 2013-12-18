@@ -11,6 +11,7 @@ public interface RunnableChefInterface {
 	public Boolean canTheChefTakeOrder(Order newOrder);
 	//finish all the cooking and do not start new ones
 	public void shutDown();
+	public void addManagement(Management management);
 //	public void sendFinishOrderToDelivery(Order finishOrder);  //can be in Management
 	
 	//*** how the thread tell that he done?

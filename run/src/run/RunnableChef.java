@@ -13,6 +13,7 @@ public class RunnableChef implements RunnableChefInterface{
 	private Vector<Thread> poolOfThreads;
 	private Vector<CallableCookWholeOrder> CallableCookWholeOrder;
 	private Boolean shutDown;
+	private Management management;
 	
 	public RunnableChef(){
 		
@@ -70,7 +71,7 @@ public class RunnableChef implements RunnableChefInterface{
 			this.orderVector.add(newOrder);
 			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this);
 			this.CallableCookWholeOrder.add(newWholeOrder);
-			this.CallableCookWholeOrder.
+			this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
 			Thread t=new Thread(newWholeOrder);
 			this.poolOfThreads.add(t);
 			t.start();
@@ -91,6 +92,10 @@ public class RunnableChef implements RunnableChefInterface{
 	public Boolean canTheChefTakeOrder(Order newOrder){
 		int dishDifficuly=newOrder.getDifficultyRating();
 		return ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown);
+	}
+	
+	public void addManagement(Management management){
+		this.management=management;
 	}
 
 

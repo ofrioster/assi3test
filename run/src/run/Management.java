@@ -145,6 +145,10 @@ public class Management implements ManagementInterface,Observer,Runnable {
 					System.out.println("1 this.collectionOfOrders.size() " +this.collectionOfOrders.size());
 				}
 			}
+			this.update1();
+		}
+		while(!this.receiveAllOrders){
+			this.update1();
 		}
 	}
 	public void setReceiveAllOrders(Boolean receiveAllOrders){
@@ -164,6 +168,22 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	}
 	public Boolean getShutDown(){
 		return this.shutDown;
+	}
+	/* (non-Javadoc)
+	 * @if the observe dont work we use this
+	 */
+	public void update1() {
+		this.receiveAllOrders=true;
+		System.out.println("management update");
+		for (int i=0;i<this.collectionOfOrders.size();i++){
+			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
+				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
+				deliveryPerson.addDeliverdOrder(this.collectionOfOrders.get(i));
+			}
+			else{
+				this.receiveAllOrders=false;
+			}
+		}
 	}
 
 }
