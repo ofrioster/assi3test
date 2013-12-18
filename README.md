@@ -16,6 +16,7 @@ does we need to implement full blocking queue?
 add Address object
 
 observer, observable - to implements from.... a well as runnable
+i remove synchronized in acquireIngredients- might be a problem
 
 
 arnon:

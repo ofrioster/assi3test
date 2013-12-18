@@ -40,13 +40,14 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			}
 			kitchenToolsInUse.add(kitchenToolsForThisDish.get(i));
 		}
+		
 		allKitchenToolsAcquire=true;
 		return res;
 	}
 	
 	
 	//acquire one kitchen tool
-	public synchronized Boolean acquireKitchenTool(KitchenTool kitchenToolToacquire){
+	public  Boolean acquireKitchenTool(KitchenTool kitchenToolToacquire){
 		Boolean res=false;
 		while(!res){
 			try{
@@ -79,7 +80,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		return res;
 	}
 	//acquire one ingredients
-	public synchronized Boolean acquireIngredients(Ingredient ingredientToacquire){
+	public  Boolean acquireIngredients(Ingredient ingredientToacquire){
 		Boolean res=true;
 		if (!this.warehouseName.getIngredient(ingredientToacquire)){
 			System.out.println("number of ingredients " + ingredientToacquire.getIngredientName()+ " " +this.warehouseName.getNumberOfIngredientsAvailable(ingredientToacquire));
@@ -116,11 +117,12 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 				this.dishName.setOrderStatus(2);
 				acquireAllIngredients();
 				acquireAllKitchenTools();
-				this.cookDish();
-				returnAllKitchenTools();
+			//	this.cookDish();
+			//	returnAllKitchenTools();
 				this.dishName.setOrderStatus(3);
 		
 				notifyObservers(true);
+				
 			}
 			catch (Exception e){
 				System.out.println("EROR IN COOK ONE DISH");
