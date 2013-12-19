@@ -43,7 +43,7 @@ public class assi3 {
 	//	System.out.println("number of ingrediens - "+warehouseTest.getNumberOfIngredientsAvailable(ingredient6));
 	//	System.out.println("number of kitchen tools "+ warehouseTest.getNumberOfKitchenTolls(KitchenTool6));
 		
-		CountDownLatch latchObject = new CountDownLatch (3);
+		CountDownLatch latchObject = new CountDownLatch (1);
 		Address restaurantAddress=new Address(3, 7);
 		//***chef***//
 		RunnableChef chef1=new RunnableChef("chef1", 5.0, 2.0);
@@ -59,10 +59,7 @@ public class assi3 {
 		deliveryPerson.add(deliveryP1);
 /*		System.out.println("chef1.getEnduranceRating() "+chef1.getEnduranceRating());
 		System.out.println("chef1.getChefEfficiencyRating() " +chef1.getChefEfficiencyRating());
-<<<<<<< HEAD
 		System.out.println("chef1.gerChefName() "+chef1.getChefName());
-		
-
 		System.out.println("chef1.gerChefName() "+chef1.gerChefName());
 	*/	
 
@@ -101,16 +98,17 @@ public class assi3 {
 //		System.out.println("managementTest.getMoneyGain() "+managementTest.getMoneyGain());
 		managementTest.setReceiveAllOrders(true);
 		Thread t=new Thread(managementTest);
-		t.start();
-		
-		try{
+	//	t.start();
+		managementTest.run();
+		System.out.println("order1.getOrderStatus() "+order1.getOrderStatus());
+		try {
+			System.out.println("await");
 			latchObject.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		catch(InterruptedException e){
-			System.out.println("thread main problam");
-		}
-		
-		
+		managementTest.ShutDown();
 		System.out.println("end");
 		
 	}

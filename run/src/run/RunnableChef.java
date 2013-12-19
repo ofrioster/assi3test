@@ -33,7 +33,7 @@ public class RunnableChef implements RunnableChefInterface{
 		return this.chefName;
 	}
 	public Double getChefEfficiencyRating(){
-		System.out.println("time "+this.chefEfficiencyRating);
+	//	System.out.println("time "+this.chefEfficiencyRating);
 		return this.chefEfficiencyRating;
 	}
 	public Double getEnduranceRating(){
@@ -73,11 +73,11 @@ public class RunnableChef implements RunnableChefInterface{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
-		System.out.println("start addOrder(Order newOrder, Warehouse warehouse)");
+	//	System.out.println("start addOrder(Order newOrder, Warehouse warehouse)");
 		int dishDifficuly=newOrder.getDifficultyRating();
-		System.out.println("here");
+	//	System.out.println("here");
 		if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
-			System.out.println("here");
+		//	System.out.println("here");
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
@@ -88,7 +88,7 @@ public class RunnableChef implements RunnableChefInterface{
 			this.poolOfThreads.add(t);
 			t.start();
 	//		this.setChefEfficiencyRating(newOrder);
-			System.out.println("here");
+	//		System.out.println("here");
 			return true;
 			
 		}

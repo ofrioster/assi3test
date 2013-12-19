@@ -47,6 +47,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public void addWarehouse(Warehouse newWarehouse){
 		this.warehouseName=newWarehouse;
 	}
+	/** (non-Javadoc)
+	 * @ start the threads of DeliveryPerson
+	 * @ need to be done once
+	 */
+	public void startThreadsOfDeliveryPerson (){
+		for (int i=0;i<this.collectionOfDeliveryPerson.size();i++){
+			Thread t=new Thread(this.collectionOfDeliveryPerson.get(i));
+			t.start();
+		}
+	}
 	//start all the cook and the threads
 //	public void startCooking();
 	/** (non-Javadoc)
@@ -113,7 +123,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @ if the Order have been finish, send it to the delivery person
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println("management update");
+	//	System.out.println("management update");
 		try{
 			Order order=(Order)arg;
 			if(order.getOrderStatus()==3){
@@ -130,23 +140,25 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
+		this.startThreadsOfDeliveryPerson();
 		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
-			System.out.println(this.collectionOfOrders.size());
-			System.out.println(this.collectionOfOrdersToDeliver.size());
+	//		System.out.println(this.collectionOfOrders.size());
+	//		System.out.println(this.collectionOfOrdersToDeliver.size());
 			if(this.collectionOfOrdersToDeliver.size()>0){
 				synchronized (collectionOfOrdersToDeliver) {
 					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
 					this.collectionOfOrdersToDeliver.remove(0);
 				}
 			}
-			System.out.println(this.collectionOfOrders.size());
-			System.out.println(this.collectionOfOrdersToDeliver.size());
+	//		System.out.println(this.collectionOfOrders.size());
+	//		System.out.println(this.collectionOfOrdersToDeliver.size());
 			this.update1();
 		}
 		while(!this.receiveAllOrders){
 			this.update1();
 		}
-		System.out.println("management END");
+		this.waitUntilAllOrdersDeliverd();
+	//	System.out.println("management END");
 	}
 	
 	
@@ -173,9 +185,9 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public void update1() {
 		this.receiveAllOrders=true;
-		System.out.println("management update");
-		System.out.println(this.collectionOfOrders.size());
-		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
+//		System.out.println("management update");
+//		System.out.println(this.collectionOfOrders.size());
+//		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
 		for (int i=0;i<this.collectionOfOrders.size();i++){
 			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
@@ -187,7 +199,19 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		}
 	}
 
-	
+	public void waitUntilAllOrdersDeliverd(){
+	//	System.out.println("waitUntilAllOrdersDeliverd");
+		Boolean allOrdersDeliverd=false;
+		while (!allOrdersDeliverd){
+			allOrdersDeliverd=true;
+			for (int  i=0; i<this.collectionOfOrders.size();i++){
+				if (this.collectionOfOrders.get(i).getOrderStatus()!=4){
+					allOrdersDeliverd=false;
+				}
+			}
+		}
+		
+	}
 	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy) {
 		Vector<Order> res= new Vector<Order>();
 		for (int i=0;i<vectorToCopy.size();i++){

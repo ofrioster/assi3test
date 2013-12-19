@@ -49,7 +49,7 @@ public class OrderOfDish implements OrderOfDishInterface{
 	 */
 	public synchronized void setOrderStatus(int status){
 		this.orderStatus=status;
-		System.out.println("setOrderStatus111 "+status);
+	//	System.out.println("setOrderStatus111 "+status);
 	}
 	
 	public synchronized void setOneDishIsDone(){

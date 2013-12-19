@@ -52,15 +52,15 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
-		System.out.println("run cook whole order has start");
+	//	System.out.println("run cook whole order has start");
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
 			for (int k=0; k<this.dishOrderVector.get(i).getquantity();k++){
 
-				System.out.println(this.dishOrderVector.get(i).getquantity());
+	//			System.out.println(this.dishOrderVector.get(i).getquantity());
 				this.dishOrderVector.get(i).setOneDishIsDone();
-				System.out.println("this "+ this.chef.getChefName());
+	//			System.out.println("this "+ this.chef.getChefName());
 	//			this.dishOrderVector.get(i).setOneDishIsDone();
 				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef);
 				Thread t= new Thread(r);
@@ -68,12 +68,12 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.threadsVector.add(t);
 			}
 		}
-		System.out.println("run cook whole order has finish");
+	//	System.out.println("run cook whole order has finish");
 		/*/// doing that in update
 		 */
 		while (!this.IsOrderIsDone()){
 		try {
-			System.out.println("wait works");
+	//		System.out.println("wait works");
 			Thread.currentThread().sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -86,10 +86,11 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
 		notifyObservers(this.order);
+//		System.out.println("run cook whole order has finish");
 		
 	}
 	  public void update(Observable obj, Boolean finish) {
-		  System.out.println("update cook whole order has start");
+	//	  System.out.println("update cook whole order has start");
 		  long endTime=System.currentTimeMillis();
 		  if (finish){
 			  Boolean orderFinish=true;
@@ -110,7 +111,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	  }
 	
 	  public void update1() {
-		  System.out.println("update1 cook whole order has start");
+	//	  System.out.println("update1 cook whole order has start");
 		  long endTime=System.currentTimeMillis();
 			  Boolean orderFinish=true;
 			  for (int i=0; i<this.dishOrderVector.size() && orderFinish;i++){
@@ -123,9 +124,9 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  this.totalTime=this.endTime-this.startTime;
 				  this.order.setActualCookTime(this.totalTime);
 				  order.setOrderStatus(3);
-				  System.out.println("notifyObservers(this.order);");
+			//	  System.out.println("notifyObservers(this.order);");
 				  notifyObservers(this.order);
-				  System.out.println("notifyObservers(this.order);");
+		//		  System.out.println("notifyObservers(this.order);");
 			  }
 	  }
 	public Long getTotalCookingTime(){
