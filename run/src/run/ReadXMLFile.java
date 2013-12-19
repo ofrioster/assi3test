@@ -34,28 +34,150 @@ public class ReadXMLFile {
 				System.out.println(Dishes.toString());
 			}
 
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-
-		try {
-
-			File file = new File("restaurant.xml");
-
-			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-
-			Document doc = dBuilder.parse(file);
+			file = new File("restaurant.xml");
+			//dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
 				//Restaurant retRestaurant = new Restaurant();
 				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
 				System.out.println(Restaurant.toString());
 			}
+			file = new File("orderList.xml");
+			//dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			doc = dBuilder.parse(file);
+
+			if (doc.hasChildNodes()) {
+				//Restaurant retRestaurant = new Restaurant();
+				Vector<Order> Orders = ParseOrderList(doc.getChildNodes());
+				System.out.println(Orders.toString());
+			}
+			
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	private static Vector<Order> ParseOrderList(NodeList nodeList) {
+		Vector<Order> tmpOrders = new Vector<Order>();
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			// Dish tempdish = null;
+			Node tempNode = nodeList.item(count);
+
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+				String temp = tempNode.getNodeName();
+				switch (tempNode.getNodeName()) {
+				case "OrderList":
+					tmpOrders = ParseOrderList(tempNode.getChildNodes());
+					break;
+				case "Orders":
+					tmpOrders = ParseOrderList(tempNode.getChildNodes());
+					break;
+				case "Order":
+					tmpOrders.add(ParseOrder(tempNode.getChildNodes(), new Order(id(tempNode), new Vector<OrderOfDish>(), null)) );
+					break;
+				default:
+					break;
+				}
+
+			}
+
+		}
+ 		
+		return tmpOrders;
+	}
+
+	private static String id(Node tempNode) {
+		String ret = "err";
+		if (tempNode.hasAttributes()) {
+			 
+			// get attributes names and values
+			NamedNodeMap nodeMap = tempNode.getAttributes();
+ 
+			for (int i = 0; i < nodeMap.getLength(); i++) {
+ 
+				Node node = nodeMap.item(i);
+				if (node.getNodeName() == "id"){
+					ret = node.getNodeValue();
+				}
+				//System.out.println("attr name : " + node.getNodeName());
+				//System.out.println("attr value : " + node.getNodeValue());
+ 
+			}
+ 
+		}		return ret;
+	}
+
+	private static Order ParseOrder(NodeList nodeList,Order order) {
+		Address tmpAddress = null;
+		Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
+		
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				switch (tempNode.getNodeName()) {
+				case "DeliveryAddress":
+					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
+					break;
+				case "Dishes":
+					order = ParseOrder(tempNode.getChildNodes(),order);
+					break;
+				case "Dish":
+					tmpOrderOfDish.add(ParseOrderOfDish(tempNode.getChildNodes()));
+					break;
+				default:
+					break;
+
+				}
+
+				// System.out.println("Node Name =" + tempNode.getNodeName() +
+				// " [CLOSE]"
+			}
+
+		}
+		return order;
+
+	}
+
+	private static OrderOfDish ParseOrderOfDish(NodeList nodeList) {
+
+		OrderOfDish tmpOrderOfDish = null;
+		String tmpDishName;
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				switch (tempNode.getNodeName()) {
+				case "name":
+					tmpOrderOfDish = new OrderOfDish(null, count);  //////////////////////////////////////////////////////////////////////////////////////////
+					tmpDishName = (tempNode.getTextContent());
+					break;
+				case "quantity":
+
+					break;
+			default:
+					break;
+
+				}
+
+				
+				
+			}
+
+		}
+		return tmpOrderOfDish;
+
+
 	}
 
 	private static Restaurant ParseRestaurant(NodeList nodeList ,Restaurant retRestaurant ) {
