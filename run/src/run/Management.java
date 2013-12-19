@@ -21,7 +21,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		
 	}
 	
-	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch){
+	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch,Statistics statistics){
 		this.collectionOfOrders=collectionOfOrders;
 		this.collectionOfOrdersToDeliver=this.copyOrdersVector(collectionOfOrders);
 		this.collectionOfChefs=collectionOfChefs;
@@ -30,7 +30,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.receiveAllOrders=false;
 		this.shutDown=false;
 		this.ordersLatch=ordersLatch;
-		this.statistics=new Statistics();
+		this.statistics=statistics;
 	}
 	
 	public void addOrder(Order newOrder){
@@ -99,6 +99,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public Double getMoneyGain(){
 		return this.statistics.getMoneyGain();
 	}
+	public void SetStatisticsToDeliveryPerson (){
+		for (int i=0;i>this.collectionOfDeliveryPerson.size();i++){
+			this.collectionOfDeliveryPerson.get(i).setStatistics(statistics);
+		}
+	}
 	
 	/** (non-Javadoc)
 	 * @if the DeliveryPerson Vector is empty return empty RunnableDeliveryPerson 
@@ -119,11 +124,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	}
 
 	/** (non-Javadoc)
-	 * @this function run when Observable get notifyObservers
+	 * @ this function run when Observable get notifyObservers
 	 * @ if the Order have been finish, send it to the delivery person
 	 */
 	public void update(Observable o, Object arg) {
-	//	System.out.println("management update");
+		System.out.println(" update work!!!!");
 		try{
 			Order order=(Order)arg;
 			if(order.getOrderStatus()==3){
@@ -140,6 +145,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
+		
 		this.startThreadsOfDeliveryPerson();
 		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
 	//		System.out.println(this.collectionOfOrders.size());
@@ -220,5 +226,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		}
 		return res;
 	}
+	
 
 }

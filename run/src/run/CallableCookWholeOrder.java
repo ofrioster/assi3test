@@ -16,12 +16,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	private Long startTime;
 	private Long endTime;
 	private long totalTime;
+	private Statistics statistics;
 	
 	
 	
 	
 	
-	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef){
+	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef,Statistics statistics){
 		this.order=order;
 		this.warehouseName=warehouseName;
 		this.orderFinish=false;
@@ -32,6 +33,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			this.dishOrderVector.add(order.getOrderDish().get(i));
 		}
 		this.chef=chef;
+		this.statistics=statistics;
 	}
 	
 	public void addDish(OrderOfDish newDish){
@@ -104,6 +106,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  this.totalTime=this.endTime-this.startTime;
 				  this.order.setActualCookTime(this.totalTime);
 				  order.setOrderStatus(3);
+		//		  this.statistics.addDeliveredOrder(order);
 				  notifyObservers(this.order); 
 			  }
 			  

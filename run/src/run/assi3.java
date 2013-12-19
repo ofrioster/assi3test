@@ -7,6 +7,9 @@ public class assi3 {
 	public static void main(String args[]){
 	//	System.out.println("good");
 	//	System.out.println("now?");
+		
+		Statistics statistics=new Statistics();
+		
 		//**warehouse
 		
 		Ingredient ingredient1=new Ingredient("ingredient1",3);
@@ -65,7 +68,7 @@ public class assi3 {
 
 		////****Dish***//
 		Vector<KitchenTool> dish1KitchenTools=new Vector<KitchenTool>();
-		System.out.println(" size of dish kitchen vector "+dish1KitchenTools.size());
+//		System.out.println(" size of dish kitchen vector "+dish1KitchenTools.size());
 		Ingredient ingredient7=new Ingredient("ingredient6",3);
 		Ingredient ingredient8=new Ingredient("ingredient5",3);
 		dish1KitchenTools.add(KitchenTool6);
@@ -76,6 +79,16 @@ public class assi3 {
 		Dish dish1=new Dish("dish1", 5222, dish1ingredients, kitchenToolsVector, 1, 6.7);
 //		System.out.println("dish1.getDishDifficultyRating() "+dish1.getDishDifficultyRating());
 //		System.out.println("dish1.getdishExpectedCookTime()" +dish1.getdishExpectedCookTime());
+		Vector<KitchenTool> dish1KitchenTools2=new Vector<KitchenTool>();
+//		System.out.println(" size of dish kitchen vector "+dish1KitchenTools.size());
+		Ingredient ingredient9=new Ingredient("ingredient3",3);
+		Ingredient ingredient10=new Ingredient("ingredient2",3);
+		dish1KitchenTools.add(KitchenTool6);
+		dish1KitchenTools.add(KitchenTool5);
+		Vector<Ingredient> dish1ingredients2=new Vector<Ingredient>();
+		dish1ingredients.add(ingredient7);
+		dish1ingredients.add(ingredient8);
+		Dish dish2=new Dish("dish1", 5122, dish1ingredients2, dish1KitchenTools2, 2, 3.2);
 		
 		//***order***//
 		Vector<OrderOfDish> orderOneDishVector=new Vector<OrderOfDish>();
@@ -83,6 +96,10 @@ public class assi3 {
 		orderOneDishVector.add(orderOneDish);
 		Address customerAddress=new Address(7, 16);
 		Order order1=new Order("order1",45,orderOneDishVector,customerAddress);
+		OrderOfDish orderOneDish2=new OrderOfDish(dish2, 2);
+		orderOneDishVector.add(orderOneDish);
+		Address customerAddress2=new Address(2, 6);
+		Order order2=new Order("order2",15,orderOneDishVector,customerAddress);
 /*		System.out.println("order1.getActualCookTime() "+order1.getActualCookTime());
 		System.out.println("order1.getExpectedCookTime() "+order1.getExpectedCookTime());
 		System.out.println("order1.getDifficultyRating() "+order1.getDifficultyRating());
@@ -94,7 +111,7 @@ public class assi3 {
 		
 		
 		///***management **//
-		Management managementTest=new Management(orderVector, chefVector, deliveryPerson, warehouseTest, latchObject);
+		Management managementTest=new Management(orderVector, chefVector, deliveryPerson, warehouseTest, latchObject,statistics);
 //		System.out.println("managementTest.getMoneyGain() "+managementTest.getMoneyGain());
 		managementTest.setReceiveAllOrders(true);
 		Thread t=new Thread(managementTest);
@@ -109,6 +126,18 @@ public class assi3 {
 			e.printStackTrace();
 		}
 		managementTest.ShutDown();
+		
+		System.out.println("money gain "+managementTest.getMoneyGain());
+		
+		
+	//	Statistics statisticsTest=new Statistics(order1);
+		Statistics statisticsTest=new Statistics();
+		System.out.println("rawerd "+order1.getTotalReward());
+		order2.setOrderStatus(4);
+		System.out.println("money gain stas "+managementTest.getMoneyGain());
+		statisticsTest.addDeliveredOrder(order2);
+		System.out.println("rawerd "+order2.getTotalReward());
+		System.out.println("money gain "+managementTest.getMoneyGain());
 		System.out.println("end");
 		
 	}

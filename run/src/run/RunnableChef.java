@@ -14,6 +14,7 @@ public class RunnableChef implements RunnableChefInterface{
 	private Vector<CallableCookWholeOrder> CallableCookWholeOrder;
 	private Boolean shutDown;
 	private Management management;
+	private Statistics statistics;
 	
 	public RunnableChef(){
 		
@@ -27,6 +28,7 @@ public class RunnableChef implements RunnableChefInterface{
 		this.orderVector=new Vector<Order>();
 		this.poolOfThreads=new Vector<Thread>();
 		this.CallableCookWholeOrder=new Vector<CallableCookWholeOrder>();
+		this.statistics=new Statistics();
 	}
 	
 	public String getChefName(){
@@ -81,8 +83,9 @@ public class RunnableChef implements RunnableChefInterface{
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
-			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this);
+			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics);
 			this.CallableCookWholeOrder.add(newWholeOrder);
+		//	newWholeOrder.addObserver(management);
 		//	this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
 			Thread t=new Thread(newWholeOrder);
 			this.poolOfThreads.add(t);

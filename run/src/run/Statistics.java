@@ -2,7 +2,7 @@ package run;
 import java.util.Vector;
 
 
-public class Statistics implements StatisticsInterface{
+public class Statistics implements StatisticsInterface {
 	
 	private Double moneyGain;
 	private Vector<Order> deliveredOrders;
@@ -10,12 +10,16 @@ public class Statistics implements StatisticsInterface{
 	
 	public Statistics(){
 		this.moneyGain=0.0;
+		this.deliveredOrders=new Vector<Order>();
+		this.ingredientsConsumed=new Vector<Ingredient>();
 	}
 	/**
 	 * @param newOrder that has been finish
 	 * 
 	 */
 	public Statistics(Order newOrder){
+		this.deliveredOrders=new Vector<Order>();
+		this.ingredientsConsumed=new Vector<Ingredient>();
 		if(newOrder.getOrderStatus()==4){
 			this.deliveredOrders.add(newOrder);
 			this.moneyGain=newOrder.getTotalReward();
@@ -36,7 +40,7 @@ public class Statistics implements StatisticsInterface{
 			this.addinConsumedIgredients(order);
 		}
 		else{
-			System.out.println("Priblem with order");
+			System.out.println("Problem with order");
 		}
 	}
 	public void upDateMoneyGain(Order order){

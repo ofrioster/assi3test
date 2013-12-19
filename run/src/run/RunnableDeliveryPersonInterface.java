@@ -18,5 +18,6 @@ public interface RunnableDeliveryPersonInterface {
 	public void shutDown();
 	public void run();
 	public long getTotalDeliveryTime();
+	public void setStatistics(Statistics statistics);
 
 }
