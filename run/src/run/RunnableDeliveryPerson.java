@@ -18,7 +18,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.collectionDeliverdOrders=new Vector<Order>();
 	}
 	
-	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson,CountDownLatch ordersLatch){
+	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson,CountDownLatch ordersLatch,Statistics statistics){
 		this.deliveryPersonName=deliveryPersonName;
 		this.restaurantAddres=restaurantAddres;
 		this.speedOfDeliveryPerson=speedOfDeliveryPerson;
@@ -26,6 +26,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.totalDeliveryTime=0;
 		this.collectionDeliverdOrders=new Vector<Order>();
 		this.ordersLatch=ordersLatch;
+		this.statistics=statistics;
 	}
 	public void setStatistics(Statistics statistics){
 		this.statistics=statistics;
@@ -65,7 +66,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		orderToDeliver.setOrderStatus(4);
 		orderToDeliver.setActualCookTime(System.currentTimeMillis()-orderToDeliver.getActualDeliveryTime());
 		orderToDeliver.setTotalReward();
-//		this.statistics.addDeliveredOrder(orderToDeliver);
+		this.statistics.addDeliveredOrder(orderToDeliver);
 		this.collectionDeliverdOrders.remove(orderToDeliver);
 //		System.out.println("count down count "+this.ordersLatch.getCount());
 		this.ordersLatch.countDown();

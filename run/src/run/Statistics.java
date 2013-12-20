@@ -34,17 +34,30 @@ public class Statistics implements StatisticsInterface {
 	 * @ update all the data on this object 
 	 */
 	public void addDeliveredOrder(Order order){
+		try{
+		System.out.println("order.getOrderStatus() "+order.getOrderStatus());
 		if(order.getOrderStatus()==4){
 			this.deliveredOrders.add(order);
-			this.moneyGain=order.getTotalReward();
+			//this.moneyGain=order.getTotalReward();
+			this.upDateMoneyGain(order);
 			this.addinConsumedIgredients(order);
 		}
 		else{
 			System.out.println("Problem with order");
 		}
+		}
+		catch (Exception e){
+			System.out.println("Problem with order");
+		}
 	}
 	public void upDateMoneyGain(Order order){
+		System.out.println("order.getTotalReward() "+order.getTotalReward());
+		System.out.println("this.moneyGain "+this.moneyGain);
 		this.moneyGain=this.moneyGain+ order.getTotalReward();
+		System.out.println("order.getTotalReward() "+order.getTotalReward());
+		System.out.println("this.moneyGain "+this.moneyGain);
+		int k=0;
+		
 	}
 	/** (non-Javadoc)
 	 * @param order to add her inredients

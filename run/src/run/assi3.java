@@ -55,8 +55,8 @@ public class assi3 {
 		chefVector.add(chef2);
 		chefVector.add(chef1);
 		///***  DeliveryPerson **// 
-		RunnableDeliveryPerson deliveryP1=new RunnableDeliveryPerson("deliveryP1", restaurantAddress, 3.2, latchObject);
-		RunnableDeliveryPerson deliveryP2=new RunnableDeliveryPerson("deliveryP2", restaurantAddress, 5.2, latchObject);
+		RunnableDeliveryPerson deliveryP1=new RunnableDeliveryPerson("deliveryP1", restaurantAddress, 3.2, latchObject,statistics);
+		RunnableDeliveryPerson deliveryP2=new RunnableDeliveryPerson("deliveryP2", restaurantAddress, 5.2, latchObject,statistics);
 		Vector<RunnableDeliveryPerson> deliveryPerson=new Vector<RunnableDeliveryPerson>();
 		deliveryPerson.add(deliveryP2);
 		deliveryPerson.add(deliveryP1);
@@ -135,6 +135,10 @@ public class assi3 {
 		System.out.println("rawerd "+order1.getTotalReward());
 		order2.setOrderStatus(4);
 		System.out.println("money gain stas "+managementTest.getMoneyGain());
+		order2.setActualCookTime(5555);
+		order2.setActualDeliveryTime(33222);
+		order2.setExpectedDeliveryTime(1111);
+		order2.setTotalReward();
 		statisticsTest.addDeliveredOrder(order2);
 		System.out.println("rawerd "+order2.getTotalReward());
 		System.out.println("money gain "+managementTest.getMoneyGain());
