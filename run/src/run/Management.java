@@ -16,6 +16,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	private Boolean receiveAllOrders; 
 	private Boolean shutDown;
 	private CountDownLatch ordersLatch;
+	private int orderCount;
 	
 	public Management(){
 		
@@ -31,6 +32,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.shutDown=false;
 		this.ordersLatch=ordersLatch;
 		this.statistics=statistics;
+		this.orderCount=0;
 	}
 	
 	public void addOrder(Order newOrder){
@@ -191,10 +193,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public void update1() {
 		this.receiveAllOrders=true;
+		System.out.println(this.orderCount);
 //		System.out.println("management update");
 //		System.out.println(this.collectionOfOrders.size());
 //		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
-		for (int i=0;i<this.collectionOfOrders.size();i++){
+		for (int i=this.orderCount;i<this.collectionOfOrders.size();i++){
+			this.orderCount++;
 			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrders.get(i));

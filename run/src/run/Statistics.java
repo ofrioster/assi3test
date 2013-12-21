@@ -72,9 +72,9 @@ public class Statistics implements StatisticsInterface {
 						this.ingredientsConsumed.get(k).returnIngredient();
 						found=true;
 					}
-					if(!found){
-						this.ingredientsConsumed.add(order.getOrderDish().get(i).gestDish().getDishIngredients().get(k));
-					}
+				}
+				if(!found){
+					this.ingredientsConsumed.add(order.getOrderDish().get(i).gestDish().getDishIngredients().get(w));
 				}
 			}
 			
