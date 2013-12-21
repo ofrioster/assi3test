@@ -20,6 +20,14 @@ public class KitchenTool implements KitchenTool_Interface {
 	}
 	
 	public synchronized  boolean getKitchenTool(){
+		while (!this.kitchenToolSemaphore.tryAcquire()){
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if(this.kitchenToolSemaphore.tryAcquire()){
 			return true;
 		}
@@ -31,6 +39,7 @@ public class KitchenTool implements KitchenTool_Interface {
 	
 	public void returnKitchenTool(){
 		this.kitchenToolSemaphore.release();
+		this.notifyAll();
 	}
 	
 	public int numberOfKitchenTools(){
