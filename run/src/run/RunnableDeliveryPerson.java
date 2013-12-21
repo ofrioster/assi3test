@@ -100,7 +100,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @totalDeliveryTime in milis
 	 */
 	public long getTotalDeliveryTime() {
