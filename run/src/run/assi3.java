@@ -46,7 +46,7 @@ public class assi3 {
 	//	System.out.println("number of ingrediens - "+warehouseTest.getNumberOfIngredientsAvailable(ingredient6));
 	//	System.out.println("number of kitchen tools "+ warehouseTest.getNumberOfKitchenTolls(KitchenTool6));
 		
-		CountDownLatch latchObject = new CountDownLatch (1);
+		CountDownLatch latchObject = new CountDownLatch (2);
 		Address restaurantAddress=new Address(3, 7);
 		//***chef***//
 		RunnableChef chef1=new RunnableChef("chef1", 5.0, 2.0);

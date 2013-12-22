@@ -2,6 +2,7 @@ package run;
 import java.util.Vector;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.CountDownLatch;
 
 
 public class RunnableCookOneDish extends Observable implements RunnableCookOneDishInterface,Runnable{
@@ -12,14 +13,16 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	private Boolean allKitchenToolsAcquire;
 	private Boolean allIngredientsAcquire;
 	private Vector<KitchenTool> kitchenToolsInUse;
+	private CountDownLatch NumberOfDishesLeftToCock;
 	
-	public RunnableCookOneDish(OrderOfDish dishName,Warehouse warehouseName,RunnableChef Chef){
+	public RunnableCookOneDish(OrderOfDish dishName,Warehouse warehouseName,RunnableChef Chef,CountDownLatch NumberOfDishesLeftToCock){
 		this.dishName=dishName;
 		this.warehouseName=warehouseName;
 		this.Chef=Chef;
 		this.allKitchenToolsAcquire=false;
 		this.allIngredientsAcquire=false;
 		this.kitchenToolsInUse=new Vector<KitchenTool>();
+		this.NumberOfDishesLeftToCock=NumberOfDishesLeftToCock;
 		
 	}
 	
@@ -123,6 +126,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			this.cookDish();
 			returnAllKitchenTools();
 			this.dishName.setOneDishIsDone();
+			this.NumberOfDishesLeftToCock.countDown();
 			if (this.dishName.getQuantityLeft()==0){
 				this.dishName.setOrderStatus(3);
 			}

@@ -165,7 +165,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		while(!this.receiveAllOrders){
 			this.update1();
 		}
-		this.waitUntilAllOrdersDeliverd();
+	//	this.waitUntilAllOrdersDeliverd();
 	//	System.out.println("management END");
 	}
 	

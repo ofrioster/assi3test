@@ -17,6 +17,8 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	private Long endTime;
 	private long totalTime;
 	private Statistics statistics;
+	private int totalNumberOfDishs;
+	private CountDownLatch NumberOfDishesLeftToCock;
 	
 	
 	
@@ -34,6 +36,8 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		}
 		this.chef=chef;
 		this.statistics=statistics;
+		this.updateTotalNumberOfDishs();
+		this.NumberOfDishesLeftToCock = new CountDownLatch (this.totalNumberOfDishs);
 	}
 	
 	public void addDish(OrderOfDish newDish){
@@ -54,7 +58,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
-	//	System.out.println("run cook whole order has start");
+//		System.out.println("run cook whole order has start");
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
@@ -64,7 +68,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.dishOrderVector.get(i).setOneDishIsDone();
 	//			System.out.println("this "+ this.chef.getChefName());
 	//			this.dishOrderVector.get(i).setOneDishIsDone();
-				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef);
+				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef,this.NumberOfDishesLeftToCock);
 				Thread t= new Thread(r);
 				t.start();
 				this.threadsVector.add(t);
@@ -73,6 +77,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	//	System.out.println("run cook whole order has finish");
 		/*/// doing that in update
 		 */
+		/*
 		while (!this.IsOrderIsDone()){
 		try {
 	//		System.out.println("wait works");
@@ -81,6 +86,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
+		*/
+		try {
+			this.NumberOfDishesLeftToCock.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		this.update1();
 		this.endTime=System.currentTimeMillis();
@@ -114,7 +126,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	  }
 	
 	  public void update1() {
-	//	  System.out.println("update1 cook whole order has start");
+//		  System.out.println("update1 cook whole order has start");
 		  long endTime=System.currentTimeMillis();
 			  Boolean orderFinish=true;
 			  for (int i=0; i<this.dishOrderVector.size() && orderFinish;i++){
@@ -129,7 +141,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  order.setOrderStatus(3);
 			//	  System.out.println("notifyObservers(this.order);");
 				  notifyObservers(this.order);
-		//		  System.out.println("notifyObservers(this.order);");
+				  System.out.println("notifyObservers(this.order);");
 			  }
 	  }
 	public Long getTotalCookingTime(){
@@ -137,5 +149,11 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	public void addObserver1(Observer o) {
 		
+	}
+	public void updateTotalNumberOfDishs(){
+		this.totalNumberOfDishs=0;
+		for (int i=0;i<this.dishOrderVector.size();i++){
+			this.totalNumberOfDishs=this.totalNumberOfDishs+ this.dishOrderVector.get(i).getquantity();
+		}
 	}
 }

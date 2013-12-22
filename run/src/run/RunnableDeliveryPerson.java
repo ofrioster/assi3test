@@ -107,17 +107,13 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		return this.totalDeliveryTime;
 	}
 
-	@Override
 	public void setDeliveryPersonName(String PersonName) {
-		// TODO Auto-generated method stub
 		this.deliveryPersonName = PersonName;	
 
 		
 	}
 
-	@Override
 	public void setSpeedOfDeliveryPerson(Double DeliveryPerson) {
-		// TODO Auto-generated method stub
 		this.speedOfDeliveryPerson = DeliveryPerson;
 	}
 

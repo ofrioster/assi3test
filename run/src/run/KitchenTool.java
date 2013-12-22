@@ -37,7 +37,7 @@ public class KitchenTool implements KitchenTool_Interface {
 		
 	}
 	
-	public void returnKitchenTool(){
+	public synchronized void returnKitchenTool(){
 		this.kitchenToolSemaphore.release();
 		this.notifyAll();
 	}

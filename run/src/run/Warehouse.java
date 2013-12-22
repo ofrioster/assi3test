@@ -82,7 +82,7 @@ public class Warehouse implements Warehouse_Interface{
 		return res;
 	}
 	
-	public synchronized void returnKitchenTolls(KitchenTool KitchenTollsname){
+	public void returnKitchenTolls(KitchenTool KitchenTollsname){
 		Boolean found=false;
 		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
 			if (this.kitchenCollectionTolls.get(i)==KitchenTollsname){
