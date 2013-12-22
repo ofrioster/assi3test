@@ -12,18 +12,18 @@ public class assi3 {
 		
 		//**warehouse
 		
-		Ingredient ingredient1=new Ingredient("ingredient1",3);
-		KitchenTool KitchenTool1=new KitchenTool("KitchenTol",3);
-		Ingredient ingredient2=new Ingredient("ingredient2",3);
-		KitchenTool KitchenTool2=new KitchenTool("KitchenTo2",3);
+		Ingredient ingredient1=new Ingredient("ingredient1",9);
+		KitchenTool KitchenTool1=new KitchenTool("KitchenTol",66);
+		Ingredient ingredient2=new Ingredient("ingredient2",9);
+		KitchenTool KitchenTool2=new KitchenTool("KitchenTo2",66);
 		Ingredient ingredient3=new Ingredient("ingredient3",9);
-		KitchenTool KitchenTool3=new KitchenTool("KitchenTo3",3);
-		Ingredient ingredient4=new Ingredient("ingredient4",6);
-		KitchenTool KitchenTool4=new KitchenTool("KitchenTo4",3);
+		KitchenTool KitchenTool3=new KitchenTool("KitchenTo3",66);
+		Ingredient ingredient4=new Ingredient("ingredient4",9);
+		KitchenTool KitchenTool4=new KitchenTool("KitchenTo4",66);
 		Ingredient ingredient5=new Ingredient("ingredient5",66);
-		KitchenTool KitchenTool5=new KitchenTool("KitchenTo5",6);
+		KitchenTool KitchenTool5=new KitchenTool("KitchenTo5",666);
 		Ingredient ingredient6=new Ingredient("ingredient6",66);
-		KitchenTool KitchenTool6=new KitchenTool("KitchenTo6",3);
+		KitchenTool KitchenTool6=new KitchenTool("KitchenTo6",33);
 		
 		Vector<KitchenTool> kitchenToolsVector=new Vector<KitchenTool>();
 		kitchenToolsVector.add(KitchenTool6);

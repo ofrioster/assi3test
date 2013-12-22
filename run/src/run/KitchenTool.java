@@ -19,21 +19,25 @@ public class KitchenTool implements KitchenTool_Interface {
 		return this.kitchenToolName; 
 	}
 	
-	public synchronized  boolean getKitchenTool(){
-		while (!this.kitchenToolSemaphore.tryAcquire()){
-			try {
-				this.wait();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public  boolean getKitchenTool(){
+		Boolean res=false;
+		synchronized (kitchenToolSemaphore) {
+			while (!this.kitchenToolSemaphore.tryAcquire()){
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(this.kitchenToolSemaphore.tryAcquire()){
+				res=true;
+			}
+			else {
+				res=false;
 			}
 		}
-		if(this.kitchenToolSemaphore.tryAcquire()){
-			return true;
-		}
-		else {
-			return false;
-		}
+		return res;
 		
 	}
 	

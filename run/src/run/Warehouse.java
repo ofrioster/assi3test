@@ -88,7 +88,7 @@ public class Warehouse implements Warehouse_Interface{
 			if (this.kitchenCollectionTolls.get(i)==KitchenTollsname){
 				this.kitchenCollectionTolls.get(i).returnKitchenTool();
 				found=true;
-				notifyAll();
+				//notifyAll();
 			}
 		}
 		
