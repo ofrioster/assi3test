@@ -43,7 +43,6 @@ public class RunnableChef implements RunnableChefInterface{
 		this.collectionOfOrdersToDeliver=collectionOfOrdersToDeliver;
 	}
 	public Double getEnduranceRating(){
-
 		return this.enduranceRating;
 	}
 	public void setChefName(String chefName){
@@ -87,7 +86,7 @@ public class RunnableChef implements RunnableChefInterface{
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
-			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver);
+			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
 			this.CallableCookWholeOrder.add(newWholeOrder);
 		//	newWholeOrder.addObserver(management);
 		//	this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);

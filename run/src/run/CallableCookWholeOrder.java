@@ -20,12 +20,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	private int totalNumberOfDishs;
 	private CountDownLatch NumberOfDishesLeftToCock;
 	private Vector<Order> collectionOfOrdersToDeliver;
+	private Management management;
 	
 	
 	
 	
 	
-	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef,Statistics statistics,Vector<Order> collectionOfOrdersToDeliver){
+	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef,Statistics statistics,Vector<Order> collectionOfOrdersToDeliver,Management management){
 		this.order=order;
 		this.warehouseName=warehouseName;
 		this.orderFinish=false;
@@ -40,6 +41,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.updateTotalNumberOfDishs();
 		this.NumberOfDishesLeftToCock = new CountDownLatch (this.totalNumberOfDishs);
 		this.collectionOfOrdersToDeliver=collectionOfOrdersToDeliver;
+		this.management=management;
 	}
 	
 	public void addDish(OrderOfDish newDish){
@@ -91,6 +93,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		order.setOrderStatus(3);
 //		this.collectionOfOrdersToDeliver=new Vector<Order>();
 		this.collectionOfOrdersToDeliver.add(this.order);
+		//this.management.
 		//notifyObservers(this.order);
 //		System.out.println("run cook whole order has finish");
 		

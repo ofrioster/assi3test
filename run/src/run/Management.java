@@ -85,9 +85,9 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				res=this.collectionOfChefs.get(0);
 				for (int i=0; i<this.collectionOfChefs.size();i++){
 					this.collectionOfChefs.get(i).getCurrectPressure();
-					System.out.println(res.getCurrectPressure());
-					System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
-					System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
+	//				System.out.println(res.getCurrectPressure());
+	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
+	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
 					if (res.getCurrectPressure()<this.collectionOfChefs.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
 						res=this.collectionOfChefs.get(i);
 					}
@@ -172,7 +172,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	//		System.out.println(this.collectionOfOrdersToCock.size());
 			this.update1();
 		}
-		while(!this.receiveAllOrders){
+		while(!this.receiveAllOrders &&!this.shutDown){
 			this.update1();
 		}
 	//	this.waitUntilAllOrdersDeliverd();
@@ -203,7 +203,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public void update1() {
 		this.receiveAllOrders=true;
-		System.out.println(this.orderCount);
+		System.out.println("update1 - this.orderCount "+this.orderCount);
+		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 //		System.out.println("management update");
 //		System.out.println(this.collectionOfOrders.size());
 //		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());

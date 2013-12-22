@@ -12,6 +12,7 @@ maybe it is faster to send orders to management one by one so that the chef coul
 
 observer, observable - to implements from.... a well as runnable
 i remove synchronized in acquireIngredients- might be a problem
+there might be a priblem with how many ingredients we use
 
 
 arnon:

@@ -32,12 +32,14 @@ public class Ingredient implements Ingredient_Interface{
 	
 	public synchronized  boolean getIngredient(){
 		if(this.ingredientAmount.tryAcquire()){
+	//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
 			return true;
 		}
 		else {
+			System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
 			return false;
 		}
-		
+
 	}
 	
 	public void returnIngredient(){

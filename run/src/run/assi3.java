@@ -12,13 +12,13 @@ public class assi3 {
 		
 		//**warehouse
 		
-		Ingredient ingredient1=new Ingredient("ingredient1",9);
+		Ingredient ingredient1=new Ingredient("ingredient1",99);
 		KitchenTool KitchenTool1=new KitchenTool("KitchenTol",66);
-		Ingredient ingredient2=new Ingredient("ingredient2",9);
+		Ingredient ingredient2=new Ingredient("ingredient2",99);
 		KitchenTool KitchenTool2=new KitchenTool("KitchenTo2",66);
-		Ingredient ingredient3=new Ingredient("ingredient3",9);
+		Ingredient ingredient3=new Ingredient("ingredient3",99);
 		KitchenTool KitchenTool3=new KitchenTool("KitchenTo3",66);
-		Ingredient ingredient4=new Ingredient("ingredient4",9);
+		Ingredient ingredient4=new Ingredient("ingredient4",99);
 		KitchenTool KitchenTool4=new KitchenTool("KitchenTo4",66);
 		Ingredient ingredient5=new Ingredient("ingredient5",66);
 		KitchenTool KitchenTool5=new KitchenTool("KitchenTo5",666);
@@ -122,11 +122,11 @@ public class assi3 {
 //		System.out.println("managementTest.getMoneyGain() "+managementTest.getMoneyGain());
 		managementTest.setReceiveAllOrders(true);
 		Thread t=new Thread(managementTest);
-	//	t.start();
-		managementTest.run();
+		t.start();
+	//	managementTest.run();
 		System.out.println("order1.getOrderStatus() "+order1.getOrderStatus());
 		try {
-			System.out.println("await");
+	//		System.out.println("await");
 			latchObject.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
