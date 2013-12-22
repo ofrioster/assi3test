@@ -89,11 +89,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		}
 		*/
 		try {
+			System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	//	System.out.println("await whole order has finish");
 		this.update1();
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;

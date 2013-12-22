@@ -126,7 +126,9 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			this.cookDish();
 			returnAllKitchenTools();
 			this.dishName.setOneDishIsDone();
+		//	System.out.println(" cock one dish befor-this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.countDown();
+		//	System.out.println(" cock one dish after-this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			if (this.dishName.getQuantityLeft()==0){
 				this.dishName.setOrderStatus(3);
 			}
