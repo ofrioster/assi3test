@@ -13,7 +13,9 @@ maybe it is faster to send orders to management one by one so that the chef coul
 observer, observable - to implements from.... a well as runnable
 i remove synchronized in acquireIngredients- might be a problem
 there might be a priblem with how many ingredients we use
-
+some of the vector can be change to array list
+how to decide how many threads in chefs? and to change it to blocking qeue-threadsPool. example: http://tutorials.jenkov.com/java-concurrency/thread-pools.html
+why do we have an object in synchronized?
 
 arnon:
  if shutDown call function ShutDown in management
