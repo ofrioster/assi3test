@@ -202,6 +202,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @if the observe dont work we use this
 	 */
 	public void update1() {
+		try {
+			Thread.sleep(15);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.receiveAllOrders=true;
 		System.out.println("update1 - this.orderCount "+this.orderCount);
 		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
