@@ -49,8 +49,8 @@ public class assi3 {
 		CountDownLatch latchObject = new CountDownLatch (2);
 		Address restaurantAddress=new Address(3, 7);
 		//***chef***//
-		RunnableChef chef1=new RunnableChef("chef1", 5.0, 2.0);
-		RunnableChef chef2=new RunnableChef("chef2", 4.0, 3.0);
+		RunnableChef chef1=new RunnableChef("chef1", 5.0, 7.0);
+		RunnableChef chef2=new RunnableChef("chef2", 4.0, 30.0);
 		Vector<RunnableChef> chefVector=new Vector<RunnableChef>();
 		chefVector.add(chef2);
 		chefVector.add(chef1);
@@ -86,9 +86,9 @@ public class assi3 {
 		dish1KitchenTools.add(KitchenTool6);
 		dish1KitchenTools.add(KitchenTool5);
 		Vector<Ingredient> dish1ingredients2=new Vector<Ingredient>();
-		dish1ingredients.add(ingredient7);
-		dish1ingredients.add(ingredient8);
-		Dish dish2=new Dish("dish1", 5122, dish1ingredients2, dish1KitchenTools2, 2, 3.2);
+		dish1ingredients.add(ingredient9);
+		dish1ingredients.add(ingredient10);
+		Dish dish2=new Dish("dish1", 5122, dish1ingredients2, dish1KitchenTools2, 1, 3.2);
 		
 		//***order***//
 		Vector<OrderOfDish> orderOneDishVector=new Vector<OrderOfDish>();

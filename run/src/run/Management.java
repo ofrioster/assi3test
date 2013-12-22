@@ -10,6 +10,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	private Vector<RunnableChef> collectionOfChefs;
 	private Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson;
 	private Vector<Order> collectionOfOrdersToDeliver;
+	private Vector<Order> collectionOfOrdersToCock;
 	private Warehouse warehouseName;
 	private Statistics statistics;
 	private long numberOfOrderThatProcess;
@@ -24,7 +25,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	
 	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch,Statistics statistics){
 		this.collectionOfOrders=collectionOfOrders;
-		this.collectionOfOrdersToDeliver=this.copyOrdersVector(collectionOfOrders);
+		this.collectionOfOrdersToCock=this.copyOrdersVector(collectionOfOrders);
 		this.collectionOfChefs=collectionOfChefs;
 		this.collectionOfDeliveryPerson=collectionOfDeliveryPerson;
 		this.warehouseName=warehouseName;
@@ -33,11 +34,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.ordersLatch=ordersLatch;
 		this.statistics=statistics;
 		this.orderCount=0;
+		this.collectionOfOrdersToDeliver=new Vector<Order>();
 	}
 	
 	public void addOrder(Order newOrder){
 		this.collectionOfOrders.add(newOrder);
-		this.collectionOfOrdersToDeliver.add(newOrder);
+		this.collectionOfOrdersToCock.add(newOrder);
 	}
 	
 	public void addNewChef(RunnableChef newChef){
@@ -76,19 +78,27 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @ keep looking for free chef until one is find
 	 */
 	public synchronized RunnableChef findUnbusyChef(Order newOrder){
-		try{
-			RunnableChef res=this.collectionOfChefs.get(0);
-			for (int i=0; i<this.collectionOfChefs.size();i++){
-				this.collectionOfChefs.get(i).getCurrectPressure();
-				if (res.getCurrectPressure()<this.collectionOfChefs.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
-					res=this.collectionOfChefs.get(i);
+		Boolean found=false;
+		RunnableChef res;
+		while (!found){
+			try{
+				res=this.collectionOfChefs.get(0);
+				for (int i=0; i<this.collectionOfChefs.size();i++){
+					this.collectionOfChefs.get(i).getCurrectPressure();
+					System.out.println(res.getCurrectPressure());
+					System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
+					System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
+					if (res.getCurrectPressure()<this.collectionOfChefs.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
+						res=this.collectionOfChefs.get(i);
+					}
 				}
+				if (res.canTheChefTakeOrder(newOrder)){
+					return res;
+				}
+				}
+			catch (Exception e) {
+				// TODO: handle exception
 			}
-			if(!res.canTheChefTakeOrder(newOrder));
-			return res;
-		}
-		catch (Exception e) {
-			// TODO: handle exception
 		}
 		RunnableChef e=new RunnableChef();
 		return e;
@@ -147,19 +157,19 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-		
+		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
-		while (!this.shutDown && (this.collectionOfOrdersToDeliver.size()>0 )){
+		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){
 	//		System.out.println(this.collectionOfOrders.size());
-	//		System.out.println(this.collectionOfOrdersToDeliver.size());
-			if(this.collectionOfOrdersToDeliver.size()>0){
-				synchronized (collectionOfOrdersToDeliver) {
-					this.startToCookDish(this.collectionOfOrdersToDeliver.get(0));
-					this.collectionOfOrdersToDeliver.remove(0);
-				}
+	//		System.out.println(this.collectionOfOrdersToCock.size());
+			if(this.collectionOfOrdersToCock.size()>0){
+			//	synchronized (collectionOfOrdersToCock) {
+					this.startToCookDish(this.collectionOfOrdersToCock.get(0));
+					this.collectionOfOrdersToCock.remove(0);
+				//}
 			}
 	//		System.out.println(this.collectionOfOrders.size());
-	//		System.out.println(this.collectionOfOrdersToDeliver.size());
+	//		System.out.println(this.collectionOfOrdersToCock.size());
 			this.update1();
 		}
 		while(!this.receiveAllOrders){
@@ -197,11 +207,20 @@ public class Management implements ManagementInterface,Observer,Runnable {
 //		System.out.println("management update");
 //		System.out.println(this.collectionOfOrders.size());
 //		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
-		for (int i=this.orderCount;i<this.collectionOfOrders.size();i++){
+	/*	for (int i=this.orderCount;i<this.collectionOfOrders.size();i++){
 			this.orderCount++;
 			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrders.get(i));
+			}
+			else{
+				this.receiveAllOrders=false;
+			}
+		}*/
+		for (int i=0;i<this.collectionOfOrdersToDeliver.size();i++){
+			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
+				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
+				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
 			}
 			else{
 				this.receiveAllOrders=false;
@@ -229,6 +248,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			res.add(vectorToCopy.get(i));
 		}
 		return res;
+	}
+	public void sendCollectionOfOrdersToDeliverToChef(){
+		for (int i=0; i<this.collectionOfChefs.size();i++){
+			this.collectionOfChefs.get(i).addCollectionOfOrdersToDeliver(this.collectionOfOrdersToDeliver);
+		}
 	}
 	
 

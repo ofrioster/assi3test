@@ -21,4 +21,5 @@ public interface ManagementInterface {
 	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy);
 	public void startThreadsOfDeliveryPerson ();
 	public void SetStatisticsToDeliveryPerson ();
+	public void sendCollectionOfOrdersToDeliverToChef();
 }

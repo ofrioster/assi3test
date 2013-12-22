@@ -15,6 +15,7 @@ public class RunnableChef implements RunnableChefInterface{
 	private Boolean shutDown;
 	private Management management;
 	private Statistics statistics;
+	private Vector<Order> collectionOfOrdersToDeliver;
 	
 	public RunnableChef(){
 		
@@ -37,6 +38,9 @@ public class RunnableChef implements RunnableChefInterface{
 	public Double getChefEfficiencyRating(){
 	//	System.out.println("time "+this.chefEfficiencyRating);
 		return this.chefEfficiencyRating;
+	}
+	public void addCollectionOfOrdersToDeliver(Vector<Order> collectionOfOrdersToDeliver){
+		this.collectionOfOrdersToDeliver=collectionOfOrdersToDeliver;
 	}
 	public Double getEnduranceRating(){
 
@@ -83,7 +87,7 @@ public class RunnableChef implements RunnableChefInterface{
 			newOrder.setOrderStatus(2);
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
-			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics);
+			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver);
 			this.CallableCookWholeOrder.add(newWholeOrder);
 		//	newWholeOrder.addObserver(management);
 		//	this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
@@ -106,7 +110,7 @@ public class RunnableChef implements RunnableChefInterface{
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){
 		int dishDifficuly=newOrder.getDifficultyRating();
-		return ((dishDifficuly< (enduranceRating-currectPressure))&& !shutDown);
+		return ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown);
 	}
 	
 	public void addManagement(Management management){

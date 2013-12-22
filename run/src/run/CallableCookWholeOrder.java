@@ -19,12 +19,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	private Statistics statistics;
 	private int totalNumberOfDishs;
 	private CountDownLatch NumberOfDishesLeftToCock;
+	private Vector<Order> collectionOfOrdersToDeliver;
 	
 	
 	
 	
 	
-	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef,Statistics statistics){
+	public CallableCookWholeOrder(Order order,Warehouse warehouseName,RunnableChef chef,Statistics statistics,Vector<Order> collectionOfOrdersToDeliver){
 		this.order=order;
 		this.warehouseName=warehouseName;
 		this.orderFinish=false;
@@ -38,6 +39,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.statistics=statistics;
 		this.updateTotalNumberOfDishs();
 		this.NumberOfDishesLeftToCock = new CountDownLatch (this.totalNumberOfDishs);
+		this.collectionOfOrdersToDeliver=collectionOfOrdersToDeliver;
 	}
 	
 	public void addDish(OrderOfDish newDish){
@@ -74,20 +76,6 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.threadsVector.add(t);
 			}
 		}
-	//	System.out.println("run cook whole order has finish");
-		/*/// doing that in update
-		 */
-		/*
-		while (!this.IsOrderIsDone()){
-		try {
-	//		System.out.println("wait works");
-			Thread.currentThread().sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		*/
 		try {
 			System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
@@ -101,7 +89,9 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.totalTime=this.endTime-this.startTime;
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
-		notifyObservers(this.order);
+//		this.collectionOfOrdersToDeliver=new Vector<Order>();
+		this.collectionOfOrdersToDeliver.add(this.order);
+		//notifyObservers(this.order);
 //		System.out.println("run cook whole order has finish");
 		
 	}
