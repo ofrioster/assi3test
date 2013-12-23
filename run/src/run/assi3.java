@@ -88,7 +88,7 @@ public class assi3 {
 		Vector<Ingredient> dish1ingredients2=new Vector<Ingredient>();
 		dish1ingredients.add(ingredient9);
 		dish1ingredients.add(ingredient10);
-		Dish dish2=new Dish("dish1", 5122, dish1ingredients2, dish1KitchenTools2, 1, 3.2);
+		Dish dish2=new Dish("dish2", 5122, dish1ingredients2, dish1KitchenTools2, 1, 3.2);
 		
 		//***order***//
 		Vector<OrderOfDish> orderOneDishVector=new Vector<OrderOfDish>();

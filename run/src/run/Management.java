@@ -162,16 +162,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){
 	//		System.out.println(this.collectionOfOrders.size());
 	//		System.out.println(this.collectionOfOrdersToCock.size());
-			if(this.collectionOfOrdersToCock.size()>orderCount){
+			if(this.collectionOfOrdersToCock.size()>0){
 			//	synchronized (collectionOfOrdersToCock) {
-				System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
-				System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
-				System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
-				System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
-					this.startToCookDish(this.collectionOfOrdersToCock.get(orderCount));
-					orderCount++;
-			//		this.collectionOfOrdersToCock.remove(0);
-					System.out.println("managemant after - "+this.collectionOfOrdersToCock.size());
+			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
+			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
+			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
+			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
+					this.startToCookDish(this.collectionOfOrdersToCock.get(0));
+					this.collectionOfOrdersToCock.remove(0);
+			//		orderCount++;
+			//		System.out.println("managemant after - "+this.collectionOfOrdersToCock.size());
 				//}
 			}
 	//		System.out.println(this.collectionOfOrders.size());
@@ -217,23 +217,13 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.receiveAllOrders=true;
 		System.out.println("update1 - this.orderCount "+this.orderCount);
 		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
-//		System.out.println("management update");
-//		System.out.println(this.collectionOfOrders.size());
-//		System.out.println(this.collectionOfOrders.get(0).getOrderStatus());
-	/*	for (int i=this.orderCount;i<this.collectionOfOrders.size();i++){
+		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
-			if(this.collectionOfOrders.get(i).getOrderStatus()==3){
-				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
-				deliveryPerson.addDeliverdOrder(this.collectionOfOrders.get(i));
-			}
-			else{
-				this.receiveAllOrders=false;
-			}
-		}*/
-		for (int i=0;i<this.collectionOfOrdersToDeliver.size();i++){
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
+				System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
+				System.out.println("888 orderCount "+ this.orderCount);
 			}
 			else{
 				this.receiveAllOrders=false;

@@ -42,6 +42,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public void addDeliverdOrder(Order order){
 		this.collectionDeliverdOrders.add(order);
+	//	System.out.println("111 Order add- "+order.getOrderID());
 	}
 	public Double calculateDeliveryDistance(Address deliveryAddress){
 		return this.restaurantAddres.calculateDistance(deliveryAddress);
@@ -58,7 +59,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		if (!this.collectionDeliverdOrders.isEmpty()){
 			this.collectionDeliverdOrders.remove(0);
 		}
-//		System.out.println("deliverOrder(Order orderToDeliver)");
+		System.out.println("000 deliverOrder "+orderToDeliver.getOrderID());
 		long startTime=System.currentTimeMillis();
 		try {
 			Thread.sleep(calculateDeliveryTime(calculateDeliveryDistance(orderToDeliver.getCustomerAddress())));
@@ -92,6 +93,12 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void run(){
 		System.out.println("run");
 		while (!this.shutDown){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			if (!this.collectionDeliverdOrders.isEmpty()){
 				this.deliverOrder(this.collectionDeliverdOrders.get(0));
 			}

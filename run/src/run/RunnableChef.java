@@ -78,7 +78,8 @@ public class RunnableChef implements RunnableChefInterface{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
-		System.out.println("start addOrder dish name- "+ newOrder.getOrderDish().get(0).gestDish().getDishName());
+	//	System.out.println("start addOrder dish name- "+ newOrder.getOrderDish().get(0).gestDish().getDishName());
+	//	System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 		int dishDifficuly=newOrder.getDifficultyRating();
 	//	System.out.println("here");
 		if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
