@@ -157,6 +157,7 @@ public class Order implements OrderInterface {
 	public Double calculateReward(){
 		Double res=0.0;
 		for (int i=0; i<this.orderDish.size();i++){
+			System.out.println("888 dish.reward- "+this.orderDish.get(i).gestDish().getReward()+" 888 dish.name- "+this.orderDish.get(i).gestDish().getDishName()+" 888 order ID- "+this.orderID);
 			res= res+(this.orderDish.get(i).gestDish().getReward()*this.orderDish.get(i).getquantity());
 		}
 		return res;

@@ -36,6 +36,7 @@ public class Statistics implements StatisticsInterface {
 	public synchronized void addDeliveredOrder(Order order){
 		try{
 		System.out.println("order.getOrderStatus() "+order.getOrderStatus());
+		System.out.println("888 getOrderID - "+order.getOrderID()+"888 reward- "+order.getTotalReward());
 		if(order.getOrderStatus()==4){
 			this.deliveredOrders.add(order);
 			//this.moneyGain=order.getTotalReward();

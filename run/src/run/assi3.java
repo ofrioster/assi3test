@@ -88,7 +88,7 @@ public class assi3 {
 		Vector<Ingredient> dish1ingredients2=new Vector<Ingredient>();
 		dish1ingredients.add(ingredient9);
 		dish1ingredients.add(ingredient10);
-		Dish dish2=new Dish("dish2", 5122, dish1ingredients2, dish1KitchenTools2, 1, 3.2);
+		Dish dish2=new Dish("dish2", 5122, dish1ingredients2, dish1KitchenTools2, 2, 50.0);
 		
 		//***order***//
 		Vector<OrderOfDish> orderOneDishVector=new Vector<OrderOfDish>();
@@ -96,10 +96,10 @@ public class assi3 {
 		orderOneDishVector.add(orderOneDish);
 		Address customerAddress=new Address(7, 16);
 		Order order1=new Order("order1",45,orderOneDishVector,customerAddress);
-		OrderOfDish orderOneDish2=new OrderOfDish(dish2, 2);
-		orderOneDishVector.add(orderOneDish);
+		OrderOfDish orderOneDish2=new OrderOfDish(dish2, 4);
+		orderOneDishVector.add(orderOneDish2);
 		Address customerAddress2=new Address(2, 6);
-		Order order2=new Order("order2",15,orderOneDishVector,customerAddress);
+		Order order2=new Order("order2",15,orderOneDishVector,customerAddress2);
 /*		System.out.println("order1.getActualCookTime() "+order1.getActualCookTime());
 		System.out.println("order1.getExpectedCookTime() "+order1.getExpectedCookTime());
 		System.out.println("order1.getDifficultyRating() "+order1.getDifficultyRating());

@@ -42,7 +42,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public void addDeliverdOrder(Order order){
 		this.collectionDeliverdOrders.add(order);
-	//	System.out.println("111 Order add- "+order.getOrderID());
+	//	System.out.println("8888 Order add- "+order.getOrderID());
 	}
 	public Double calculateDeliveryDistance(Address deliveryAddress){
 		return this.restaurantAddres.calculateDistance(deliveryAddress);
@@ -55,11 +55,11 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		
 	}
 	public synchronized void deliverOrder(Order orderToDeliver){
-		System.out.println("size "+this.collectionDeliverdOrders.size());
+	//	System.out.println("size "+this.collectionDeliverdOrders.size());
 		if (!this.collectionDeliverdOrders.isEmpty()){
 			this.collectionDeliverdOrders.remove(0);
 		}
-		System.out.println("000 deliverOrder "+orderToDeliver.getOrderID());
+//		System.out.println("000 deliverOrder "+orderToDeliver.getOrderID());
 		long startTime=System.currentTimeMillis();
 		try {
 			Thread.sleep(calculateDeliveryTime(calculateDeliveryDistance(orderToDeliver.getCustomerAddress())));

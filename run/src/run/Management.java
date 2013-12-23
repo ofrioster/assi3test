@@ -215,15 +215,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			e.printStackTrace();
 		}
 		this.receiveAllOrders=true;
-		System.out.println("update1 - this.orderCount "+this.orderCount);
-		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
+//		System.out.println("update1 - this.orderCount "+this.orderCount);
+//		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
-				System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
-				System.out.println("888 orderCount "+ this.orderCount);
+	//			System.out.println("888 ID "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
+	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
+	//			System.out.println("888 orderCount "+ this.orderCount);
 			}
 			else{
 				this.receiveAllOrders=false;
