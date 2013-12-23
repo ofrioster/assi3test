@@ -62,7 +62,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
-//		System.out.println("run cook whole order has start");
+		System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){

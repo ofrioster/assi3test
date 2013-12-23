@@ -33,7 +33,7 @@ public class Statistics implements StatisticsInterface {
 	 * @param new order to add
 	 * @ update all the data on this object 
 	 */
-	public void addDeliveredOrder(Order order){
+	public synchronized void addDeliveredOrder(Order order){
 		try{
 		System.out.println("order.getOrderStatus() "+order.getOrderStatus());
 		if(order.getOrderStatus()==4){
@@ -50,10 +50,11 @@ public class Statistics implements StatisticsInterface {
 			System.out.println("Problem with order");
 		}
 	}
-	public void upDateMoneyGain(Order order){
+	public synchronized void upDateMoneyGain(Order order){
 		System.out.println("order.getTotalReward() "+order.getTotalReward());
 		System.out.println("this.moneyGain "+this.moneyGain);
 		this.moneyGain=this.moneyGain+ order.getTotalReward();
+		System.out.println("dish name "+order.getOrderDish().get(0).gestDish().getDishName());
 		System.out.println("order.getTotalReward() "+order.getTotalReward());
 		System.out.println("this.moneyGain "+this.moneyGain);
 		int k=0;

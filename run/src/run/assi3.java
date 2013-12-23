@@ -104,12 +104,12 @@ public class assi3 {
 		System.out.println("order1.getExpectedCookTime() "+order1.getExpectedCookTime());
 		System.out.println("order1.getDifficultyRating() "+order1.getDifficultyRating());
 		System.out.println("order1.getOrderID() "+order1.getOrderID());
-*/		order2.setOrderStatus(4);
+*/	//	order2.setOrderStatus(4);
 //		System.out.println("money gain stas "+managementTest.getMoneyGain());
-		order2.setActualCookTime(5555);
-		order2.setActualDeliveryTime(33222);
-		order2.setExpectedDeliveryTime(1111);
-		order2.setTotalReward();
+	//	order2.setActualCookTime(5555);
+	//	order2.setActualDeliveryTime(33222);
+	//	order2.setExpectedDeliveryTime(1111);
+	//	order2.setTotalReward();
 		Vector<Order> orderVector=new Vector<Order>();
 		orderVector.add(order1);
 		orderVector.add(order2);
