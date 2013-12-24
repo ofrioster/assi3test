@@ -2,6 +2,8 @@ package run;
 
 import java.io.File;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 import javax.xml.parsers.DocumentBuilder;
@@ -13,6 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ReadXMLFile {
+	  private final static Logger logger = Logger.getLogger(run.class.getName());
 
 	public static Vector<Dish> ParseMenu() {
 
@@ -29,6 +32,7 @@ public class ReadXMLFile {
 
 				Dishes = ParseMenu(doc.getChildNodes());
 				//System.out.println(Dishes.toString());
+			    logger.log(Level.CONFIG, "Finished Parsing The Menu");
 				return Dishes;
 			}
 
@@ -50,7 +54,9 @@ public class ReadXMLFile {
 				//Restaurant retRestaurant = new Restaurant();
 				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),Dishes);
 				//System.out.println(Orders.toString());
+			    logger.log(Level.CONFIG, "Finished Parsing The Order List");
 				return Orders;
+				
 			}
 			
 
@@ -72,6 +78,7 @@ public class ReadXMLFile {
 				//Restaurant retRestaurant = new Restaurant();
 				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
 				//System.out.println(Restaurant.toString());
+			    logger.log(Level.CONFIG, "Finished Parsing The Restaurant Config");
 				return Restaurant;
 			}
 

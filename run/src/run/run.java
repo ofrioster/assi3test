@@ -2,10 +2,36 @@ package run;
 
 import java.util.Vector;
 import java.util.concurrent.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.IOException;
 
 public class run {
+	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	public static void main(String[] args) {
+		
+	    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+
+
+	    logger.setLevel(Level.INFO);
+
+	    
+	    try {
+	      MyLogger.setup();
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	      throw new RuntimeException("Problems with creating the log files");
+	    }
+
+	    logger.log(Level.INFO, "message 1");
+	    logger.log(Level.SEVERE, "message 2");
+	    logger.log(Level.FINE, "message 3");
+		
+		
+		
 		Vector<Dish> Dishes = ReadXMLFile.ParseMenu();
 		Vector<Order> Orders =  ReadXMLFile.ParseOrderList(Dishes);
 		Restaurant Restaurant = ReadXMLFile.ParseRestaurant() ;
