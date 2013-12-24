@@ -31,7 +31,8 @@ public class Warehouse implements Warehouse_Interface{
 	public synchronized int getNumberOfKitchenTolls(KitchenTool KitchenTools){
 		int res=-1;
 		for (int i=0; i<this.kitchenCollectionTolls.size();i++){
-			if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenTools.getKitchenToolName()){
+			//if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenTools.getKitchenToolName()){
+			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenTools.getKitchenToolName())){	
 				return this.kitchenCollectionTolls.get(i).getNumberOfKitchenTool();
 			}
 		}
@@ -45,7 +46,8 @@ public class Warehouse implements Warehouse_Interface{
 	public int getNumberOfIngredientsAvailable(Ingredient ingredients){
 		int res=-1;
 		for (int i=0;i<this.ingredientsAvailable.size();i++){
-			if (this.ingredientsAvailable.get(i).getIngredientName()==ingredients.getIngredientName()){
+			//if (this.ingredientsAvailable.get(i).getIngredientName()==ingredients.getIngredientName()){
+			if (this.ingredientsAvailable.get(i).getIngredientName().equals(ingredients.getIngredientName())){
 				return this.ingredientsAvailable.get(i).getNumberOfIngredient();
 			}
 		}
@@ -74,7 +76,8 @@ public class Warehouse implements Warehouse_Interface{
 	public synchronized boolean  getKitchenTolls(KitchenTool KitchenToolsname){
 		boolean res=true;
 		for (int i=0;i<this.kitchenCollectionTolls.size();i++){
-			if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
+		//	if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
+			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenToolsname.getKitchenToolName())){	
 				return this.kitchenCollectionTolls.get(i).getKitchenTool();
 			}
 		}
@@ -85,7 +88,7 @@ public class Warehouse implements Warehouse_Interface{
 	public void returnKitchenTolls(KitchenTool KitchenTollsname){
 		Boolean found=false;
 		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
-			if (this.kitchenCollectionTolls.get(i)==KitchenTollsname){
+			if (this.kitchenCollectionTolls.get(i).equals(KitchenTollsname)){
 				this.kitchenCollectionTolls.get(i).returnKitchenTool();
 				found=true;
 				//notifyAll();
