@@ -17,7 +17,7 @@ import org.w3c.dom.NodeList;
 public class ReadXMLFile {
 	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-	public static Vector<Dish> ParseMenu() {
+	public static Vector<Dish> ParseMenuFile() {
 
 		try {
 			Vector<Dish> Dishes = new Vector<Dish>();
@@ -43,7 +43,7 @@ public class ReadXMLFile {
 	}
 
 
-	public static Vector<Order> ParseOrderList(Vector<Dish> Dishes) {
+	public static Vector<Order> ParseOrderListFile(Vector<Dish> Dishes) {
 
 		try {
 			File file = new File("orderList.xml");
@@ -66,7 +66,7 @@ public class ReadXMLFile {
 		return null;
 	}
 
-	public static Restaurant ParseRestaurant() {
+	public static Restaurant ParseRestauranFilet() {
 
 		try {
 
@@ -192,7 +192,7 @@ public class ReadXMLFile {
 				case "name":
 					for (Dish  dish  : Dishes) {
 						   if (tempNode.getTextContent().equals(dish.getDishName()) ) {
-								tmpOrderOfDish = new OrderOfDish(dish, 0);  //////////////////////////////////////////////////////////////////////////////////////////
+								tmpOrderOfDish = new OrderOfDish(dish, 0);
 								break;
 						   }
 						}
@@ -238,24 +238,11 @@ public class ReadXMLFile {
 					break;
 				case "Repository":
 					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
-					retRestaurant = ParseRestaurant(tempNode.getChildNodes(),retRestaurant);
+					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),retRestaurant);
 					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
 					break;
-				case "Tools":
-					retRestaurant.setKitchenTolls(ParseTools(tempNode.getChildNodes()));
-					break;
-				case "Ingredients":
-					retRestaurant.setIngredients(ParseIngredients(tempNode
-							.getChildNodes()));
-					break;
 				case "Staff":
-					retRestaurant = ParseRestaurant(tempNode.getChildNodes(),retRestaurant);
-					break;
-				case "Chefs":
-					retRestaurant.setChefs(ParseChefs(tempNode.getChildNodes()));
-					break;
-				case "DeliveryPersonals":
-					retRestaurant.setRunnableDeliveryPerson(ParseDeliveryPersonals(tempNode.getChildNodes()));
+					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),retRestaurant);
 					break;
 				default:
 					break;
@@ -270,6 +257,50 @@ public class ReadXMLFile {
 	}
 
 
+	private static Restaurant ParseRestaurant2(NodeList nodeList ,Restaurant retRestaurant ) {
+		//Restaurant retRestaurant = new Restaurant();
+		Vector<KitchenTool> tmpTools = new Vector<KitchenTool>();
+		Vector<Ingredient> tmpIngredients = new Vector<Ingredient>();
+		Address tmpAddress = null;
+		
+		for (int count = 0; count < nodeList.getLength(); count++) {
+			// Dish tempdish = null;
+			Node tempNode = nodeList.item(count);
+			String temp = tempNode.getNodeName();
+			// make sure it's element node.
+			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
+				switch (tempNode.getNodeName()) {
+				case "Address":
+					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
+					 //System.out.println("\nNode Name =" + tempNode.getNodeName() +" [ADD]");
+					break;
+				case "Tools":
+					tmpTools = ParseTools(tempNode.getChildNodes());
+					retRestaurant.setKitchenTolls(tmpTools);
+
+					break;
+				case "Ingredients":
+					retRestaurant.setIngredients(ParseIngredients(tempNode.getChildNodes()));
+					break;
+					
+				case "Chefs":
+					retRestaurant.setChefs(ParseChefs(tempNode.getChildNodes()));
+					break;
+					
+				case "DeliveryPersonals":
+					retRestaurant.setRunnableDeliveryPerson(ParseDeliveryPersonals(tempNode.getChildNodes()));
+					break;
+				default:
+					break;
+				}
+			}
+
+		}
+		
+		return retRestaurant;
+	}
+
+	
 	private static Vector<RunnableDeliveryPerson> ParseDeliveryPersonals(NodeList nodeList) {
 		Vector<RunnableDeliveryPerson> DeliveryPersonals = new Vector<RunnableDeliveryPerson>();
 

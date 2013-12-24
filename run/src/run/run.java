@@ -28,9 +28,9 @@ public class run {
 		
 		
 		
-		Vector<Dish> Dishes = ReadXMLFile.ParseMenu();
-		Vector<Order> Orders =  ReadXMLFile.ParseOrderList(Dishes);
-		Restaurant Restaurant = ReadXMLFile.ParseRestaurant() ;
+		Vector<Dish> Dishes = ReadXMLFile.ParseMenuFile();
+		Vector<Order> Orders =  ReadXMLFile.ParseOrderListFile(Dishes);
+		Restaurant Restaurant = ReadXMLFile.ParseRestauranFilet() ;
 		Warehouse warehouseTest=new Warehouse(Restaurant.getKitchenTolls(),Restaurant.getIngredients());
 		CountDownLatch latchObject = new CountDownLatch (Orders.size());
 		Statistics statistics=new Statistics();
