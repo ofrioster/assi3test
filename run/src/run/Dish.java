@@ -78,4 +78,8 @@ public class Dish implements DishInterface{
 	public void setReward(Double reward){
 		this.reward=reward;
 	}
+	public String toString(){
+		String res=" dishName- "+ this.dishName+" dishIngredients- "+dishIngredients.toString()+" dishKitchenTolls- "+this.dishKitchenTolls.toString()+" dishExpectedCookTime- "+this.dishExpectedCookTime+ " difficultyRating- "+this.difficultyRating+" reward- "+this.reward;
+		return res;
+	}
 }

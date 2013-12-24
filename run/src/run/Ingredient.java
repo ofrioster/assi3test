@@ -49,5 +49,10 @@ public class Ingredient implements Ingredient_Interface{
 	public int getNumberOfIngredient(){
 		return this.ingredientAmount.availablePermits();
 	}
+	public String toString(){
+		String res=" ingredientName- "+this.ingredientName+" ingredientAmount- "+this.ingredientAmount.availablePermits();
+		return res;
+				
+	}
 }
 

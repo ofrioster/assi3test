@@ -100,9 +100,9 @@ public class RunnableChef implements RunnableChefInterface{
 			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
 			Callable<Order> newWholeOrder2=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
 			this.CallableCookWholeOrder.add(newWholeOrder);
-	//		Thread t=new Thread(newWholeOrder);
-	//		this.poolOfThreads.add(t);
-	//		t.start();
+	// to active the run function		Thread t=new Thread(newWholeOrder);
+	//	to active the run function	this.poolOfThreads.add(t);
+	//	to active the run function	t.start();
 			Future<Order> newThread=executorService1.submit(newWholeOrder2);
 			this.CallableCookWholeOrder2.add(newThread);
 			return true;

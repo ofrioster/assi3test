@@ -195,5 +195,9 @@ public class Order implements OrderInterface {
 	public void setOrderOfDish(Vector<OrderOfDish> tmpOrderOfDish) {
 		this.orderDish=tmpOrderOfDish;
 	}
+	public String toString(){
+		String res=" orderID- "+this.orderID+" difficultyRating- "+this.difficultyRating+" orderStatus- "+this.orderStatus+" orderDish- "+this.orderDish+" customerAddress- "+this.customerAddress+" actualDeliveryTime- "+this.actualDeliveryTime+" actualCookTime- "+this.actualCookTime+" expectedDeliveryTime- "+this.expectedDeliveryTime+" expectedcookTime- "+this.expectedcookTime+" totalReward- "+this.totalReward;
+		return res;
+	}
 
 }
