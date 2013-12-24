@@ -34,14 +34,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		Boolean res=true;
 		Vector <KitchenTool> kitchenToolsForThisDish=dishName.gestDish().getDishKitchenTolls();
 		for (int i=0; i<kitchenToolsForThisDish.size();i++){
-			while (!acquireKitchenTool(kitchenToolsForThisDish.get(i))){
-				try {
-					this.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			acquireKitchenTool(kitchenToolsForThisDish.get(i));
 			kitchenToolsInUse.add(kitchenToolsForThisDish.get(i));
 		}
 		
@@ -53,19 +46,9 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	//acquire one kitchen tool
 	public  Boolean acquireKitchenTool(KitchenTool kitchenToolToacquire){
 		Boolean res=false;
-		while(!res){
-			try{
-				if (this.warehouseName.getKitchenTolls(kitchenToolToacquire)){
-					return true;
+			if (this.warehouseName.getKitchenTolls(kitchenToolToacquire)){
+				return true;
 				}
-				else{
-					this.wait();
-				}
-			}
-			catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
 		return res;
 	}
 		
@@ -79,7 +62,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			if (!acquireIngredients(ingredientsForThisDish.get(i))){
 				System.out.println("EROR!!! ingredient " +ingredientsForThisDish.get(i).getIngredientName()+ " missing");
 			}
-			System.out.println(" ingredients name: "+ingredientsForThisDish.get(i).getIngredientName());
+	//		System.out.println(" ingredients name: "+ingredientsForThisDish.get(i).getIngredientName());
 		}
 		allIngredientsAcquire=true;
 		return res;

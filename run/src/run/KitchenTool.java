@@ -19,24 +19,23 @@ public class KitchenTool implements KitchenTool_Interface {
 		return this.kitchenToolName; 
 	}
 	
-	public  boolean getKitchenTool(){
+	public synchronized boolean getKitchenTool(){
 		Boolean res=false;
+		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 		synchronized (kitchenToolSemaphore) {
 			while (!this.kitchenToolSemaphore.tryAcquire()){
 				try {
+			//		System.out.println("getKitchenTool wait");
 					this.wait();
 				} catch (InterruptedException e) {
+					System.out.println("getKitchenTool fail");
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			if(this.kitchenToolSemaphore.tryAcquire()){
-				res=true;
-			}
-			else {
-				res=false;
-			}
+			res=true;
 		}
+//		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 		return res;
 		
 	}
@@ -53,7 +52,7 @@ public class KitchenTool implements KitchenTool_Interface {
 		return this.kitchenToolSemaphore.availablePermits();
 	}
 	public String toString(){
-		String res=" kitchenToolName- "+this.kitchenToolName+" amount of kitchenTool"+this.kitchenToolSemaphore.availablePermits();
+		String res=" kitchenToolName- "+this.kitchenToolName+" amount of kitchenTool- "+this.kitchenToolSemaphore.availablePermits();
 		return res;
 	}
 
