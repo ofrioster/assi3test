@@ -84,7 +84,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			try{
 				res=this.collectionOfChefs.get(0);
 				for (int i=0; i<this.collectionOfChefs.size();i++){
-					this.collectionOfChefs.get(i).getCurrectPressure();
+					int k=this.collectionOfChefs.get(i).getCurrectPressure();
+					int w;
 	//				System.out.println(res.getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
@@ -157,6 +158,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
+		System.out.println(" warehpuse: "+this.warehouseName.toString());
 		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
 		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){

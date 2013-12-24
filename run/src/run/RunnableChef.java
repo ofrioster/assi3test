@@ -22,7 +22,14 @@ public class RunnableChef implements RunnableChefInterface{
 	private ArrayList<Future<Order>> CallableCookWholeOrder2;
 	
 	public RunnableChef(){
-		
+		this.currectPressure=0;
+		this.shutDown=false;
+		this.orderVector=new Vector<Order>();
+		this.poolOfThreads=new Vector<Thread>();
+		this.CallableCookWholeOrder=new ArrayList<CallableCookWholeOrder>();
+		this.statistics=new Statistics();
+		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
+		this.executorService1=Executors.newCachedThreadPool();
 	}
 	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating){
 		this.chefName=chefName;
@@ -84,6 +91,7 @@ public class RunnableChef implements RunnableChefInterface{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
+		System.out.println(" 3333 ");
 	//	System.out.println("start addOrder dish name- "+ newOrder.getOrderDish().get(0).gestDish().getDishName());
 	//	System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 		int dishDifficuly=newOrder.getDifficultyRating();

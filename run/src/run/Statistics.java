@@ -91,5 +91,10 @@ public class Statistics implements StatisticsInterface {
 	public Vector<Ingredient> getIngredientsConsumed(){
 		return this.ingredientsConsumed;
 	}
+	public String toString(){
+		String res=" moneyGain- "+this.moneyGain+" deliveredOrders- "+this.deliveredOrders.toString()+" ingredientsConsumed- "+this.ingredientsConsumed.toString();
+		return res;
+		
+	}
 
 }

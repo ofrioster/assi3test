@@ -12,4 +12,5 @@ public interface StatisticsInterface {
 	public Double getMoneyGain();
 	public Vector<Order> getDeliveredOrders();
 	public Vector<Ingredient> getIngredientsConsumed();
+	public String toString();
 }

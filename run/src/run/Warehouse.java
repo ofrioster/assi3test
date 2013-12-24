@@ -58,7 +58,7 @@ public class Warehouse implements Warehouse_Interface{
 	public synchronized boolean  getIngredient(Ingredient ingredientsName){
 		boolean res=false;
 		for (int i=0; i<this.ingredientsAvailable.size();i++){
-			if(this.ingredientsAvailable.get(i).getIngredientName()==ingredientsName.getIngredientName()){
+			if(this.ingredientsAvailable.get(i).getIngredientName().equals(ingredientsName.getIngredientName())){
 				if(this.ingredientsAvailable.get(i).getIngredient()){
 					return true;
 				}
@@ -92,6 +92,10 @@ public class Warehouse implements Warehouse_Interface{
 			}
 		}
 		
+	}
+	public String toString(){
+		String res=" kitchenCollectionTolls- "+this.kitchenCollectionTolls.toString()+" ingredientsAvailable- "+this.ingredientsAvailable.toString();
+		return res;		
 	}
 	
 
