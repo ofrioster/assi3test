@@ -1,7 +1,12 @@
 package run;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Observer;
 import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class RunnableChef implements RunnableChefInterface{
 	
@@ -11,11 +16,14 @@ public class RunnableChef implements RunnableChefInterface{
 	private int currectPressure;
 	private Vector<Order> orderVector;
 	private Vector<Thread> poolOfThreads;
-	private Vector<CallableCookWholeOrder> CallableCookWholeOrder;
+	private ArrayList<CallableCookWholeOrder> CallableCookWholeOrder;
 	private Boolean shutDown;
 	private Management management;
 	private Statistics statistics;
 	private Vector<Order> collectionOfOrdersToDeliver;
+//	private ArrayList<Order> CallableCookWholeOrder2;
+	private ExecutorService executorService1; 
+	private ArrayList<Future<Order>> CallableCookWholeOrder2;
 	
 	public RunnableChef(){
 		
@@ -28,8 +36,10 @@ public class RunnableChef implements RunnableChefInterface{
 		this.shutDown=false;
 		this.orderVector=new Vector<Order>();
 		this.poolOfThreads=new Vector<Thread>();
-		this.CallableCookWholeOrder=new Vector<CallableCookWholeOrder>();
+		this.CallableCookWholeOrder=new ArrayList<CallableCookWholeOrder>();
 		this.statistics=new Statistics();
+		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
+		this.executorService1=Executors.newCachedThreadPool();
 	}
 	
 	public String getChefName(){
@@ -88,14 +98,13 @@ public class RunnableChef implements RunnableChefInterface{
 			this.currectPressure=this.currectPressure+dishDifficuly;
 			this.orderVector.add(newOrder);
 			CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
+			Callable<Order> newWholeOrder2=new CallableCookWholeOrder(newOrder,warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
 			this.CallableCookWholeOrder.add(newWholeOrder);
-		//	newWholeOrder.addObserver(management);
-		//	this.CallableCookWholeOrder.get(this.CallableCookWholeOrder.size()-1).addObserver(management);
-			Thread t=new Thread(newWholeOrder);
-			this.poolOfThreads.add(t);
-			t.start();
-	//		this.setChefEfficiencyRating(newOrder);
-	//		System.out.println("here");
+	//		Thread t=new Thread(newWholeOrder);
+	//		this.poolOfThreads.add(t);
+	//		t.start();
+			Future<Order> newThread=executorService1.submit(newWholeOrder2);
+			this.CallableCookWholeOrder2.add(newThread);
 			return true;
 			
 		}
@@ -106,6 +115,7 @@ public class RunnableChef implements RunnableChefInterface{
 	 * @	finish all the cooking and do not start new ones
 	 */
 	public void shutDown(){
+		this.executorService1.shutdown();
 		this.shutDown=true;
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){

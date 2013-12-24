@@ -3,8 +3,9 @@ import java.util.Vector;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.*;
+import java.util.concurrent.Callable;
 
-public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable{
+public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable,Callable<Order>{
 
 	//private Vector<Dish> dishVector;
 	private Vector<OrderOfDish> dishOrderVector;
@@ -96,6 +97,36 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		//this.management.
 		//notifyObservers(this.order);
 //		System.out.println("run cook whole order has finish");
+		
+	}
+	public Order call() throws InterruptedException{
+		System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
+		this.orderFinish=false;
+		this.startTime=System.currentTimeMillis();
+		for (int i=0; i<dishOrderVector.size();i++){
+			for (int k=0; k<this.dishOrderVector.get(i).getquantity();k++){
+				this.dishOrderVector.get(i).setOneDishIsDone();
+				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef,this.NumberOfDishesLeftToCock);
+				Thread t= new Thread(r);
+				t.start();
+				this.threadsVector.add(t);
+			}
+		}
+		try {
+			System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
+			this.NumberOfDishesLeftToCock.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	//	System.out.println("await whole order has finish");
+		this.update1();
+		this.endTime=System.currentTimeMillis();
+		this.totalTime=this.endTime-this.startTime;
+		this.order.setActualCookTime(this.totalTime);
+		order.setOrderStatus(3);
+		this.collectionOfOrdersToDeliver.add(this.order);
+		return this.order;
 		
 	}
 	  public void update(Observable obj, Boolean finish) {
