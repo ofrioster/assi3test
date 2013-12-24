@@ -13,12 +13,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ReadXMLFile {
-	public static void main(String[] args) {
-		ParseFiles();
 
-	}
-
-	public static void ParseFiles() {
+	public static Vector<Dish> ParseMenu() {
 
 		try {
 			Vector<Dish> Dishes = new Vector<Dish>();
@@ -32,34 +28,58 @@ public class ReadXMLFile {
 			if (doc.hasChildNodes()) {
 
 				Dishes = ParseMenu(doc.getChildNodes());
-				System.out.println(Dishes.toString());
+				//System.out.println(Dishes.toString());
+				return Dishes;
 			}
 
-			file = new File("restaurant.xml");
-			//dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			doc = dBuilder.parse(file);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
 
-			if (doc.hasChildNodes()) {
-				//Restaurant retRestaurant = new Restaurant();
-				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
-				System.out.println(Restaurant.toString());
-			}
-			file = new File("orderList.xml");
-			//dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-			doc = dBuilder.parse(file);
+
+	public static Vector<Order> ParseOrderList(Vector<Dish> Dishes) {
+
+		try {
+			File file = new File("orderList.xml");
+			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			Document doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
 				//Restaurant retRestaurant = new Restaurant();
 				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),Dishes);
-				System.out.println(Orders.toString());
+				//System.out.println(Orders.toString());
+				return Orders;
 			}
 			
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
 
+	public static Restaurant ParseRestaurant() {
+
+		try {
+
+			File file = new File("restaurant.xml");
+			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			Document doc = dBuilder.parse(file);
+
+			if (doc.hasChildNodes()) {
+				//Restaurant retRestaurant = new Restaurant();
+				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
+				//System.out.println(Restaurant.toString());
+				return Restaurant;
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
 	private static Vector<Order> ParseOrderList(NodeList nodeList,Vector<Dish> Dishes) {
 		Vector<Order> tmpOrders = new Vector<Order>();
 		for (int count = 0; count < nodeList.getLength(); count++) {
@@ -204,7 +224,6 @@ public class ReadXMLFile {
 					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
 					retRestaurant = ParseRestaurant(tempNode.getChildNodes(),retRestaurant);
 					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
-
 					break;
 				case "Address":
 					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
@@ -270,8 +289,7 @@ public class ReadXMLFile {
 		//return null;
 	}
 
-	private static RunnableDeliveryPerson ParseDeliveryPerson(
-			NodeList nodeList) {
+	private static RunnableDeliveryPerson ParseDeliveryPerson(NodeList nodeList) {
 
 		//String tmpName = null;
 		RunnableDeliveryPerson tempDeliveryPerson = new RunnableDeliveryPerson();

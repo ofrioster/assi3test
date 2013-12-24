@@ -124,4 +124,12 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.speedOfDeliveryPerson = DeliveryPerson;
 	}
 
+	public void setRestaurantAddres(Address address) {
+		this.restaurantAddres = address;
+	}
+
+	public void setordersLatch(CountDownLatch latchObject) {
+		this.ordersLatch = 	latchObject;
+	}
+
 }
