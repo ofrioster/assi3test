@@ -16,6 +16,8 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	
 	public RunnableDeliveryPerson(){
 		this.collectionDeliverdOrders=new Vector<Order>();
+		this.shutDown=false;
+		this.totalDeliveryTime=0;
 	}
 	
 	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson,CountDownLatch ordersLatch,Statistics statistics){
