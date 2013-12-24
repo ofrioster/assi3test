@@ -131,5 +131,9 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void setordersLatch(CountDownLatch latchObject) {
 		this.ordersLatch = 	latchObject;
 	}
+	public String toString(){
+		String res=" deliveryPersonName- "+this.deliveryPersonName+" restaurantAddres- "+this.restaurantAddres.toString()+" speedOfDeliveryPerson- "+this.speedOfDeliveryPerson+" collectionDeliverdOrders- "+this.collectionDeliverdOrders.toString()+" shutDown- "+this.shutDown+" totalDeliveryTime- "+this.totalDeliveryTime+" ordersLatch- "+this.ordersLatch.getCount();
+		return res;
+	}
 
 }

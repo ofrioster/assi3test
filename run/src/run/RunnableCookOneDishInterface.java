@@ -15,6 +15,7 @@ public interface RunnableCookOneDishInterface {
 	public void cookDish();
 	public void returnAllKitchenTools();
 	public Dish getDish();
+	public String toString();
 	
 
 }

@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Observer;
 import java.util.concurrent.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class RunnableChef implements RunnableChefInterface{
 	
@@ -125,6 +121,11 @@ public class RunnableChef implements RunnableChefInterface{
 	
 	public void addManagement(Management management){
 		this.management=management;
+	}
+	public String toString(){
+		String res=" chefName- "+this.chefName+" chefEfficiencyRating- "+this.chefEfficiencyRating+" enduranceRating- "+this.enduranceRating+" currectPressure- "+this.currectPressure+" orderVector- "+this.orderVector.toString();
+		return res;
+		
 	}
 
 

@@ -19,5 +19,6 @@ public interface RestaurantInterface{
 	
 	public  void setChefs(Vector<RunnableChef> Chefs);
 	public  void setRunnableDeliveryPerson(Vector<RunnableDeliveryPerson> DeliveryPersonals);
+	public String toString();
 
 }
