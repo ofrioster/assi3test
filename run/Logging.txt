@@ -1,4 +1,12 @@
-Dec 24, 2013 9:26:45 PM run.run main
+Dec 24, 2013 10:04:19 PM run.run main
 INFO: message 1
-Dec 24, 2013 9:26:45 PM run.run main
+Dec 24, 2013 10:04:19 PM run.run main
 SEVERE: message 2
+Dec 24, 2013 10:04:19 PM run.run main
+FINE: message 3
+Dec 24, 2013 10:04:19 PM run.ReadXMLFile ParseMenu
+CONFIG: Finished Parsing The Menu
+Dec 24, 2013 10:04:19 PM run.ReadXMLFile ParseOrderList
+CONFIG: Finished Parsing The Order List
+Dec 24, 2013 10:04:19 PM run.ReadXMLFile ParseRestaurant
+SEVERE: Finished Parsing The Restaurant Config

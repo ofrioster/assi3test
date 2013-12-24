@@ -23,7 +23,7 @@ public class MyLogger {
     formatterTxt = new SimpleFormatter();
     fileTxt.setFormatter(formatterTxt);
     logger.addHandler(fileTxt);
-    fileTxt.setLevel(Level.INFO);
+    fileTxt.setLevel(Level.ALL);
 
 
 

@@ -15,7 +15,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ReadXMLFile {
-	  private final static Logger logger = Logger.getLogger(run.class.getName());
+	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	public static Vector<Dish> ParseMenu() {
 
@@ -78,7 +78,7 @@ public class ReadXMLFile {
 				//Restaurant retRestaurant = new Restaurant();
 				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
 				//System.out.println(Restaurant.toString());
-			    logger.log(Level.CONFIG, "Finished Parsing The Restaurant Config");
+			    logger.log(Level.SEVERE, "Finished Parsing The Restaurant Config");
 				return Restaurant;
 			}
 
