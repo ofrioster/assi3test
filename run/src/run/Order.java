@@ -87,6 +87,8 @@ public class Order implements OrderInterface {
 	public Vector<OrderOfDish> getOrderDish(){
 		return this.orderDish;
 	}
+	
+	
 	/** (non-Javadoc)
 	 *@param the status are:
 	 * @param incomplete=1;
@@ -186,6 +188,12 @@ public class Order implements OrderInterface {
 		for (int i=0;i<this.orderDish.size();i++){
 			this.difficultyRating=this.difficultyRating+ (this.orderDish.get(i).gestDish().getDishDifficultyRating()*this.orderDish.get(i).getquantity());
 		}
+	}
+	public void setAddress(Address tmpAddress) {
+		this.customerAddress=tmpAddress;
+	}
+	public void setOrderOfDish(Vector<OrderOfDish> tmpOrderOfDish) {
+		this.orderDish=tmpOrderOfDish;
 	}
 
 }

@@ -37,6 +37,10 @@ public class OrderOfDish implements OrderOfDishInterface{
 	public synchronized int getquantity(){
 		return this.quantity;
 	}
+	public synchronized void setquantity(int quantity){
+		this.quantity=quantity;
+		this.quantityLeft=quantity;
+	}
 	public Dish gestDish(){
 		return this.dish;
 	}

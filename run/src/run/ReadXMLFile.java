@@ -3,6 +3,7 @@ package run;
 import java.io.File;
 import java.util.Vector;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -20,7 +21,7 @@ public class ReadXMLFile {
 	public static void ParseFiles() {
 
 		try {
-
+			Vector<Dish> Dishes = new Vector<Dish>();
 			File file = new File("menu.xml");
 
 			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
@@ -30,7 +31,7 @@ public class ReadXMLFile {
 
 			if (doc.hasChildNodes()) {
 
-				Vector<Dish> Dishes = ParseMenu(doc.getChildNodes());
+				Dishes = ParseMenu(doc.getChildNodes());
 				System.out.println(Dishes.toString());
 			}
 
@@ -49,7 +50,7 @@ public class ReadXMLFile {
 
 			if (doc.hasChildNodes()) {
 				//Restaurant retRestaurant = new Restaurant();
-				Vector<Order> Orders = ParseOrderList(doc.getChildNodes());
+				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),Dishes);
 				System.out.println(Orders.toString());
 			}
 			
@@ -59,7 +60,7 @@ public class ReadXMLFile {
 		}
 	}
 
-	private static Vector<Order> ParseOrderList(NodeList nodeList) {
+	private static Vector<Order> ParseOrderList(NodeList nodeList,Vector<Dish> Dishes) {
 		Vector<Order> tmpOrders = new Vector<Order>();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			// Dish tempdish = null;
@@ -70,13 +71,13 @@ public class ReadXMLFile {
 				String temp = tempNode.getNodeName();
 				switch (tempNode.getNodeName()) {
 				case "OrderList":
-					tmpOrders = ParseOrderList(tempNode.getChildNodes());
+					tmpOrders = ParseOrderList(tempNode.getChildNodes(),Dishes);
 					break;
 				case "Orders":
-					tmpOrders = ParseOrderList(tempNode.getChildNodes());
+					tmpOrders = ParseOrderList(tempNode.getChildNodes(),Dishes);
 					break;
 				case "Order":
-					tmpOrders.add(ParseOrder(tempNode.getChildNodes(), new Order(id(tempNode), new Vector<OrderOfDish>(), null)) );
+					tmpOrders.add(ParseOrder(tempNode.getChildNodes(), new Order(id(tempNode), new Vector<OrderOfDish>(), null), Dishes));
 					break;
 				default:
 					break;
@@ -110,9 +111,9 @@ public class ReadXMLFile {
 		}		return ret;
 	}
 
-	private static Order ParseOrder(NodeList nodeList,Order order) {
+	private static Order ParseOrder(NodeList nodeList, Order order, Vector<Dish> Dishes) {
 		Address tmpAddress = null;
-		Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
+		//Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
 		
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			
@@ -127,10 +128,10 @@ public class ReadXMLFile {
 					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
 					break;
 				case "Dishes":
-					order = ParseOrder(tempNode.getChildNodes(),order);
+					order = ParseOrder(tempNode.getChildNodes(),order,Dishes);
 					break;
 				case "Dish":
-					tmpOrderOfDish.add(ParseOrderOfDish(tempNode.getChildNodes()));
+					order.addDish(ParseOrderOfDish(tempNode.getChildNodes(),Dishes));
 					break;
 				default:
 					break;
@@ -142,11 +143,14 @@ public class ReadXMLFile {
 			}
 
 		}
+		if (tmpAddress!=null){
+			order.setAddress(tmpAddress);
+		}
 		return order;
 
 	}
 
-	private static OrderOfDish ParseOrderOfDish(NodeList nodeList) {
+	private static OrderOfDish ParseOrderOfDish(NodeList nodeList,Vector<Dish> Dishes) {
 
 		OrderOfDish tmpOrderOfDish = null;
 		String tmpDishName;
@@ -159,11 +163,15 @@ public class ReadXMLFile {
 
 				switch (tempNode.getNodeName()) {
 				case "name":
-					tmpOrderOfDish = new OrderOfDish(null, count);  //////////////////////////////////////////////////////////////////////////////////////////
-					tmpDishName = (tempNode.getTextContent());
+					for (Dish  dish  : Dishes) {
+						   if (tempNode.getTextContent().equals(dish.getDishName()) ) {
+								tmpOrderOfDish = new OrderOfDish(dish, 0);  //////////////////////////////////////////////////////////////////////////////////////////
+								break;
+						   }
+						}
 					break;
 				case "quantity":
-
+					tmpOrderOfDish.setquantity(Integer.parseInt(tempNode.getTextContent()));
 					break;
 			default:
 					break;

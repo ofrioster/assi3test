@@ -50,7 +50,10 @@ public class Dish implements DishInterface{
 	}
 	
 	
-	
+	public boolean equals(Object o) {
+	    return o.equals(getDishName()) ||
+	           super.equals(o);    
+	}
 	
 	
 	public Vector<Ingredient> getDishIngredients(){
