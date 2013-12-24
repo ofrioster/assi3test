@@ -52,6 +52,10 @@ public class KitchenTool implements KitchenTool_Interface {
 	public int getNumberOfKitchenTool(){
 		return this.kitchenToolSemaphore.availablePermits();
 	}
+	public String toString(){
+		String res=" kitchenToolName- "+this.kitchenToolName+" amount of kitchenTool"+this.kitchenToolSemaphore.availablePermits();
+		return res;
+	}
 
 }
 	

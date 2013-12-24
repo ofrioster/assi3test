@@ -64,5 +64,9 @@ public class OrderOfDish implements OrderOfDishInterface{
 	public synchronized int getQuantityLeft(){
 		return this.quantityLeft;
 	}
+	public String toString(){
+		String res=" dish- "+this.dish.toString()+" quantity- "+this.quantity+" quantityLeft- "+this.quantityLeft+" orderStatus- "+this.orderStatus;
+		return res;
+	}
 
 }

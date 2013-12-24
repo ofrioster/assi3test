@@ -27,6 +27,7 @@ public interface OrderInterface {
 	public long calculateCookTime(Vector<OrderOfDish> orderDish);
 	public void setDifficultyRating();
 	public long calculateCookTime(OrderOfDish orderDish);
+	public String toString();
 	
 	
 	

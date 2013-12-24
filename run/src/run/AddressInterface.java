@@ -6,4 +6,5 @@ public interface AddressInterface {
 	public int getXAddress();
 	public int getYAddress();
 	public Double calculateDistance(Address address);
+	public String toString();
 }

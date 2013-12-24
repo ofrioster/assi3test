@@ -8,5 +8,6 @@ public interface OrderOfDishInterface {
 	public void setOrderStatus(int status);
 	public void setOneDishIsDone();
 	public int getQuantityLeft();
+	public String toString();
 
 }

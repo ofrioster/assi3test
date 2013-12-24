@@ -8,6 +8,7 @@ public interface KitchenTool_Interface {
 	public void returnKitchenTool();
 	public int numberOfKitchenTools();
 	public int getNumberOfKitchenTool();
+	public String toString();
 
 
 }

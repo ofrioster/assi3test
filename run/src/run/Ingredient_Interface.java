@@ -6,5 +6,6 @@ public interface Ingredient_Interface {
 	public  boolean getIngredient();
 	public void returnIngredient();
 	public int getNumberOfIngredient();
+	public String toString();
 
 }

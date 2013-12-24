@@ -3,7 +3,6 @@ import java.util.Vector;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.*;
-import java.util.concurrent.Callable;
 
 public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable,Callable<Order>{
 
@@ -181,5 +180,9 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		for (int i=0;i<this.dishOrderVector.size();i++){
 			this.totalNumberOfDishs=this.totalNumberOfDishs+ this.dishOrderVector.get(i).getquantity();
 		}
+	}
+	public String toString(){
+		String res=" order name- "+ this.order.getOrderID() +" warehouseName- "+this.warehouseName+" chef name- "+ this.chef.getChefName()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock;
+		return res;
 	}
 }
