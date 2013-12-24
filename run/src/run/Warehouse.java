@@ -74,7 +74,7 @@ public class Warehouse implements Warehouse_Interface{
 	/* (non-Javadoc)
 	 * @return true/false if you can have the kitchen tool
 	 */
-	public synchronized boolean  getKitchenTolls(KitchenTool KitchenToolsname){
+	public boolean  getKitchenTolls(KitchenTool KitchenToolsname){
 		boolean res=true;
 		for (int i=0;i<this.kitchenCollectionTolls.size();i++){
 		//	if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
@@ -89,7 +89,8 @@ public class Warehouse implements Warehouse_Interface{
 	public void returnKitchenTolls(KitchenTool KitchenTollsname){
 		Boolean found=false;
 		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
-			if (this.kitchenCollectionTolls.get(i).equals(KitchenTollsname)){
+			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenTollsname.getKitchenToolName())){
+//				System.out.println("returnKitchenTolls-warahous");
 				this.kitchenCollectionTolls.get(i).returnKitchenTool();
 				found=true;
 				//notifyAll();
@@ -100,6 +101,15 @@ public class Warehouse implements Warehouse_Interface{
 	public String toString(){
 		String res=" kitchenCollectionTolls- "+this.kitchenCollectionTolls.toString()+" ingredientsAvailable- "+this.ingredientsAvailable.toString();
 		return res;		
+	}
+	public synchronized boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools){
+		Boolean res=true;
+		for (int i=0; i<KitchenTools.size();i++){
+			if(!this.getKitchenTolls(KitchenTools.get(i))){
+				res=false;
+			}
+		}
+		return res;
 	}
 	
 

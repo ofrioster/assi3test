@@ -1,5 +1,7 @@
 package run;
 
+import java.util.Vector;
+
 
 
 
@@ -15,6 +17,7 @@ public interface Warehouse_Interface {
 	public boolean getKitchenTolls(KitchenTool KitchenTollsname);
 	public void returnKitchenTolls(KitchenTool KitchenTollsname);
 	public String toString();
+	public boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools);
 	
 
 }

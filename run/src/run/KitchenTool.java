@@ -21,11 +21,10 @@ public class KitchenTool implements KitchenTool_Interface {
 	
 	public synchronized boolean getKitchenTool(){
 		Boolean res=false;
-		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
-		synchronized (kitchenToolSemaphore) {
+	//	System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 			while (!this.kitchenToolSemaphore.tryAcquire()){
 				try {
-			//		System.out.println("getKitchenTool wait");
+					System.out.println("getKitchenTool wait "+"kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 					this.wait();
 				} catch (InterruptedException e) {
 					System.out.println("getKitchenTool fail");
@@ -34,13 +33,12 @@ public class KitchenTool implements KitchenTool_Interface {
 				}
 			}
 			res=true;
-		}
 //		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 		return res;
-		
 	}
 	
 	public synchronized void returnKitchenTool(){
+	//	System.out.println("returnKitchenTool "+this.kitchenToolName);
 		this.kitchenToolSemaphore.release();
 		this.notifyAll();
 	}

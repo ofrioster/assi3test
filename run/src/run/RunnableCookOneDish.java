@@ -31,14 +31,18 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	
 	//acquire all the kitchen tools
 	public Boolean acquireAllKitchenTools(){
+	//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" acquireAllKitchenTools");
 		Boolean res=true;
 		Vector <KitchenTool> kitchenToolsForThisDish=dishName.gestDish().getDishKitchenTolls();
+		System.out.println("dish name "+this.dishName.gestDish().getDishName());
+		this.warehouseName.getKitchenTolls(dishName.gestDish().getDishKitchenTolls());
 		for (int i=0; i<kitchenToolsForThisDish.size();i++){
-			acquireKitchenTool(kitchenToolsForThisDish.get(i));
+		//	acquireKitchenTool(kitchenToolsForThisDish.get(i));
 			kitchenToolsInUse.add(kitchenToolsForThisDish.get(i));
 		}
 		
 		allKitchenToolsAcquire=true;
+		System.out.println("dish name "+this.dishName.gestDish().getDishName()+" acquireAllKitchenTools - done");
 		return res;
 	}
 	
@@ -83,11 +87,13 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	public void cookDish(){
 		Long cookingTime=Math.round(this.Chef.getChefEfficiencyRating()); 
 		try{
+		//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" sleep");
 			Thread.sleep(cookingTime);
 		}
 		catch (InterruptedException e){
 			
 		}
+//		System.out.println("dish name "+this.dishName.gestDish().getDishName()+" awak");
 	}
 	public void returnAllKitchenTools(){
 		for(int i=0; i<this.kitchenToolsInUse.size();i++){
@@ -99,6 +105,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	 * @ the start of a thread to cook the dish
 	 */
 	public void run(){
+//		System.out.println("dish name "+this.dishName.gestDish().getDishName()+" start");
 //		System.out.println("run cook one dish has start");
 //		int k=this.dishName.getQuantityLeft();		//delete
 //		String j=this.dishName.gestDish().getDishName();  //delete
@@ -109,6 +116,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			acquireAllKitchenTools();
 			this.cookDish();
 			returnAllKitchenTools();
+		//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" returnAllKitchenTools");
 			this.dishName.setOneDishIsDone();
 		//	System.out.println(" cock one dish befor-this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.countDown();
@@ -132,6 +140,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			catch (Exception e){
 				System.out.println("EROR IN COOK ONE DISH");
 			}
+			System.out.println("dish name "+this.dishName.gestDish().getDishName()+" done");
 	//	}
 //		System.out.println("run cook one dish has finish");
 	//	System.out.println("this.dishName.getOrderStatus() "+this.dishName.getOrderStatus());
