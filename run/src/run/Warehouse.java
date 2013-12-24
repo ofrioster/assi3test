@@ -60,8 +60,9 @@ public class Warehouse implements Warehouse_Interface{
 	public synchronized boolean  getIngredient(Ingredient ingredientsName){
 		boolean res=false;
 		for (int i=0; i<this.ingredientsAvailable.size();i++){
+			System.out.println(ingredientsName+"  -----  "+this.ingredientsAvailable.get(i));
 			if(this.ingredientsAvailable.get(i).getIngredientName().equals(ingredientsName.getIngredientName())){
-				if(this.ingredientsAvailable.get(i).getIngredient()){
+				if(this.ingredientsAvailable.get(i).getIngredient(ingredientsName.getNumberOfIngredient())){
 					return true;
 				}
 		}

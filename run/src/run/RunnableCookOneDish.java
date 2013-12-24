@@ -79,6 +79,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 			if (!acquireIngredients(ingredientsForThisDish.get(i))){
 				System.out.println("EROR!!! ingredient " +ingredientsForThisDish.get(i).getIngredientName()+ " missing");
 			}
+			System.out.println(" ingredients name: "+ingredientsForThisDish.get(i).getIngredientName());
 		}
 		allIngredientsAcquire=true;
 		return res;

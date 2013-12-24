@@ -30,15 +30,18 @@ public class Ingredient implements Ingredient_Interface{
 		return this.ingredientName; 
 	}
 	
-	public synchronized  boolean getIngredient(){
-		if(this.ingredientAmount.tryAcquire()){
-	//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
-			return true;
+	public synchronized  boolean getIngredient(int amount){
+		Boolean res=true;
+		for (int i=0;i<amount;i++){
+			if(this.ingredientAmount.tryAcquire()){
+				//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
+				}
+			else {
+					System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
+					res= false;
+				}
 		}
-		else {
-			System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
-			return false;
-		}
+		return res;
 
 	}
 	
