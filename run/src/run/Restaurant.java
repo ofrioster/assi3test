@@ -71,6 +71,10 @@ public class Restaurant implements RestaurantInterface {
 		this.Chefs = Chefs;
 		
 	}
+	public String toString(){
+		String res=" restaurantAddres- "+this.restaurantAddres.toString()+" Ingredients- "+this.Ingredients.toString()+" KitchenTools- "+this.KitchenTools.toString()+" Chefs- "+this.Chefs.toString()+" DeliveryPersonals- "+this.DeliveryPersonals.toString();
+		return res;
+	}
 
 
 
