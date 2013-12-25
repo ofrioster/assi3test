@@ -18,11 +18,11 @@ public class ReadXMLFile {
 	private final static Logger logger = Logger
 			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-	public static Vector<Dish> ParseMenuFile() {
+	public static Vector<Dish> ParseMenuFile(String fileName) {
 
 		try {
 			Vector<Dish> Dishes = new Vector<Dish>();
-			File file = new File("menu.xml");
+			File file = new File(fileName);
 
 			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
@@ -43,10 +43,10 @@ public class ReadXMLFile {
 		return null;
 	}
 
-	public static Vector<Order> ParseOrderListFile(Vector<Dish> Dishes) {
+	public static Vector<Order> ParseOrderListFile(String fileName , Vector<Dish> Dishes) {
 
 		try {
-			File file = new File("orderList.xml");
+			File file = new File(fileName);
 			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);
@@ -67,11 +67,11 @@ public class ReadXMLFile {
 		return null;
 	}
 
-	public static Restaurant ParseRestauranFilet() {
+	public static Restaurant ParseRestauranFilet(String fileName) {
 
 		try {
 
-			File file = new File("restaurant.xml");
+			File file = new File(fileName);
 			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);

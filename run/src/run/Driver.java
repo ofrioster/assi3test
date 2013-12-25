@@ -28,9 +28,9 @@ public class Driver {
 		
 		
 		
-		Vector<Dish> Dishes = ReadXMLFile.ParseMenuFile();
-		Vector<Order> Orders =  ReadXMLFile.ParseOrderListFile(Dishes);
-		Restaurant Restaurant = ReadXMLFile.ParseRestauranFilet() ;
+		Vector<Dish> Dishes = ReadXMLFile.ParseMenuFile("Menu.xml");
+		Vector<Order> Orders =  ReadXMLFile.ParseOrderListFile("OrdersList.xml",Dishes);
+		Restaurant Restaurant = ReadXMLFile.ParseRestauranFilet("InitialData.xml") ;
 		Warehouse warehouseTest=new Warehouse(Restaurant.getKitchenTolls(),Restaurant.getIngredients());
 		CountDownLatch latchObject = new CountDownLatch (Orders.size());
 		Statistics statistics=new Statistics();

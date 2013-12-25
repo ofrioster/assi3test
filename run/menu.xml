@@ -1,257 +1,155 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?> 
 <Menu>
 	<Dishes>
 		<Dish>
-			<name>pizza</name>
-			<dificulityRating>1</dificulityRating>
-			<expectedCookTime>200</expectedCookTime>
-			<reward>10</reward>
+			<name>Hasselback Potatoes</name>
+			<difficultyRating>20</difficultyRating>
+			<expectedCookTime>15000</expectedCookTime>
+			<reward>30</reward>
 			<KitchenTools>
 				<KitchenTool>
-					<name>pumpia</name>
+					<name>Spoon</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 				<KitchenTool>
-					<name>knife</name>
+					<name>Oven</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Knife</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Plate</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 			</KitchenTools>
 			<Ingredients>
 				<Ingredient>
-					<name>frozen pizza</name>
-					<quantity>1</quantity>
+					<name>Potato</name>
+					<quantity>500</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>tomato</name>
-					<quantity>5</quantity>
+					<name>Butter</name>
+					<quantity>45</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>soy cheese</name>
-					<quantity>2</quantity>
+					<name>Salt</name>
+					<quantity>20</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>salt</name>
-					<quantity>3</quantity>
+					<name>Olive Oil</name>
+					<quantity>15</quantity>
 				</Ingredient>
 			</Ingredients>
 		</Dish>
 		<Dish>
-			<name>pasta</name>
-			<dificulityRating>2</dificulityRating>
-			<expectedCookTime>300</expectedCookTime>
-			<reward>15</reward>
+			<name>Ramen Soup</name>
+			<difficultyRating>20</difficultyRating>
+			<expectedCookTime>10000</expectedCookTime>
+			<reward>35</reward>
 			<KitchenTools>
 				<KitchenTool>
-					<name>knife</name>
+					<name>Spoon</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 				<KitchenTool>
-					<name>spoon</name>
+					<name>Oven</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Stove</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Cup</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Bowl</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 			</KitchenTools>
 			<Ingredients>
 				<Ingredient>
-					<name>pasta</name>
-					<quantity>2</quantity>
+					<name>Flour</name>
+					<quantity>250</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>tomato</name>
-					<quantity>4</quantity>
+					<name>Egg</name>
+					<quantity>1</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>pepper</name>
-					<quantity>4</quantity>
-				</Ingredient>
-				<Ingredient>
-					<name>salt</name>
-					<quantity>3</quantity>
+					<name>Salt</name>
+					<quantity>7</quantity>
 				</Ingredient>
 			</Ingredients>
 		</Dish>
 		<Dish>
-			<name>fishsticks</name>
-			<dificulityRating>6</dificulityRating>
-			<expectedCookTime>350</expectedCookTime>
-			<reward>5</reward>
+			<name>The Ultimate Breakfast</name>
+			<difficultyRating>10</difficultyRating>
+			<expectedCookTime>15000</expectedCookTime>
+			<reward>54</reward>
 			<KitchenTools>
 				<KitchenTool>
-					<name>pan</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>knife</name>
+					<name>Spoon</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 				<KitchenTool>
-					<name>spoon</name>
+					<name>Pan</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Oven</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Stove</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Knife</name>
+					<quantity>1</quantity>
+				</KitchenTool>
+				<KitchenTool>
+					<name>Plate</name>
 					<quantity>1</quantity>
 				</KitchenTool>
 			</KitchenTools>
 			<Ingredients>
 				<Ingredient>
-					<name>soy fish</name>
-					<quantity>10</quantity>
+					<name>Cherry Tomato</name>
+					<quantity>100</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>rice</name>
-					<quantity>2</quantity>
-				</Ingredient>
-			</Ingredients>
-		</Dish>
-		<Dish>
-			<name>hamburger</name>
-			<dificulityRating>4</dificulityRating>
-			<expectedCookTime>700</expectedCookTime>
-			<reward>40</reward>
-			<KitchenTools>
-				<KitchenTool>
-					<name>pan</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>knife</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>small pot</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-			</KitchenTools>
-			<Ingredients>
-				<Ingredient>
-					<name>soy beans</name>
-					<quantity>10</quantity>
-				</Ingredient>
-				<Ingredient>
-					<name>bread</name>
-					<quantity>1</quantity>
-				</Ingredient>
-			</Ingredients>
-		</Dish>
-		<Dish>
-			<name>rice</name>
-			<dificulityRating>7</dificulityRating>
-			<expectedCookTime>300</expectedCookTime>
-			<reward>20</reward>
-			<KitchenTools>
-				<KitchenTool>
-					<name>wok</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>big pot</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>small pot</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-			</KitchenTools>
-			<Ingredients>
-				<Ingredient>
-					<name>rice</name>
+					<name>Bread</name>
 					<quantity>15</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>tomato</name>
-					<quantity>2</quantity>
+					<name>Olive Oil</name>
+					<quantity>25</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>salt</name>
-					<quantity>1</quantity>
-				</Ingredient>
-				<Ingredient>
-					<name>pepper</name>
-					<quantity>1</quantity>
-				</Ingredient>
-			</Ingredients>
-		</Dish>
-		<Dish>
-			<name>humus</name>
-			<dificulityRating>1</dificulityRating>
-			<expectedCookTime>100</expectedCookTime>
-			<reward>10</reward>
-			<KitchenTools>
-				<KitchenTool>
-					<name>samll pot</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>spoon</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>pumpia</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-			</KitchenTools>
-			<Ingredients>
-				<Ingredient>
-					<name>humus</name>
-					<quantity>7</quantity>
-				</Ingredient>
-			</Ingredients>
-		</Dish>
-		<Dish>
-			<name>fried tomato</name>
-			<dificulityRating>6</dificulityRating>
-			<expectedCookTime>200</expectedCookTime>
-			<reward>10</reward>
-			<KitchenTools>
-				<KitchenTool>
-					<name>samll pot</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>pan</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-			</KitchenTools>
-			<Ingredients>
-				<Ingredient>
-					<name>tomato</name>
-					<quantity>4</quantity>
-				</Ingredient>
-				<Ingredient>
-					<name>soy cheese</name>
-					<quantity>7</quantity>
-				</Ingredient>
-			</Ingredients>
-		</Dish>
-		<Dish>
-			<name>fried beans</name>
-			<dificulityRating>4</dificulityRating>
-			<expectedCookTime>350</expectedCookTime>
-			<reward>15</reward>
-			<KitchenTools>
-				<KitchenTool>
-					<name>samll pot</name>
-					<quantity>2</quantity>
-				</KitchenTool>
-				<KitchenTool>
-					<name>knife</name>
-					<quantity>1</quantity>
-				</KitchenTool>
-			</KitchenTools>
-			<Ingredients>
-				<Ingredient>
-					<name>beans</name>
+					<name>Bread Crumbs</name>
 					<quantity>10</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>tomato</name>
-					<quantity>7</quantity>
+					<name>Gouda Cheese</name>
+					<quantity>30</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>salt</name>
-					<quantity>2</quantity>
+					<name>Egg</name>
+					<quantity>1</quantity>
 				</Ingredient>
 				<Ingredient>
-					<name>pepper</name>
-					<quantity>2</quantity>
+					<name>Salt</name>
+					<quantity>5</quantity>
+				</Ingredient>
+				<Ingredient>
+					<name>Black Pepper</name>
+					<quantity>5</quantity>
 				</Ingredient>
 			</Ingredients>
 		</Dish>
 	</Dishes>
-</Menu>
+</Menu>
