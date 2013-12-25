@@ -104,12 +104,25 @@ public class Warehouse implements Warehouse_Interface{
 	}
 	public synchronized boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools){
 		Boolean res=true;
-		for (int i=0; i<KitchenTools.size();i++){
+		for (int i=0; i<KitchenTools.size() &&res;i++){
 			if(!this.getKitchenTolls(KitchenTools.get(i))){
+	//			for (int k=0;k<i;k++){
+	//				this.returnUnuseKitchenTolls(KitchenTools.get(k));
+	//			}
 				res=false;
 			}
 		}
 		return res;
+	}
+	public void returnUnuseKitchenTolls(KitchenTool KitchenTollsname){
+		Boolean found=false;
+		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
+			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenTollsname.getKitchenToolName())){
+				this.kitchenCollectionTolls.get(i).returnUnuseKitchenTool();
+				found=true;
+			}
+		}
+		
 	}
 	
 

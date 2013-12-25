@@ -42,6 +42,14 @@ public class KitchenTool implements KitchenTool_Interface {
 		this.kitchenToolSemaphore.release();
 		this.notifyAll();
 	}
+	/** (non-Javadoc)
+	 * @ return only not use kitchen tools!!
+	 * @ dose not have this.notifyAll(); method
+	 */
+	public synchronized void returnUnuseKitchenTool(){
+		//	System.out.println("returnKitchenTool "+this.kitchenToolName);
+			this.kitchenToolSemaphore.release();
+		}
 	
 	public int numberOfKitchenTools(){
 		return this.kitchenToolSemaphore.availablePermits();

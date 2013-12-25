@@ -35,7 +35,9 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		Boolean res=true;
 		Vector <KitchenTool> kitchenToolsForThisDish=dishName.gestDish().getDishKitchenTolls();
 	//	System.out.println("dish name "+this.dishName.gestDish().getDishName());
-		this.warehouseName.getKitchenTolls(dishName.gestDish().getDishKitchenTolls());
+		while(!this.warehouseName.getKitchenTolls(dishName.gestDish().getDishKitchenTolls())){
+			
+		}
 		for (int i=0; i<kitchenToolsForThisDish.size();i++){
 		//	acquireKitchenTool(kitchenToolsForThisDish.get(i));
 			kitchenToolsInUse.add(kitchenToolsForThisDish.get(i));

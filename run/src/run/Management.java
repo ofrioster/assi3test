@@ -221,14 +221,18 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		return this.receiveAllOrders;
 	}
 	public void ShutDown( ){
-		System.out.println("management start shoutdown");
+	//	System.out.println("management start shoutdown");
 		this.shutDown=true;
 		for (int i=0;i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).shutDown();
 		}
-		System.out.println("shef has shoutdouwn");
+	//	System.out.println("shef has shoutdouwn");
 		for (int i=0;i<this.collectionOfDeliveryPerson.size();i++){
 			this.collectionOfDeliveryPerson.get(i).shutDown();
+		}
+		for (int i=0;i<this.collectionOfOrders.size();i++){
+			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" reward: "+this.collectionOfOrders.get(i).getTotalReward());
+			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" expected reward: "+this.collectionOfOrders.get(i).calculateReward());
 		}
 	}
 	public Boolean getShutDown(){

@@ -18,6 +18,7 @@ public interface Warehouse_Interface {
 	public void returnKitchenTolls(KitchenTool KitchenTollsname);
 	public String toString();
 	public boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools);
+	public void returnUnuseKitchenTolls(KitchenTool KitchenTollsname);
 	
 
 }
