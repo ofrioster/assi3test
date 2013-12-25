@@ -62,6 +62,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
+		System.out.println("!!!!!run cook whole order has start");
 	//	System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
@@ -89,7 +90,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.update1();
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;
-		this.order.setActualCookTime(this.totalTime);
+//		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
 //		this.collectionOfOrdersToDeliver=new Vector<Order>();
 		this.collectionOfOrdersToDeliver.add(this.order);
@@ -122,13 +123,16 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.update1();
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;
+	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.totalTime);
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
+		System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.order.getActualCookTime());
 		this.collectionOfOrdersToDeliver.add(this.order);
 		System.out.println(" order has done cocking"+ order.getOrderID());
 		return this.order;
 		
 	}
+	/*
 	  public void update(Observable obj, Boolean finish) {
 	//	  System.out.println("update cook whole order has start");
 		  long endTime=System.currentTimeMillis();
@@ -150,7 +154,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			  
 		  }
 	  }
-	
+	*/
 	  public void update1() {
 //		  System.out.println("update1 cook whole order has start");
 		  long endTime=System.currentTimeMillis();
@@ -161,9 +165,9 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  }
 			  }
 			  if (orderFinish){
-				  this.endTime=endTime;
-				  this.totalTime=this.endTime-this.startTime;
-				  this.order.setActualCookTime(this.totalTime);
+			//	  this.endTime=endTime;
+			//	  this.totalTime=this.endTime-this.startTime;
+			//	  this.order.setActualCookTime(this.totalTime);
 				  order.setOrderStatus(3);
 			//	  System.out.println("notifyObservers(this.order);");
 				  notifyObservers(this.order);

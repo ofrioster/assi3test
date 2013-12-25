@@ -11,7 +11,7 @@ public interface CallableCookWholeOrderInterface {
 	public void run();
 	public Long getTotalCookingTime();
 	public void update1();
-	public void update(Observable obj, Boolean finish);
+	//public void update(Observable obj, Boolean finish);
 	public void updateTotalNumberOfDishs();
 	public String toString();
 }

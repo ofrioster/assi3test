@@ -58,6 +58,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		
 	}
 	public synchronized void deliverOrder(Order orderToDeliver){
+		orderToDeliver.setActualDeliveryTime(System.currentTimeMillis());
 	//	System.out.println("size "+this.collectionDeliverdOrders.size());
 		if (!this.collectionDeliverdOrders.isEmpty()){
 			this.collectionDeliverdOrders.remove(0);
@@ -72,7 +73,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		}
 		orderToDeliver.setExpectedDeliveryTime(System.currentTimeMillis()-startTime);
 		orderToDeliver.setOrderStatus(4);
-		orderToDeliver.setActualCookTime(System.currentTimeMillis()-orderToDeliver.getActualDeliveryTime());
+		orderToDeliver.setActualDeliveryTime(System.currentTimeMillis()-orderToDeliver.getActualDeliveryTime());
 		orderToDeliver.setTotalReward();
 		this.statistics.addDeliveredOrder(orderToDeliver);
 //		this.collectionDeliverdOrders.remove(orderToDeliver);

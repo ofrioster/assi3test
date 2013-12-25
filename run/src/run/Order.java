@@ -28,6 +28,7 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
+		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	public Order(String orderID, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
@@ -37,6 +38,7 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
+		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	
 	public Order(String orderID, int orderStatus,Address customerAddress){
@@ -59,7 +61,10 @@ public class Order implements OrderInterface {
 	
 	public void addDish(OrderOfDish orderDish){
 		this.orderDish.add(orderDish);
-		this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
+		if(this.expectedcookTime<orderDish.gestDish().getdishExpectedCookTime()){
+			this.expectedcookTime=orderDish.gestDish().getdishExpectedCookTime();
+		}
+	//	this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
@@ -185,6 +190,7 @@ public class Order implements OrderInterface {
 		long res=0;
 		for (int i=0; i<orderDish.size();i++){
 			long getdishExpectedCookTime=orderDish.get(i).gestDish().getdishExpectedCookTime();
+			System.out.println("dish name: "+orderDish.get(i).gestDish().getDishName()+" getdishExpectedCookTime: "+getdishExpectedCookTime );
 			if (res<getdishExpectedCookTime){
 				res=getdishExpectedCookTime;
 			}
