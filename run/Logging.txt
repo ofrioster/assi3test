@@ -1,12 +1,12 @@
-Dec 24, 2013 10:45:18 PM run.run main
+Dec 25, 2013 9:30:10 AM run.Driver main
 INFO: message 1
-Dec 24, 2013 10:45:18 PM run.run main
+Dec 25, 2013 9:30:10 AM run.Driver main
 SEVERE: message 2
-Dec 24, 2013 10:45:18 PM run.run main
+Dec 25, 2013 9:30:10 AM run.Driver main
 FINE: message 3
-Dec 24, 2013 10:45:18 PM run.ReadXMLFile ParseMenuFile
+Dec 25, 2013 9:30:10 AM run.ReadXMLFile ParseMenuFile
 CONFIG: Finished Parsing The Menu
-Dec 24, 2013 10:45:18 PM run.ReadXMLFile ParseOrderListFile
+Dec 25, 2013 9:30:10 AM run.ReadXMLFile ParseOrderListFile
 CONFIG: Finished Parsing The Order List
-Dec 24, 2013 10:45:21 PM run.ReadXMLFile ParseRestauranFilet
+Dec 25, 2013 9:30:10 AM run.ReadXMLFile ParseRestauranFilet
 SEVERE: Finished Parsing The Restaurant Config
