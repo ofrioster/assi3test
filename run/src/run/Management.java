@@ -69,7 +69,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public synchronized void startToCookDish(Order orderToCook){
 		//System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
-		System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
+	//	System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		chef.addOrder(orderToCook, this.warehouseName);
 	}
 	

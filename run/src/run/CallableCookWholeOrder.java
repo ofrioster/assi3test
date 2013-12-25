@@ -166,7 +166,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  order.setOrderStatus(3);
 			//	  System.out.println("notifyObservers(this.order);");
 				  notifyObservers(this.order);
-				  System.out.println("notifyObservers(this.order);");
+			//	  System.out.println("notifyObservers(this.order);");
 			  }
 	  }
 	public Long getTotalCookingTime(){

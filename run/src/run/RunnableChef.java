@@ -109,7 +109,7 @@ public class RunnableChef implements RunnableChefInterface{
 	 */
 	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
 	//	System.out.println(" 3333 ");
-		System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
+	//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
 	//	System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 		int dishDifficuly=newOrder.getDifficultyRating();
 	//	System.out.println("here");

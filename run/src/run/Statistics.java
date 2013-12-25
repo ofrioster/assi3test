@@ -35,8 +35,8 @@ public class Statistics implements StatisticsInterface {
 	 */
 	public synchronized void addDeliveredOrder(Order order){
 		try{
-		System.out.println("order.getOrderStatus() "+order.getOrderStatus());
-		System.out.println("888 getOrderID - "+order.getOrderID()+"888 reward- "+order.getTotalReward());
+//		System.out.println("order.getOrderStatus() "+order.getOrderStatus());
+//		System.out.println("888 getOrderID - "+order.getOrderID()+"888 reward- "+order.getTotalReward());
 		if(order.getOrderStatus()==4){
 			this.deliveredOrders.add(order);
 			//this.moneyGain=order.getTotalReward();
@@ -52,12 +52,12 @@ public class Statistics implements StatisticsInterface {
 		}
 	}
 	public synchronized void upDateMoneyGain(Order order){
-		System.out.println("order.getTotalReward() "+order.getTotalReward());
-		System.out.println("this.moneyGain "+this.moneyGain);
+//		System.out.println("order.getTotalReward() "+order.getTotalReward());
+//		System.out.println("this.moneyGain "+this.moneyGain);
 		this.moneyGain=this.moneyGain+ order.getTotalReward();
-		System.out.println("dish name "+order.getOrderDish().get(0).gestDish().getDishName());
-		System.out.println("order.getTotalReward() "+order.getTotalReward());
-		System.out.println("this.moneyGain "+this.moneyGain);
+//		System.out.println("dish name "+order.getOrderDish().get(0).gestDish().getDishName());
+//		System.out.println("order.getTotalReward() "+order.getTotalReward());
+//		System.out.println("this.moneyGain "+this.moneyGain);
 		int k=0;
 		
 	}
