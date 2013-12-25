@@ -1,8 +1,10 @@
-Logging.txt
-Logging.txt*
+
 #################
 ## Eclipse
 #################
+
+Logging.txt
+Logging.txt*
 
 *.pydevproject
 .project
