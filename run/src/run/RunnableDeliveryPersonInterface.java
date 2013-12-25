@@ -20,5 +20,6 @@ public interface RunnableDeliveryPersonInterface {
 	public long getTotalDeliveryTime();
 	public void setStatistics(Statistics statistics);
 	public String toString();
+	public void removeFinishOrder(Order orderHasDeliver);
 
 }
