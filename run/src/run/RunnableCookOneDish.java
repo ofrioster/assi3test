@@ -85,15 +85,15 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	
 	//put to sleep while cooking, multiplay Chef Efficiency Factor by  dish cooking time
 	public void cookDish(){
-		Long cookingTime=Math.round(this.Chef.getChefEfficiencyRating()); 
+		Long cookingTime=Math.round(this.Chef.getChefEfficiencyRating())*this.dishName.gestDish().getdishExpectedCookTime(); 
 		try{
-		//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" sleep");
+			System.out.println("dish name "+this.dishName.gestDish().getDishName()+" cocking time; "+cookingTime+" sleep");
 			Thread.sleep(cookingTime);
 		}
 		catch (InterruptedException e){
 			
 		}
-//		System.out.println("dish name "+this.dishName.gestDish().getDishName()+" awak");
+		System.out.println("dish name "+this.dishName.gestDish().getDishName()+" awak");
 	}
 	public void returnAllKitchenTools(){
 		for(int i=0; i<this.kitchenToolsInUse.size();i++){
