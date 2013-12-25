@@ -32,7 +32,7 @@ public class Order implements OrderInterface {
 	public Order(String orderID, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
 		this.difficultyRating=0;
-		this.orderStatus=1;
+		this.orderStatus=INCOMPLETE;
 		this.orderDish=orderDish;
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
@@ -84,6 +84,7 @@ public class Order implements OrderInterface {
 	public void changeOrderDifficultyRating(int difficultyRating){
 		this.difficultyRating=difficultyRating;
 	}
+	
 	public Vector<OrderOfDish> getOrderDish(){
 		return this.orderDish;
 	}
@@ -98,6 +99,13 @@ public class Order implements OrderInterface {
 	 */
 	public void setOrderStatus(int status){
 		this.orderStatus=status;
+	}
+	
+	public void updateStatus(){
+		this.orderStatus++;
+		if (this.orderStatus > DELIVERED)    {
+		System.out.print("error with order status update");
+		}
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
