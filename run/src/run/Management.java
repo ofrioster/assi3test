@@ -1,11 +1,15 @@
 package run;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
 
 public class Management implements ManagementInterface,Observer,Runnable {
 	
+	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 	private Vector<Order> collectionOfOrders;
 	private Vector<RunnableChef> collectionOfChefs;
 	private Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson;
@@ -162,11 +166,17 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public synchronized void run(){
 	//	System.out.println(" warehpuse: "+this.warehouseName.toString());
+	    logger.log(Level.INFO, "INFO: Initializing simulation process...");
+	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
+
 		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
 		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){
+			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCock.size());
+			
 	//		System.out.println(this.collectionOfOrders.size());
 	//		System.out.println(this.collectionOfOrdersToCock.size());
+			
 			if(this.collectionOfOrdersToCock.size()>0){
 			//	synchronized (collectionOfOrdersToCock) {
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
