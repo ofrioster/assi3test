@@ -15,7 +15,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class ReadXMLFile {
-	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger logger = Logger
+			.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	public static Vector<Dish> ParseMenuFile() {
 
@@ -31,8 +32,8 @@ public class ReadXMLFile {
 			if (doc.hasChildNodes()) {
 
 				Dishes = ParseMenu(doc.getChildNodes());
-				//System.out.println(Dishes.toString());
-			    logger.log(Level.CONFIG, "Finished Parsing The Menu");
+				// System.out.println(Dishes.toString());
+				logger.log(Level.CONFIG, "Finished Parsing The Menu");
 				return Dishes;
 			}
 
@@ -42,23 +43,23 @@ public class ReadXMLFile {
 		return null;
 	}
 
-
 	public static Vector<Order> ParseOrderListFile(Vector<Dish> Dishes) {
 
 		try {
 			File file = new File("orderList.xml");
-			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
-				//Restaurant retRestaurant = new Restaurant();
-				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),Dishes);
-				//System.out.println(Orders.toString());
-			    logger.log(Level.CONFIG, "Finished Parsing The Order List");
+				// Restaurant retRestaurant = new Restaurant();
+				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),
+						Dishes);
+				// System.out.println(Orders.toString());
+				logger.log(Level.CONFIG, "Finished Parsing The Order List");
 				return Orders;
-				
+
 			}
-			
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -71,14 +72,17 @@ public class ReadXMLFile {
 		try {
 
 			File file = new File("restaurant.xml");
-			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
 			Document doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
-				//Restaurant retRestaurant = new Restaurant();
-				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),new Restaurant());
-				//System.out.println(Restaurant.toString());
-			    logger.log(Level.SEVERE, "Finished Parsing The Restaurant Config");
+				// Restaurant retRestaurant = new Restaurant();
+				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),
+						new Restaurant());
+				// System.out.println(Restaurant.toString());
+				logger.log(Level.SEVERE,
+						"Finished Parsing The Restaurant Config");
 				return Restaurant;
 			}
 
@@ -87,7 +91,9 @@ public class ReadXMLFile {
 		}
 		return null;
 	}
-	private static Vector<Order> ParseOrderList(NodeList nodeList,Vector<Dish> Dishes) {
+
+	private static Vector<Order> ParseOrderList(NodeList nodeList,
+			Vector<Dish> Dishes) {
 		Vector<Order> tmpOrders = new Vector<Order>();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			// Dish tempdish = null;
@@ -95,16 +101,17 @@ public class ReadXMLFile {
 
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-				String temp = tempNode.getNodeName();
 				switch (tempNode.getNodeName()) {
 				case "OrderList":
-					tmpOrders = ParseOrderList(tempNode.getChildNodes(),Dishes);
+					tmpOrders = ParseOrderList(tempNode.getChildNodes(), Dishes);
 					break;
 				case "Orders":
-					tmpOrders = ParseOrderList(tempNode.getChildNodes(),Dishes);
+					tmpOrders = ParseOrderList(tempNode.getChildNodes(), Dishes);
 					break;
 				case "Order":
-					tmpOrders.add(ParseOrder(tempNode.getChildNodes(), new Order(id(tempNode), new Vector<OrderOfDish>(), null), Dishes));
+					tmpOrders.add(ParseOrder(tempNode.getChildNodes(),
+							new Order(id(tempNode), new Vector<OrderOfDish>(),
+									null), Dishes));
 					break;
 				default:
 					break;
@@ -113,56 +120,56 @@ public class ReadXMLFile {
 			}
 
 		}
- 		
+
 		return tmpOrders;
 	}
 
 	private static String id(Node tempNode) {
 		String ret = "err";
 		if (tempNode.hasAttributes()) {
-			 
+
 			// get attributes names and values
 			NamedNodeMap nodeMap = tempNode.getAttributes();
- 
+
 			for (int i = 0; i < nodeMap.getLength(); i++) {
- 
+
 				Node node = nodeMap.item(i);
-				if (node.getNodeName() == "id"){
+				if (node.getNodeName() == "id") {
 					ret = node.getNodeValue();
 				}
-				//System.out.println("attr name : " + node.getNodeName());
-				//System.out.println("attr value : " + node.getNodeValue());
- 
+				// System.out.println("attr name : " + node.getNodeName());
+				// System.out.println("attr value : " + node.getNodeValue());
+
 			}
- 
-		}		return ret;
+
+		}
+		return ret;
 	}
 
-	private static Order ParseOrder(NodeList nodeList, Order order, Vector<Dish> Dishes) {
+	private static Order ParseOrder(NodeList nodeList, Order order,
+			Vector<Dish> Dishes) {
 		Address tmpAddress = null;
-		//Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
-		
-		for (int count = 0; count < nodeList.getLength(); count++) {
-			
-			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
+		// Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
 
+		for (int count = 0; count < nodeList.getLength(); count++) {
+
+			Node tempNode = nodeList.item(count);
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "DeliveryAddress":
-					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
+					tmpAddress = (ParseAddress(tempNode.getChildNodes()));
 					break;
 				case "Dishes":
-					order = ParseOrder(tempNode.getChildNodes(),order,Dishes);
+					order = ParseOrder(tempNode.getChildNodes(), order, Dishes);
 					break;
 				case "Dish":
-					order.addDish(ParseOrderOfDish(tempNode.getChildNodes(),Dishes));
+					order.addDish(ParseOrderOfDish(tempNode.getChildNodes(),
+							Dishes));
 					break;
 				default:
 					break;
-
 				}
 
 				// System.out.println("Node Name =" + tempNode.getNodeName() +
@@ -170,79 +177,71 @@ public class ReadXMLFile {
 			}
 
 		}
-		if (tmpAddress!=null){
+		if (tmpAddress != null) {
 			order.setAddress(tmpAddress);
 		}
 		return order;
 
 	}
 
-	private static OrderOfDish ParseOrderOfDish(NodeList nodeList,Vector<Dish> Dishes) {
+	private static OrderOfDish ParseOrderOfDish(NodeList nodeList,
+			Vector<Dish> Dishes) {
 
 		OrderOfDish tmpOrderOfDish = null;
-		String tmpDishName;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "name":
-					for (Dish  dish  : Dishes) {
-						   if (tempNode.getTextContent().equals(dish.getDishName()) ) {
-								tmpOrderOfDish = new OrderOfDish(dish, 0);
-								break;
-						   }
+					for (Dish dish : Dishes) {
+						if (tempNode.getTextContent()
+								.equals(dish.getDishName())) {
+							tmpOrderOfDish = new OrderOfDish(dish, 0);
+							break;
 						}
+					}
 					break;
 				case "quantity":
-					tmpOrderOfDish.setquantity(Integer.parseInt(tempNode.getTextContent()));
+					tmpOrderOfDish.setquantity(Integer.parseInt(tempNode
+							.getTextContent()));
 					break;
-			default:
+				default:
 					break;
 
 				}
 
-				
-				
 			}
 
 		}
 		return tmpOrderOfDish;
 
-
 	}
 
-	private static Restaurant ParseRestaurant(NodeList nodeList ,Restaurant retRestaurant ) {
-		//Restaurant retRestaurant = new Restaurant();
-		Vector<KitchenTool> tmpTools = new Vector<KitchenTool>();
-		Vector<Ingredient> tmpIngredients = new Vector<Ingredient>();
+	private static Restaurant ParseRestaurant(NodeList nodeList,
+			Restaurant retRestaurant) {
+		// Restaurant retRestaurant = new Restaurant();
 		Address tmpAddress = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
-			// Dish tempdish = null;
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
 				case "Restaurant":
-					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
-					retRestaurant = ParseRestaurant(tempNode.getChildNodes(),retRestaurant);
-					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
+					retRestaurant = ParseRestaurant(tempNode.getChildNodes(),
+							retRestaurant);
 					break;
 				case "Address":
-					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
-					 //System.out.println("\nNode Name =" + tempNode.getNodeName() +" [ADD]");
+					tmpAddress = (ParseAddress(tempNode.getChildNodes()));
 					break;
 				case "Repository":
-					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [OPEN]");
-					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),retRestaurant);
-					//System.out.println("\nNode Name =" + tempNode.getNodeName() +" [CLOSE]");
+					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),
+							retRestaurant);
 					break;
 				case "Staff":
-					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),retRestaurant);
+					retRestaurant = ParseRestaurant2(tempNode.getChildNodes(),
+							retRestaurant);
 					break;
 				default:
 					break;
@@ -250,45 +249,35 @@ public class ReadXMLFile {
 			}
 
 		}
-		if (tmpAddress!=null){
-		retRestaurant.setAddress(tmpAddress);
+		if (tmpAddress != null) {
+			retRestaurant.setAddress(tmpAddress);
 		}
 		return retRestaurant;
 	}
 
-
-	private static Restaurant ParseRestaurant2(NodeList nodeList ,Restaurant retRestaurant ) {
-		//Restaurant retRestaurant = new Restaurant();
-		Vector<KitchenTool> tmpTools = new Vector<KitchenTool>();
-		Vector<Ingredient> tmpIngredients = new Vector<Ingredient>();
-		Address tmpAddress = null;
-		
+	private static Restaurant ParseRestaurant2(NodeList nodeList,
+			Restaurant retRestaurant) {
 		for (int count = 0; count < nodeList.getLength(); count++) {
-			// Dish tempdish = null;
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
-				case "Address":
-					 tmpAddress = (ParseAddress(tempNode.getChildNodes()));
-					 //System.out.println("\nNode Name =" + tempNode.getNodeName() +" [ADD]");
-					break;
 				case "Tools":
-					tmpTools = ParseTools(tempNode.getChildNodes());
-					retRestaurant.setKitchenTolls(tmpTools);
-
+					retRestaurant.setKitchenTolls(ParseTools(tempNode
+							.getChildNodes()));
 					break;
 				case "Ingredients":
-					retRestaurant.setIngredients(ParseIngredients(tempNode.getChildNodes()));
+					retRestaurant.setIngredients(ParseIngredients(tempNode
+							.getChildNodes()));
 					break;
-					
 				case "Chefs":
-					retRestaurant.setChefs(ParseChefs(tempNode.getChildNodes()));
+					retRestaurant
+							.setChefs(ParseChefs(tempNode.getChildNodes()));
 					break;
-					
 				case "DeliveryPersonals":
-					retRestaurant.setRunnableDeliveryPerson(ParseDeliveryPersonals(tempNode.getChildNodes()));
+					retRestaurant
+							.setRunnableDeliveryPerson(ParseDeliveryPersonals(tempNode
+									.getChildNodes()));
 					break;
 				default:
 					break;
@@ -296,18 +285,16 @@ public class ReadXMLFile {
 			}
 
 		}
-		
+
 		return retRestaurant;
 	}
 
-	
-	private static Vector<RunnableDeliveryPerson> ParseDeliveryPersonals(NodeList nodeList) {
+	private static Vector<RunnableDeliveryPerson> ParseDeliveryPersonals(
+			NodeList nodeList) {
 		Vector<RunnableDeliveryPerson> DeliveryPersonals = new Vector<RunnableDeliveryPerson>();
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "DeliveryPerson"))) {
@@ -315,7 +302,8 @@ public class ReadXMLFile {
 				if (tempNode.hasChildNodes()) {
 
 					// loop again if has child nodes
-					DeliveryPersonals.add(ParseDeliveryPerson(tempNode.getChildNodes()));
+					DeliveryPersonals.add(ParseDeliveryPerson(tempNode
+							.getChildNodes()));
 					// System.out.println("----------------------------------------");
 
 				}
@@ -324,16 +312,15 @@ public class ReadXMLFile {
 
 		}
 		return DeliveryPersonals;
-		//return null;
+		// return null;
 	}
 
 	private static RunnableDeliveryPerson ParseDeliveryPerson(NodeList nodeList) {
 
-		//String tmpName = null;
+		// String tmpName = null;
 		RunnableDeliveryPerson tempDeliveryPerson = new RunnableDeliveryPerson();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
 
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -341,19 +328,21 @@ public class ReadXMLFile {
 				switch (tempNode.getNodeName()) {
 				case "name":
 					// tempdish = new Dish();
-					//tempChef
-					//System.out.println("----------------------------------------");
-					tempDeliveryPerson.setDeliveryPersonName(tempNode.getTextContent());
+					// tempChef
+					// System.out.println("----------------------------------------");
+					tempDeliveryPerson.setDeliveryPersonName(tempNode
+							.getTextContent());
 					break;
 
 				case "speed":
-					tempDeliveryPerson.setSpeedOfDeliveryPerson(Double.parseDouble(tempNode.getTextContent()));
+					tempDeliveryPerson.setSpeedOfDeliveryPerson(Double
+							.parseDouble(tempNode.getTextContent()));
 					break;
 
 				case "enduranceRating":
-					
-					//Double.parseDouble(tempNode.getTextContent());
-					//tempChef.setEnduranceRating(Double.parseDouble(tempNode.getTextContent()));
+
+					// Double.parseDouble(tempNode.getTextContent());
+					// tempChef.setEnduranceRating(Double.parseDouble(tempNode.getTextContent()));
 					break;
 
 				default:
@@ -365,38 +354,37 @@ public class ReadXMLFile {
 
 		}
 		return tempDeliveryPerson;
-		
+
 	}
 
 	private static RunnableChef ParseChef(NodeList nodeList) {
-		//String tmpName = null;
+		// String tmpName = null;
 		RunnableChef tempChef = new RunnableChef();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "name":
 					// tempdish = new Dish();
-					//tempChef
-					//System.out.println("----------------------------------------");
+					// tempChef
+					// System.out.println("----------------------------------------");
 					tempChef.setChefName(tempNode.getTextContent());
-					
 					break;
 
 				case "efficiencyRating":
 
-					tempChef.setChefEfficiencyRating(Double.parseDouble(tempNode.getTextContent()));
+					tempChef.setChefEfficiencyRating(Double
+							.parseDouble(tempNode.getTextContent()));
 
 					break;
 
 				case "enduranceRating":
-					
-					//Double.parseDouble(tempNode.getTextContent());
-					tempChef.setEnduranceRating(Double.parseDouble(tempNode.getTextContent()));
+
+					// Double.parseDouble(tempNode.getTextContent());
+					tempChef.setEnduranceRating(Double.parseDouble(tempNode
+							.getTextContent()));
 					break;
 
 				default:
@@ -409,16 +397,13 @@ public class ReadXMLFile {
 		}
 		return tempChef;
 
-
 	}
-	
+
 	private static Vector<RunnableChef> ParseChefs(NodeList nodeList) {
 		Vector<RunnableChef> Chefs = new Vector<RunnableChef>();
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "Chef"))) {
@@ -435,13 +420,7 @@ public class ReadXMLFile {
 
 		}
 		return Chefs;
-		//return null;
-	}
-
-
-	private static Restaurant ParseRepository(NodeList childNodes) {
-		// TODO Auto-generated method stub
-		return null;
+		// return null;
 	}
 
 	private static Address ParseAddress(NodeList nodeList) {
@@ -451,13 +430,14 @@ public class ReadXMLFile {
 			Node tempNode = nodeList.item(count);
 
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-				String temp = tempNode.getNodeName();
 				switch (tempNode.getNodeName()) {
 				case "x":
-					tmpAddress.setXAddress(Integer.parseInt(tempNode.getTextContent()));
+					tmpAddress.setXAddress(Integer.parseInt(tempNode
+							.getTextContent()));
 					break;
 				case "y":
-					tmpAddress.setYAddress(Integer.parseInt(tempNode.getTextContent()));
+					tmpAddress.setYAddress(Integer.parseInt(tempNode
+							.getTextContent()));
 					break;
 
 				}
@@ -476,7 +456,6 @@ public class ReadXMLFile {
 
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-				String temp = tempNode.getNodeName();
 				switch (tempNode.getNodeName()) {
 				case "Menu":
 					Dishes = ParseMenu(tempNode.getChildNodes());
@@ -502,8 +481,6 @@ public class ReadXMLFile {
 		Dish tempdish = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -525,7 +502,6 @@ public class ReadXMLFile {
 					tempdish.setReward(Double.parseDouble(tempNode
 							.getTextContent()));
 					break;
-
 				case "KitchenTools":
 					if (tempNode.hasChildNodes()) {
 						tempdish.setDishKitchenTolls(ParseTools(tempNode
@@ -546,23 +522,6 @@ public class ReadXMLFile {
 
 				}
 
-				// get node name and value
-				// System.out.println("\nNode Name =" + tempNode.getNodeName() +
-				// " [OPEN]");
-				// System.out.println("Node Value =" +
-				// tempNode.getTextContent());
-
-				if (tempNode.hasChildNodes()) {
-
-					// loop again if has child nodes
-					// ParseMenu(tempNode.getChildNodes());
-					// System.out.println("----------------------------------------");
-
-				}
-
-				// System.out.println("Node Name =" + tempNode.getNodeName() +
-				// " [CLOSE]");
-
 			}
 
 		}
@@ -575,8 +534,6 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& (tempNode.getNodeName() == "Ingredient")) {
@@ -602,8 +559,6 @@ public class ReadXMLFile {
 		Ingredient tempIngredient = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -639,8 +594,6 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "KitchenTool"))
@@ -666,8 +619,6 @@ public class ReadXMLFile {
 		KitchenTool tempTool = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			String temp = tempNode.getNodeName();
-
 			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 

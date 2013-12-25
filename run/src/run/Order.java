@@ -9,10 +9,10 @@ public class Order implements OrderInterface {
 	private Vector<OrderOfDish> orderDish;
 	private Address customerAddress;
 	// the status are:
-	private final int incomplete=1;
-	private final int inProgress=2;
-	private final int complete=3;
-	private final int delivered=4;
+	private final int INCOMPLETE=1;
+	private final int INPROGRESS=2;
+	private final int COMPLETE=3;
+	private final int DELIVERED=4;
 	private long actualDeliveryTime;
 	private long actualCookTime;
 	private long expectedDeliveryTime;
@@ -63,10 +63,10 @@ public class Order implements OrderInterface {
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
-	 * @param incomplete=1;
-	 * @param inProgress=2;
-	* @param  complete=3;
-	*@param delivered=4;
+	 * @param INCOMPLETE=1;
+	 * @param INPROGRESS=2;
+	* @param  COMPLETE=3;
+	*@param DELIVERED=4;
 	 */
 	public int getOrderStatus(){
 		return this.orderStatus;
@@ -91,33 +91,33 @@ public class Order implements OrderInterface {
 	
 	/** (non-Javadoc)
 	 *@param the status are:
-	 * @param incomplete=1;
-	 * @param inProgress=2;
-	* @param  complete=3;
-	*@param delivered=4;
+	 * @param INCOMPLETE=1;
+	 * @param INPROGRESS=2;
+	* @param  COMPLETE=3;
+	*@param DELIVERED=4;
 	 */
 	public void setOrderStatus(int status){
 		this.orderStatus=status;
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
-	 * @param incomplete=1;
-	 * @param inProgress=2;
-	* @param  complete=3;
-	*@param delivered=4;
+	 * @param INCOMPLETE=1;
+	 * @param INPROGRESS=2;
+	* @param  COMPLETE=3;
+	*@param DELIVERED=4;
 	 */
 	public void setOrderStatus(String status){
 		if (status=="incomplete"){
-			this.orderStatus=1;
+			this.orderStatus=INCOMPLETE;
 		}
 		else if(status=="inProgress"){
-			this.orderStatus=2;
+			this.orderStatus=INPROGRESS;
 		}
 		else if(status=="complete"){
-			this.orderStatus=3;
+			this.orderStatus=COMPLETE;
 		}
 		else if(status=="delivered"){
-			this.orderStatus=4;
+			this.orderStatus=DELIVERED;
 		}
 			
 	}
