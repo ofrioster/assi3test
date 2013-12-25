@@ -70,7 +70,7 @@ public class RunnableChef implements RunnableChefInterface{
 	}
 	
 	
-	public int getCurrectPressure(){
+	/*public int getCurrectPressure(){
 		this.currectPressure=0;
 		for (int i=0; i<this.orderVector.size();i++){
 			if(this.poolOfThreads.get(i).isAlive()){
@@ -78,10 +78,27 @@ public class RunnableChef implements RunnableChefInterface{
 			}
 		}
 		return this.currectPressure;
+	}*/
+	public int getCurrectPressure(){
+		this.currectPressure=0;
+		for (int i=0; i<this.CallableCookWholeOrder2.size();i++){
+			if(!this.CallableCookWholeOrder2.get(i).isDone()){
+				try {
+					this.setCurrectPressure(this.CallableCookWholeOrder2.get(i).get());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return this.currectPressure;
 	}
 	public void setCurrectPressure(Order order){
 		for (int i=0; i< order.getOrderDish().size();i++){
-			this.chefEfficiencyRating=this.chefEfficiencyRating+order.getOrderDish().get(i).gestDish().getDishDifficultyRating();
+			this.currectPressure=this.currectPressure+order.getOrderDish().get(i).gestDish().getDishDifficultyRating();
 		}
 	}
 	

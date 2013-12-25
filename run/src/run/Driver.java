@@ -55,7 +55,7 @@ public class Driver {
 			e.printStackTrace();
 		}
 		managementTest.ShutDown();
-		
+		System.out.println(" END!!!!");
 	
 	}
 

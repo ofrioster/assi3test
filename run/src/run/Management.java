@@ -67,7 +67,9 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @add order to chef
 	 */
 	public synchronized void startToCookDish(Order orderToCook){
+		//System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
+		System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		chef.addOrder(orderToCook, this.warehouseName);
 	}
 	
@@ -84,8 +86,9 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			try{
 				res=this.collectionOfChefs.get(0);
 				for (int i=0; i<this.collectionOfChefs.size();i++){
-					int k=this.collectionOfChefs.get(i).getCurrectPressure();
-					int w;
+	//				int k=this.collectionOfChefs.get(i).getCurrectPressure();
+	//				int w=k;
+	//				int e=w;
 	//				System.out.println(res.getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
@@ -166,7 +169,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	//		System.out.println(this.collectionOfOrdersToCock.size());
 			if(this.collectionOfOrdersToCock.size()>0){
 			//	synchronized (collectionOfOrdersToCock) {
-			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
+				System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
