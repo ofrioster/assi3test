@@ -12,7 +12,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-
+		long startTime=System.currentTimeMillis(); 	///***delete
 
 	    
 	    try {
@@ -55,6 +55,8 @@ public class Driver {
 			e.printStackTrace();
 		}
 		managementTest.ShutDown();
+		long totalRunTime=System.currentTimeMillis()-startTime;	///***delete
+		System.out.println("total run time: "+totalRunTime);///***delete
 	    logger.log(Level.INFO, statistics.toString());
 		System.out.println(" END!!!!");
 	
