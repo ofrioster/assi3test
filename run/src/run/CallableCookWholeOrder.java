@@ -125,6 +125,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
 		this.collectionOfOrdersToDeliver.add(this.order);
+		System.out.println(" order has done cocking"+ order.getOrderID());
 		return this.order;
 		
 	}
@@ -144,7 +145,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  this.order.setActualCookTime(this.totalTime);
 				  order.setOrderStatus(3);
 		//		  this.statistics.addDeliveredOrder(order);
-				  notifyObservers(this.order); 
+		//		  notifyObservers(this.order); 
 			  }
 			  
 		  }

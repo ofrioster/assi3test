@@ -1,4 +1,5 @@
 package run;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 import java.lang.Math;
@@ -8,14 +9,14 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	private String deliveryPersonName;
 	private Address restaurantAddres; //the type might change we get (x,y)
 	private Double speedOfDeliveryPerson;
-	private Vector<Order> collectionDeliverdOrders;
+	private ArrayList<Order> collectionDeliverdOrders;
 	private Boolean shutDown;
 	private long totalDeliveryTime;
 	CountDownLatch ordersLatch;
 	private Statistics statistics;
 	
 	public RunnableDeliveryPerson(){
-		this.collectionDeliverdOrders=new Vector<Order>();
+		this.collectionDeliverdOrders=new ArrayList<Order>();
 		this.shutDown=false;
 		this.totalDeliveryTime=0;
 	}
@@ -26,7 +27,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.speedOfDeliveryPerson=speedOfDeliveryPerson;
 		this.shutDown=false;
 		this.totalDeliveryTime=0;
-		this.collectionDeliverdOrders=new Vector<Order>();
+		this.collectionDeliverdOrders=new ArrayList<Order>();
 		this.ordersLatch=ordersLatch;
 		this.statistics=statistics;
 	}

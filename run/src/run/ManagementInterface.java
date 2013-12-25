@@ -20,6 +20,8 @@ public interface ManagementInterface {
 	public Boolean getShutDown();
 	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy);
 	public void startThreadsOfDeliveryPerson ();
+	public void startThreadsOfChef();
 	public void SetStatisticsToDeliveryPerson ();
 	public void sendCollectionOfOrdersToDeliverToChef();
+	public void setChefWarehouse();
 }

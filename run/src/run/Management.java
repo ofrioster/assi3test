@@ -65,6 +65,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			t.start();
 		}
 	}
+	public void startThreadsOfChef(){
+		for (int i=0;i<this.collectionOfChefs.size();i++){
+			Thread t=new Thread(this.collectionOfChefs.get(i));
+			t.start();
+		}
+	}
 	//start all the cook and the threads
 //	public void startCooking();
 	/** (non-Javadoc)
@@ -74,7 +80,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		//System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
 	//	System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
-		chef.addOrder(orderToCook, this.warehouseName);
+		chef.addOrder(orderToCook);
 	}
 	
 	/** (non-Javadoc)
@@ -171,6 +177,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 
 		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
+		this.startThreadsOfChef();
+		this.setChefWarehouse();
 		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){
 			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCock.size());
 			
@@ -234,10 +242,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 //		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
+//			System.out.println("here");
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
+				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
-	//			System.out.println("888 ID "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
+	//			System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
 	//			System.out.println("888 orderCount "+ this.orderCount);
 			}
@@ -271,6 +281,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public void sendCollectionOfOrdersToDeliverToChef(){
 		for (int i=0; i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).addCollectionOfOrdersToDeliver(this.collectionOfOrdersToDeliver);
+		}
+	}
+	public void setChefWarehouse(){
+		for (int i=0;i<this.collectionOfChefs.size();i++){
+			this.collectionOfChefs.get(i).setWarehouse(this.warehouseName);
 		}
 	}
 	

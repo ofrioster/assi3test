@@ -4,7 +4,7 @@ import java.util.Vector;
 import java.util.Observer;
 import java.util.concurrent.*;
 
-public class RunnableChef implements RunnableChefInterface{
+public class RunnableChef implements RunnableChefInterface,Runnable{
 	
 	private String chefName;
 	private Double chefEfficiencyRating;
@@ -20,6 +20,8 @@ public class RunnableChef implements RunnableChefInterface{
 //	private ArrayList<Order> CallableCookWholeOrder2;
 	private ExecutorService executorService1; 
 	private ArrayList<Future<Order>> CallableCookWholeOrder2;
+	private ArrayList<Order> chefOrders;
+	private Warehouse warehouse;
 	
 	public RunnableChef(){
 		this.currectPressure=0;
@@ -30,8 +32,9 @@ public class RunnableChef implements RunnableChefInterface{
 		this.statistics=new Statistics();
 		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
 		this.executorService1=Executors.newCachedThreadPool();
+		this.chefOrders=new ArrayList<Order>();
 	}
-	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating){
+	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating,Warehouse warehouse){
 		this.chefName=chefName;
 		this.chefEfficiencyRating=chefEfficiencyRating;
 		this.enduranceRating=enduranceRating;
@@ -43,8 +46,12 @@ public class RunnableChef implements RunnableChefInterface{
 		this.statistics=new Statistics();
 		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
 		this.executorService1=Executors.newCachedThreadPool();
+		this.chefOrders=new ArrayList<Order>();
+		this.warehouse=warehouse;
 	}
-	
+	public void setWarehouse(Warehouse warehouse){
+		this.warehouse=warehouse;
+	}
 	public String getChefName(){
 		return this.chefName;
 	}
@@ -107,8 +114,10 @@ public class RunnableChef implements RunnableChefInterface{
 	/** (non-Javadoc)
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
-	public synchronized Boolean addOrder(Order newOrder, Warehouse warehouse){
-	//	System.out.println(" 3333 ");
+	public synchronized void addOrder(Order newOrder){
+		this.chefOrders.add(newOrder);
+	}
+	/*//	System.out.println(" 3333 ");
 	//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
 	//	System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 		int dishDifficuly=newOrder.getDifficultyRating();
@@ -130,7 +139,30 @@ public class RunnableChef implements RunnableChefInterface{
 			
 		}
 		return false;
+		
 	}
+	*/
+	public synchronized void cookOrder(Order newOrder){
+		//	System.out.println(" 3333 ");
+		//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
+			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
+			int dishDifficuly=newOrder.getDifficultyRating();
+		//	System.out.println("here");
+			if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
+			//	System.out.println("here");
+				newOrder.setOrderStatus(2);
+				this.currectPressure=this.currectPressure+dishDifficuly;
+				this.orderVector.add(newOrder);
+				CallableCookWholeOrder newWholeOrder=new CallableCookWholeOrder(newOrder,this.warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
+				Callable<Order> newWholeOrder2=new CallableCookWholeOrder(newOrder,this.warehouse,this,this.statistics,this.collectionOfOrdersToDeliver,this.management);
+				this.CallableCookWholeOrder.add(newWholeOrder);
+		// to active the run function		Thread t=new Thread(newWholeOrder);
+		//	to active the run function	this.poolOfThreads.add(t);
+		//	to active the run function	t.start();
+				Future<Order> newThread=executorService1.submit(newWholeOrder2);
+				this.CallableCookWholeOrder2.add(newThread);
+			}
+		}
 
 	/** (non-Javadoc)
 	 * @	finish all the cooking and do not start new ones
@@ -152,6 +184,18 @@ public class RunnableChef implements RunnableChefInterface{
 		return res;
 		
 	}
-
-
+	public void run(){
+		while (!this.shutDown){
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (!this.chefOrders.isEmpty()){
+				this.cookOrder(this.chefOrders.get(0));
+			}
+			
+		}
+	}
 }
