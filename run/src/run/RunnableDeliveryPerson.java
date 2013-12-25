@@ -97,12 +97,12 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void run(){
 	//	System.out.println("run");
 		while (!this.shutDown){
-			try {
+		/*	try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			if (!this.collectionDeliverdOrders.isEmpty()){
 				this.deliverOrder(this.collectionDeliverdOrders.get(0));
 			}

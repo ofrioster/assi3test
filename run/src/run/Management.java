@@ -201,11 +201,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	//		System.out.println(this.collectionOfOrdersToCock.size());
 			this.update1();
 		}
+		/*
 		while(!this.receiveAllOrders &&!this.shutDown){
 			this.update1();
 		}
+		*/
+		while(!this.shutDown){
+			this.update1();
+		}
 	//	this.waitUntilAllOrdersDeliverd();
-	//	System.out.println("management END");
+		System.out.println("management END");
 	}
 	
 	
@@ -215,11 +220,13 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public Boolean getReceiveAllOrders(){
 		return this.receiveAllOrders;
 	}
-	public synchronized void ShutDown( ){
+	public void ShutDown( ){
+		System.out.println("management start shoutdown");
 		this.shutDown=true;
 		for (int i=0;i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).shutDown();
 		}
+		System.out.println("shef has shoutdouwn");
 		for (int i=0;i<this.collectionOfDeliveryPerson.size();i++){
 			this.collectionOfDeliveryPerson.get(i).shutDown();
 		}
@@ -232,7 +239,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public void update1() {
 		try {
-			Thread.sleep(15);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -242,12 +249,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 //		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
-//			System.out.println("here");
+			System.out.println("here");
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
-	//			System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
+				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
 	//			System.out.println("888 orderCount "+ this.orderCount);
 			}

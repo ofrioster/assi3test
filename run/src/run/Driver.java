@@ -54,7 +54,9 @@ public class Driver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		managementTest.ShutDown();
+		System.out.println(" SEMI END!!!!");
 		long totalRunTime=System.currentTimeMillis()-startTime;	///***delete
 		System.out.println("total run time: "+totalRunTime);///***delete
 	    logger.log(Level.INFO, statistics.toString());

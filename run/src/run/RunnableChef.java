@@ -143,6 +143,9 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	*/
 	public synchronized void cookOrder(Order newOrder){
+		if(!this.chefOrders.isEmpty()){
+			this.chefOrders.remove(0);
+		}
 		//	System.out.println(" 3333 ");
 		//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
 			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
@@ -186,12 +189,12 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	public void run(){
 		while (!this.shutDown){
-			try {
+		/*	try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			if (!this.chefOrders.isEmpty()){
 				this.cookOrder(this.chefOrders.get(0));
 			}
