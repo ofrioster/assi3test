@@ -222,7 +222,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	}
 	public void ShutDown( ){
 	//	System.out.println("management start shoutdown");
-		this.shutDown=true;
 		for (int i=0;i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).shutDown();
 		}
@@ -234,6 +233,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" reward: "+this.collectionOfOrders.get(i).getTotalReward());
 			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" expected reward: "+this.collectionOfOrders.get(i).calculateReward());
 		}
+		this.shutDown=true;
 	}
 	public Boolean getShutDown(){
 		return this.shutDown;

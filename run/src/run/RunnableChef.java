@@ -173,6 +173,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	public void shutDown(){
 		this.executorService1.shutdown();
 		this.shutDown=true;
+	//	System.out.println("chef: "+ this.chefName+ " shutdown");
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){
 		int dishDifficuly=newOrder.getDifficultyRating();
@@ -189,12 +190,12 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	public void run(){
 		while (!this.shutDown){
-		/*	try {
-				Thread.sleep(100);
+			try {
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 			if (!this.chefOrders.isEmpty()){
 				this.cookOrder(this.chefOrders.get(0));
 			}

@@ -22,6 +22,5 @@ public class mainTest {
 		Thread t3= new Thread(a1);
 		t3.start();
 		
-		
 	}
 }
