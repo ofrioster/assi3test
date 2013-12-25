@@ -77,7 +77,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 //		this.collectionDeliverdOrders.remove(orderToDeliver);
 //		System.out.println("count down count "+this.ordersLatch.getCount());
 		this.ordersLatch.countDown();
-		System.out.println("count down count "+this.ordersLatch.getCount());
+//		System.out.println("count down count "+this.ordersLatch.getCount());
 		
 		
 		

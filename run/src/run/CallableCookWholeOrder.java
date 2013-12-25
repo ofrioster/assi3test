@@ -62,7 +62,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
-		System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
+	//	System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
@@ -79,7 +79,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			}
 		}
 		try {
-			System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
+		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -99,7 +99,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		
 	}
 	public Order call() throws InterruptedException{
-		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
+	//	System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
@@ -112,7 +112,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			}
 		}
 		try {
-			System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
+		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

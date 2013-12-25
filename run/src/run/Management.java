@@ -169,7 +169,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	//		System.out.println(this.collectionOfOrdersToCock.size());
 			if(this.collectionOfOrdersToCock.size()>0){
 			//	synchronized (collectionOfOrdersToCock) {
-				System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
+			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
