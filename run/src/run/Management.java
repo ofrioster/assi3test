@@ -158,7 +158,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-		System.out.println(" warehpuse: "+this.warehouseName.toString());
+	//	System.out.println(" warehpuse: "+this.warehouseName.toString());
 		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
 		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){

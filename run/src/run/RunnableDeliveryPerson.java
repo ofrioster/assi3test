@@ -93,7 +93,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.shutDown=true;
 	}
 	public void run(){
-		System.out.println("run");
+	//	System.out.println("run");
 		while (!this.shutDown){
 			try {
 				Thread.sleep(100);

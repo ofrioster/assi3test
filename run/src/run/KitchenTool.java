@@ -24,7 +24,7 @@ public class KitchenTool implements KitchenTool_Interface {
 	//	System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 			while (!this.kitchenToolSemaphore.tryAcquire()){
 				try {
-					System.out.println("getKitchenTool wait "+"kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
+		//			System.out.println("getKitchenTool wait "+"kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 					this.wait();
 				} catch (InterruptedException e) {
 					System.out.println("getKitchenTool fail");

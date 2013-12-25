@@ -99,7 +99,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		
 	}
 	public Order call() throws InterruptedException{
-		System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
+		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
