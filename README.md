@@ -8,6 +8,7 @@ there might be a priblem with how many ingredients we use- to check
 why do we have an object in synchronized?
 make sure that the chef update his status
 put the chef,deliveryPerson and order in arrayList
+go over toString method
 
 arnon:
  if shutDown call function ShutDown in management
