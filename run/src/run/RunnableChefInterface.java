@@ -20,5 +20,6 @@ public interface RunnableChefInterface {
 	public void run();
 	public void setWarehouse(Warehouse warehouse);
 	public  void cookOrder(Order newOrder);
+	public int updateCurrectPressure();
 
 }

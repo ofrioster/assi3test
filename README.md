@@ -16,6 +16,7 @@ there might be a priblem with how many ingredients we use
 some of the vector can be change to array list
 how to decide how many threads in chefs? and to change it to blocking qeue-threadsPool. example: http://tutorials.jenkov.com/java-concurrency/thread-pools.html
 why do we have an object in synchronized?
+put the chef,deliveryPerson and order in arrayList
 
 arnon:
  if shutDown call function ShutDown in management

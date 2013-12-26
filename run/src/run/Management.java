@@ -2,6 +2,7 @@ package run;
 import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
@@ -12,9 +13,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 
 	private Vector<Order> collectionOfOrders;
 	private Vector<RunnableChef> collectionOfChefs;
+	private ArrayList<RunnableChef> collectionOfChefsArryList;
 	private Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson;
 	private Vector<Order> collectionOfOrdersToDeliver;
 	private Vector<Order> collectionOfOrdersToCock;
+	private ArrayList<Order> collectionOfOrdersToCockArrayList;
 	private Warehouse warehouseName;
 	private Statistics statistics;
 	private long numberOfOrderThatProcess;
@@ -39,11 +42,20 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.statistics=statistics;
 		this.orderCount=0;
 		this.collectionOfOrdersToDeliver=new Vector<Order>();
+	/**/	this.collectionOfChefsArryList=new ArrayList<RunnableChef>();
+			for (int i=0; i<this.collectionOfChefs.size();i++){
+				this.collectionOfChefsArryList.add(this.collectionOfChefs.get(i));
+			}
+			this.collectionOfOrdersToCockArrayList=new ArrayList<Order>();
+	/**/	for (int i=0; i<this.collectionOfOrdersToCock.size();i++){
+				this.collectionOfOrdersToCockArrayList.add(this.collectionOfOrdersToCock.get(i));
+			}
 	}
 	
 	public void addOrder(Order newOrder){
 		this.collectionOfOrders.add(newOrder);
 		this.collectionOfOrdersToCock.add(newOrder);
+		this.collectionOfOrdersToCockArrayList.add(newOrder);
 	}
 	
 	public void addNewChef(RunnableChef newChef){
@@ -94,16 +106,16 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		RunnableChef res;
 		while (!found){
 			try{
-				res=this.collectionOfChefs.get(0);
-				for (int i=0; i<this.collectionOfChefs.size();i++){
-	//				int k=this.collectionOfChefs.get(i).getCurrectPressure();
-	//				int w=k;
-	//				int e=w;
-	//				System.out.println(res.getCurrectPressure());
+				res=this.collectionOfChefsArryList.get(0);
+				for (int i=0; i<this.collectionOfChefsArryList.size();i++){
+					int k=this.collectionOfChefsArryList.get(i).getCurrectPressure();
+					int w=k;
+					int e=w;
+					System.out.println("chef name: "+this.collectionOfChefsArryList.get(i)+" currect presher: "+res.getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
-					if (res.getCurrectPressure()<this.collectionOfChefs.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
-						res=this.collectionOfChefs.get(i);
+					if (res.getCurrectPressure()<this.collectionOfChefsArryList.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
+						res=this.collectionOfChefsArryList.get(i);
 					}
 				}
 				if (res.canTheChefTakeOrder(newOrder)){
@@ -171,7 +183,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-	//	System.out.println(" warehpuse: "+this.warehouseName.toString());
+		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
 	    logger.log(Level.INFO, "INFO: Initializing simulation process...");
 	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
 
@@ -179,20 +191,21 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.startThreadsOfDeliveryPerson();
 		this.startThreadsOfChef();
 		this.setChefWarehouse();
-		while (!this.shutDown && (this.collectionOfOrdersToCock.size()>0 )){
-			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCock.size());
+		while (!this.shutDown && (this.collectionOfOrdersToCockArrayList.size()>0 )){
+			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCockArrayList.size());
 			
 	//		System.out.println(this.collectionOfOrders.size());
 	//		System.out.println(this.collectionOfOrdersToCock.size());
 			
-			if(this.collectionOfOrdersToCock.size()>0){
+			if(this.collectionOfOrdersToCockArrayList.size()>0){
+				int k=this.collectionOfOrdersToCockArrayList.size();
 			//	synchronized (collectionOfOrdersToCock) {
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
-					this.startToCookDish(this.collectionOfOrdersToCock.get(0));
-					this.collectionOfOrdersToCock.remove(0);
+					this.startToCookDish(this.collectionOfOrdersToCockArrayList.get(0));
+					this.collectionOfOrdersToCockArrayList.remove(0);
 			//		orderCount++;
 			//		System.out.println("managemant after - "+this.collectionOfOrdersToCock.size());
 				//}

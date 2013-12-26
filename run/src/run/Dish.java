@@ -38,6 +38,7 @@ public class Dish implements DishInterface{
 	}
 	
 	public int getDishDifficultyRating(){
+		System.out.println("Dish difficultyRating: "+this.difficultyRating);
 		return this.difficultyRating;
 	}
 	

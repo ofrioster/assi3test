@@ -86,7 +86,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		}
 		return this.currectPressure;
 	}*/
-	public int getCurrectPressure(){
+	public int updateCurrectPressure(){
 		this.currectPressure=0;
 		for (int i=0; i<this.CallableCookWholeOrder2.size();i++){
 			if(!this.CallableCookWholeOrder2.get(i).isDone()){
@@ -107,6 +107,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		for (int i=0; i< order.getOrderDish().size();i++){
 			this.currectPressure=this.currectPressure+order.getOrderDish().get(i).gestDish().getDishDifficultyRating();
 		}
+		System.out.println(" !!chef: "+this.chefName+" pressure update: "+this.currectPressure);
 	}
 	
 	
@@ -115,6 +116,8 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized void addOrder(Order newOrder){
+		System.out.println(" chef: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
+		this.setCurrectPressure(newOrder);
 		this.chefOrders.add(newOrder);
 	}
 	/*//	System.out.println(" 3333 ");
@@ -142,12 +145,12 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		
 	}
 	*/
-	public synchronized void cookOrder(Order newOrder){
+	public void cookOrder(Order newOrder){
 		if(!this.chefOrders.isEmpty()){
 			this.chefOrders.remove(0);
 		}
 		//	System.out.println(" 3333 ");
-		//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
+			System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
 			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 			int dishDifficuly=newOrder.getDifficultyRating();
 		//	System.out.println("here");
@@ -190,6 +193,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	public void run(){
 		while (!this.shutDown){
+			this.updateCurrectPressure();
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
@@ -201,5 +205,8 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 			}
 			
 		}
+	}
+	public int getCurrectPressure() {
+		return this.currectPressure;
 	}
 }
