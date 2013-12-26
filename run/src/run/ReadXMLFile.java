@@ -489,7 +489,7 @@ public class ReadXMLFile {
 					tempdish = new Dish();
 					tempdish.setDishName(tempNode.getTextContent());
 					break;
-				case "dificulityRating":
+				case "difficultyRating":
 					// int t = Integer.parseInt(tempNode.getTextContent());
 					tempdish.setDishDifficultyRating(Integer.parseInt(tempNode
 							.getTextContent()));
