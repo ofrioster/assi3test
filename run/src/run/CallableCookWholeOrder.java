@@ -112,6 +112,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.threadsVector.add(t);
 			}
 		}
+//		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID()+" mid time: "+(System.currentTimeMillis()-startTime));
 		try {
 		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();

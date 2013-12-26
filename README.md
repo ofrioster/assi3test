@@ -2,20 +2,11 @@ assi3test
 =========
 
 we have many empty constructors that can be delete- to check again
-the ingredients vector in Dish can be change to arrylist
-to check how we receive the address
-to check the cook & delivery time
-how to deliver an order to deliveryPerson after it finish? can a thread say that he finish?
-how is Statistics connect to the program?
-maybe it is faster to send orders to management one by one so that the chef could start work on it
-
-
-observer, observable - to implements from.... a well as runnable
+observer, observable - to implements from.... a well as runnable- to delete
 i remove synchronized in acquireIngredients- might be a problem
-there might be a priblem with how many ingredients we use
-some of the vector can be change to array list
-how to decide how many threads in chefs? and to change it to blocking qeue-threadsPool. example: http://tutorials.jenkov.com/java-concurrency/thread-pools.html
+there might be a priblem with how many ingredients we use- to check
 why do we have an object in synchronized?
+make sure that the chef update his status
 put the chef,deliveryPerson and order in arrayList
 
 arnon:
