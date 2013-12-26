@@ -51,6 +51,9 @@ public class Statistics implements StatisticsInterface {
 			System.out.println("Problem with order");
 		}
 	}
+	/** (non-Javadoc)
+	 * @param order to add her ingredients
+	 */
 	public synchronized void upDateMoneyGain(Order order){
 //		System.out.println("order.getTotalReward() "+order.getTotalReward());
 //		System.out.println("this.moneyGain "+this.moneyGain);
@@ -61,7 +64,7 @@ public class Statistics implements StatisticsInterface {
 		int k=0;
 		
 	}
-	/** (non-Javadoc)
+	/** 
 	 * @param order to add her inredients
 	 */
 	public void addinConsumedIgredients(Order order){
@@ -90,11 +93,6 @@ public class Statistics implements StatisticsInterface {
 	}
 	public Vector<Ingredient> getIngredientsConsumed(){
 		return this.ingredientsConsumed;
-	}
-	public String toString(){
-		String res=" moneyGain- "+this.moneyGain+" deliveredOrders- "+this.deliveredOrders.toString()+" ingredientsConsumed- "+this.ingredientsConsumed.toString();
-		return res;
-		
 	}
 
 }

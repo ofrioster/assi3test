@@ -29,7 +29,10 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 
 	
 	
-	//acquire all the kitchen tools
+	
+	/** (non-Javadoc)
+	 * @ acquire all the kitchen tools
+	 */
 	public Boolean acquireAllKitchenTools(){
 	//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" acquireAllKitchenTools");
 		Boolean res=true;
@@ -49,7 +52,11 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	}
 	
 	
-	//acquire one kitchen tool
+	
+	/** (non-Javadoc)
+	 * @ acquire one kitchen tool
+	 * @param KitchenTool to acquire  
+	 */
 	public  Boolean acquireKitchenTool(KitchenTool kitchenToolToacquire){
 		Boolean res=false;
 			if (this.warehouseName.getKitchenTolls(kitchenToolToacquire)){
@@ -104,7 +111,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 		}
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @ the start of a thread to cook the dish
 	 */
 	public void run(){

@@ -188,7 +188,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 //		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
 	    logger.log(Level.INFO, "INFO: Initializing simulation process...");
 	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
-
+	    this.collectionOfChefsArryList=this.sortRunnableChefArray(this.collectionOfChefsArryList);
+	    this.collectionOfOrdersToCockArrayList=this.sortOrderArray(this.collectionOfOrdersToCockArrayList);
 		this.sendCollectionOfOrdersToDeliverToChef();
 		this.startThreadsOfDeliveryPerson();
 		this.startThreadsOfChef();
@@ -314,6 +315,34 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			this.collectionOfChefs.get(i).setWarehouse(this.warehouseName);
 		}
 	}
-	
+	public ArrayList<Order> sortOrderArray(ArrayList<Order> arryToSort){
+		ArrayList<Order> res=new ArrayList<Order>();
+		while (!arryToSort.isEmpty()){
+			int k=0;
+			for (int i=0; i<arryToSort.size();i++){
+				if (arryToSort.get(k).getDifficultyRating()>arryToSort.get(i).getDifficultyRating()){
+					k=i;
+				}
+			}
+			res.add(arryToSort.get(k));
+			arryToSort.remove(k);
+		}
+		return res;
+		
+	}
+	public ArrayList<RunnableChef> sortRunnableChefArray(ArrayList<RunnableChef> arryToSort){
+		ArrayList<RunnableChef> res=new ArrayList<RunnableChef>();
+		while (!arryToSort.isEmpty()){
+			int k=0;
+			for (int i=0;i<arryToSort.size();i++){
+				if( arryToSort.get(k).getChefEfficiencyRating()>arryToSort.get(i).getChefEfficiencyRating()){
+					k=i;
+				}
+			}
+			res.add(arryToSort.get(k));
+			arryToSort.remove(k);
+		}
+		return res;
+	}
 
 }

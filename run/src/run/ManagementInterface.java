@@ -1,4 +1,5 @@
 package run;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public interface ManagementInterface {
@@ -24,4 +25,6 @@ public interface ManagementInterface {
 	public void SetStatisticsToDeliveryPerson ();
 	public void sendCollectionOfOrdersToDeliverToChef();
 	public void setChefWarehouse();
+	public ArrayList<Order> sortOrderArray(ArrayList<Order> arryToSort);
+	public ArrayList<RunnableChef> sortRunnableChefArray(ArrayList<RunnableChef> arryToSort);
 }
