@@ -23,7 +23,7 @@ public class Dish implements DishInterface{
 		this.dishKitchenTolls=dishKitchenTolls;
 		this.difficultyRating=difficultyRating;
 		this.reward=reward;
-		System.out.println("Dish difficultyRating: "+this.difficultyRating);
+	//	System.out.println("Dish difficultyRating: "+this.difficultyRating);
 	}
 	
 	public String getDishName(){
@@ -39,7 +39,7 @@ public class Dish implements DishInterface{
 	}
 	
 	public int getDishDifficultyRating(){
-		System.out.println("Dish difficultyRating: "+this.difficultyRating);
+	//	System.out.println("Dish difficultyRating: "+this.difficultyRating);
 		return this.difficultyRating;
 	}
 	
@@ -49,7 +49,7 @@ public class Dish implements DishInterface{
 	
 	public void setDishDifficultyRating(int difficultyRating){
 		this.difficultyRating=difficultyRating;
-		System.out.println("Dish difficultyRating: "+this.difficultyRating);
+	//	System.out.println("Dish difficultyRating: "+this.difficultyRating);
 	}
 	
 	

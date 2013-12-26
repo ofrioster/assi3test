@@ -126,7 +126,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.totalTime);
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
-		System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.order.getActualCookTime());
+	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.order.getActualCookTime());
 		this.collectionOfOrdersToDeliver.add(this.order);
 		System.out.println(" order has done cocking"+ order.getOrderID());
 		return this.order;

@@ -28,7 +28,7 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
-		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
+//		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	public Order(String orderID, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
@@ -38,7 +38,7 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
-		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
+	//	System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	
 	public Order(String orderID, int orderStatus,Address customerAddress){

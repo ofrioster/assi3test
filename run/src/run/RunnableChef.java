@@ -107,7 +107,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		for (int i=0; i< order.getOrderDish().size();i++){
 			this.currectPressure=this.currectPressure+order.getOrderDish().get(i).gestDish().getDishDifficultyRating();
 		}
-		System.out.println(" !!chef: "+this.chefName+" pressure update: "+this.currectPressure);
+//		System.out.println(" !!chef: "+this.chefName+" pressure update: "+this.currectPressure);
 	}
 	
 	
@@ -116,7 +116,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized void addOrder(Order newOrder){
-		System.out.println(" chef: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
+		System.out.println(" chef::::: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
 		this.setCurrectPressure(newOrder);
 		this.chefOrders.add(newOrder);
 	}
@@ -150,12 +150,13 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 			this.chefOrders.remove(0);
 		}
 		//	System.out.println(" 3333 ");
-			System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
-			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
+		//	System.out.println(" chef start addOrder dish name------- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
+//			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 			int dishDifficuly=newOrder.getDifficultyRating();
-		//	System.out.println("here");
-			if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
+			System.out.println(" chef  addOrder dish name: "+ newOrder.getOrderID()+" chef name: "+this.chefName+" dishDifficuly: "+dishDifficuly+" enduranceRating: "+enduranceRating+" currectPressure: "+currectPressure);
+	//		if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
 			//	System.out.println("here");
+				System.out.println(" chef  addOrder dish name------- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
 				newOrder.setOrderStatus(2);
 				this.currectPressure=this.currectPressure+dishDifficuly;
 				this.orderVector.add(newOrder);
@@ -168,7 +169,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 				Future<Order> newThread=executorService1.submit(newWholeOrder2);
 				this.CallableCookWholeOrder2.add(newThread);
 			}
-		}
+	//	}
 
 	/** (non-Javadoc)
 	 * @	finish all the cooking and do not start new ones

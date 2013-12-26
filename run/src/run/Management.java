@@ -109,13 +109,15 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				res=this.collectionOfChefsArryList.get(0);
 				for (int i=0; i<this.collectionOfChefsArryList.size();i++){
 					int k=this.collectionOfChefsArryList.get(i).getCurrectPressure();
-					int w=k;
-					int e=w;
-					System.out.println("chef name: "+this.collectionOfChefsArryList.get(i)+" currect presher: "+res.getCurrectPressure());
+	//				int w=k;
+	//				int e=w;
+	//				System.out.println("chef name: "+this.collectionOfChefsArryList.get(i)+" currect presher: "+res.getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
-					if (res.getCurrectPressure()<this.collectionOfChefsArryList.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
+					Boolean testing=this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder);
+					if (res.getCurrectPressure()>this.collectionOfChefsArryList.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
 						res=this.collectionOfChefsArryList.get(i);
+	//					System.out.println(this.collectionOfChefsArryList.get(i).getChefName());
 					}
 				}
 				if (res.canTheChefTakeOrder(newOrder)){
@@ -166,7 +168,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @ if the Order have been finish, send it to the delivery person
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println(" update work!!!!");
+//		System.out.println(" update work!!!!");
 		try{
 			Order order=(Order)arg;
 			if(order.getOrderStatus()==3){
@@ -183,7 +185,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
+//		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
 	    logger.log(Level.INFO, "INFO: Initializing simulation process...");
 	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
 
@@ -266,12 +268,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 //		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
-			System.out.println("here");
+//			System.out.println("here");
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
-				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
+//				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
-				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
+//				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
 	//			System.out.println("888 orderCount "+ this.orderCount);
 			}
