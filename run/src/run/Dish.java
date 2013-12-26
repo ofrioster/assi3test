@@ -23,6 +23,7 @@ public class Dish implements DishInterface{
 		this.dishKitchenTolls=dishKitchenTolls;
 		this.difficultyRating=difficultyRating;
 		this.reward=reward;
+		System.out.println("Dish difficultyRating: "+this.difficultyRating);
 	}
 	
 	public String getDishName(){
@@ -48,6 +49,7 @@ public class Dish implements DishInterface{
 	
 	public void setDishDifficultyRating(int difficultyRating){
 		this.difficultyRating=difficultyRating;
+		System.out.println("Dish difficultyRating: "+this.difficultyRating);
 	}
 	
 	
