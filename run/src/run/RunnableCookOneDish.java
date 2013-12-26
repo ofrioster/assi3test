@@ -117,10 +117,10 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 //		if (this.dishName.getQuantityLeft()>0){
 			this.dishName.setOrderStatus(2);
 			acquireAllIngredients();
-			System.out.println("getdishExpectedCookTime: "+this.dishName.gestDish().getdishExpectedCookTime()+" mid time: "+(System.currentTimeMillis()-tempStartTime));
+			System.out.println("dish name: "+this.dishName.gestDish().getDishName()+" getdishExpectedCookTime: "+this.dishName.gestDish().getdishExpectedCookTime()+" mid time: "+(System.currentTimeMillis()-tempStartTime));
 			long tempMidTime=System.currentTimeMillis();
 			acquireAllKitchenTools();
-			System.out.println("getdishExpectedCookTime: "+this.dishName.gestDish().getdishExpectedCookTime()+" acquireAllKitchenTools mid time: "+(System.currentTimeMillis()-tempMidTime));
+			System.out.println("dish name: "+this.dishName.gestDish().getDishName()+" getdishExpectedCookTime: "+this.dishName.gestDish().getdishExpectedCookTime()+" acquireAllKitchenTools mid time: "+(System.currentTimeMillis()-tempMidTime));
 			this.cookDish();
 			returnAllKitchenTools();
 		//	System.out.println("dish name "+this.dishName.gestDish().getDishName()+" returnAllKitchenTools");

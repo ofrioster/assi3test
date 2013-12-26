@@ -22,6 +22,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	private ArrayList<Future<Order>> CallableCookWholeOrder2;
 	private ArrayList<Order> chefOrders;
 	private Warehouse warehouse;
+	private int numberOfOrders;
 	
 	public RunnableChef(){
 		this.currectPressure=0;
@@ -33,6 +34,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
 		this.executorService1=Executors.newCachedThreadPool();
 		this.chefOrders=new ArrayList<Order>();
+		this.numberOfOrders=0;
 	}
 	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating,Warehouse warehouse){
 		this.chefName=chefName;
@@ -48,6 +50,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.executorService1=Executors.newCachedThreadPool();
 		this.chefOrders=new ArrayList<Order>();
 		this.warehouse=warehouse;
+		this.numberOfOrders=0;
 	}
 	public void setWarehouse(Warehouse warehouse){
 		this.warehouse=warehouse;
