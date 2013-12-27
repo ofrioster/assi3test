@@ -1,20 +1,28 @@
-דצמ 27, 2013 8:42:50 AM run.Driver main
+דצמ 27, 2013 9:46:42 AM run.Driver main
 INFO: message 1
-דצמ 27, 2013 8:42:50 AM run.Driver main
+דצמ 27, 2013 9:46:42 AM run.Driver main
 SEVERE: message 2
-דצמ 27, 2013 8:42:50 AM run.Driver main
+דצמ 27, 2013 9:46:42 AM run.Driver main
 FINE: message 3
-דצמ 27, 2013 8:42:50 AM run.ReadXMLFile ParseMenuFile
+דצמ 27, 2013 9:46:42 AM run.ReadXMLFile ParseMenuFile
 CONFIG: Finished Parsing The Menu
-דצמ 27, 2013 8:42:50 AM run.ReadXMLFile ParseOrderListFile
+דצמ 27, 2013 9:46:42 AM run.ReadXMLFile ParseOrderListFile
 CONFIG: Finished Parsing The Order List
-דצמ 27, 2013 8:42:50 AM run.ReadXMLFile ParseRestauranFilet
+דצמ 27, 2013 9:46:42 AM run.ReadXMLFile ParseRestauranFilet
 SEVERE: Finished Parsing The Restaurant Config
-דצמ 27, 2013 8:42:50 AM run.Management run
+דצמ 27, 2013 9:46:42 AM run.Management run
 INFO: INFO: Initializing simulation process...
-דצמ 27, 2013 8:42:50 AM run.Management run
+דצמ 27, 2013 9:46:42 AM run.Management run
 INFO: System contains: [chefs=4][deliveryPeople=5][orders=5]
-דצמ 27, 2013 8:42:50 AM run.Management run
+דצמ 27, 2013 9:46:42 AM run.Management run
 INFO: Orders To Cook:5
-דצמ 27, 2013 8:42:50 AM run.Management run
+דצמ 27, 2013 9:46:42 AM run.Management run
 INFO: Orders To Cook:4
+דצמ 27, 2013 9:46:42 AM run.Management run
+INFO: Orders To Cook:3
+דצמ 27, 2013 9:46:42 AM run.Management run
+INFO: Orders To Cook:2
+דצמ 27, 2013 9:46:57 AM run.Management run
+INFO: Orders To Cook:1
+דצמ 27, 2013 9:47:42 AM run.Driver main
+INFO: run.Statistics@57fa9986

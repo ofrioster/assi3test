@@ -109,15 +109,15 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				res=this.collectionOfChefsArryList.get(0);
 				for (int i=0; i<this.collectionOfChefsArryList.size();i++){
 					int k=this.collectionOfChefsArryList.get(i).getCurrectPressure();
-	//				int w=k;
-	//				int e=w;
+					int w=k;
+					int e=w;
 	//				System.out.println("chef name: "+this.collectionOfChefsArryList.get(i)+" currect presher: "+res.getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
 	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
 					Boolean testing=this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder);
 					if (res.getCurrectPressure()>this.collectionOfChefsArryList.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
 						res=this.collectionOfChefsArryList.get(i);
-	//					System.out.println(this.collectionOfChefsArryList.get(i).getChefName());
+//						System.out.println(this.collectionOfChefsArryList.get(i).getChefName());
 					}
 				}
 				if (res.canTheChefTakeOrder(newOrder)){

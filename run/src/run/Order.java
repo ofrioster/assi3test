@@ -64,6 +64,7 @@ public class Order implements OrderInterface {
 		if(this.expectedcookTime<orderDish.gestDish().getdishExpectedCookTime()){
 			this.expectedcookTime=orderDish.gestDish().getdishExpectedCookTime();
 		}
+		this.difficultyRating=0;
 		this.setDifficultyRating();
 	//	this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
 	}
@@ -208,7 +209,7 @@ public class Order implements OrderInterface {
 	public void setDifficultyRating(){
 		for (int i=0;i<this.orderDish.size();i++){
 		//	System.out.println( "dish difficulty: "+this.orderDish.get(i).gestDish().getDishDifficultyRating());
-			this.difficultyRating=this.difficultyRating+ (this.orderDish.get(i).gestDish().getDishDifficultyRating()*this.orderDish.get(i).getquantity());
+			this.difficultyRating=this.difficultyRating+ this.orderDish.get(i).gestDish().getDishDifficultyRating();
 		}
 	//	System.out.println(" order difficulty: "+this.difficultyRating);
 	}
