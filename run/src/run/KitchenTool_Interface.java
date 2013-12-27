@@ -10,6 +10,7 @@ public interface KitchenTool_Interface {
 	public int getNumberOfKitchenTool();
 	public String toString();
 	public void returnUnuseKitchenTool();
+	public boolean getKitchenToolUnsynchronized();
 
 
 }

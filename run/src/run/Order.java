@@ -64,6 +64,7 @@ public class Order implements OrderInterface {
 		if(this.expectedcookTime<orderDish.gestDish().getdishExpectedCookTime()){
 			this.expectedcookTime=orderDish.gestDish().getdishExpectedCookTime();
 		}
+		this.setDifficultyRating();
 	//	this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
 	}
 	/** (non-Javadoc)
@@ -88,6 +89,7 @@ public class Order implements OrderInterface {
 	}
 	public void changeOrderDifficultyRating(int difficultyRating){
 		this.difficultyRating=difficultyRating;
+		System.out.println(" order  change difficulty: "+this.difficultyRating);
 	}
 	
 	public Vector<OrderOfDish> getOrderDish(){
@@ -205,8 +207,10 @@ public class Order implements OrderInterface {
 	}
 	public void setDifficultyRating(){
 		for (int i=0;i<this.orderDish.size();i++){
+		//	System.out.println( "dish difficulty: "+this.orderDish.get(i).gestDish().getDishDifficultyRating());
 			this.difficultyRating=this.difficultyRating+ (this.orderDish.get(i).gestDish().getDishDifficultyRating()*this.orderDish.get(i).getquantity());
 		}
+	//	System.out.println(" order difficulty: "+this.difficultyRating);
 	}
 	public void setAddress(Address tmpAddress) {
 		this.customerAddress=tmpAddress;

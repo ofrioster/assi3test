@@ -327,6 +327,9 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			res.add(arryToSort.get(k));
 			arryToSort.remove(k);
 		}
+		for(int i=0;i<res.size();i++){
+			System.out.println("sort order ID: "+res.get(i).getOrderID()+" dish diffculty: "+res.get(i).getDifficultyRating());
+		}
 		return res;
 		
 	}

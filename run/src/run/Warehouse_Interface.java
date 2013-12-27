@@ -19,6 +19,7 @@ public interface Warehouse_Interface {
 	public String toString();
 	public boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools);
 	public void returnUnuseKitchenTolls(KitchenTool KitchenTollsname);
+	public boolean  getKitchenTollsUnsynchronized(KitchenTool KitchenToolsname);
 	
 
 }

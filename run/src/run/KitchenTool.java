@@ -12,13 +12,14 @@ public class KitchenTool implements KitchenTool_Interface {
 		this.kitchenToolSemaphore=new Semaphore(amount);
 	}
 	
-
-	
-	
 	public String getKitchenToolName(){
 		return this.kitchenToolName; 
 	}
 	
+	/** (non-Javadoc)
+	 * @ sub 1 kitchen tool from the warehouse
+	 * @ if the kitchen tool is not in the warehouse the thread wait
+	 */
 	public synchronized boolean getKitchenTool(){
 		Boolean res=false;
 	//	System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
@@ -33,6 +34,18 @@ public class KitchenTool implements KitchenTool_Interface {
 				}
 			}
 			res=true;
+//		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
+		return res;
+	}
+	/**
+	 * @return Boolean of if all the tools can acquire
+	 */
+	public synchronized boolean getKitchenToolUnsynchronized(){
+		Boolean res=false;
+	//	System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
+			if(this.kitchenToolSemaphore.tryAcquire()){
+				res=true;
+			}
 //		System.out.println("kitchenToolName: "+this.kitchenToolName+" availablePermits: "+this.kitchenToolSemaphore.availablePermits());
 		return res;
 	}

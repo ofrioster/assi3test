@@ -71,7 +71,7 @@ public class Warehouse implements Warehouse_Interface{
 		
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @return true/false if you can have the kitchen tool
 	 */
 	public boolean  getKitchenTolls(KitchenTool KitchenToolsname){
@@ -85,15 +85,26 @@ public class Warehouse implements Warehouse_Interface{
 		
 		return res;
 	}
+	public boolean  getKitchenTollsUnsynchronized(KitchenTool KitchenToolsname){
+		boolean res=true;
+		for (int i=0;i<this.kitchenCollectionTolls.size();i++){
+		//	if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
+			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenToolsname.getKitchenToolName())){	
+				return this.kitchenCollectionTolls.get(i).getKitchenToolUnsynchronized();
+			}
+		}
+		
+		return res;
+	}
 	
 	public void returnKitchenTolls(KitchenTool KitchenTollsname){
 		Boolean found=false;
 		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
 			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenTollsname.getKitchenToolName())){
-//				System.out.println("returnKitchenTolls-warahous");
+//				System.out.println("returnKitchenTolls-warehouse");
 				this.kitchenCollectionTolls.get(i).returnKitchenTool();
 				found=true;
-				//notifyAll();
+				//this.notifyAll();
 			}
 		}
 		
@@ -106,9 +117,17 @@ public class Warehouse implements Warehouse_Interface{
 		Boolean res=true;
 		for (int i=0; i<KitchenTools.size() &&res;i++){
 			if(!this.getKitchenTolls(KitchenTools.get(i))){
-	//			for (int k=0;k<i;k++){
-	//				this.returnUnuseKitchenTolls(KitchenTools.get(k));
-	//			}
+	/*		if(!this.getKitchenTollsUnsynchronized(KitchenTools.get(i))){
+				for (int k=0;k<i;k++){
+					this.returnUnuseKitchenTolls(KitchenTools.get(k));
+				}
+				res=false;
+				try {
+					this.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
 				res=false;
 			}
 		}
