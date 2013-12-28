@@ -184,6 +184,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	public void shutDown(){
 		this.executorService1.shutdown();
 		this.shutDown=true;
+		logger.log(Level.INFO, "Chef has been shut down.");
 	//	System.out.println("chef: "+ this.chefName+ " shutdown");
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){

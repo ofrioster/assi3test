@@ -219,10 +219,10 @@ public class Order implements OrderInterface {
 	public void setOrderOfDish(Vector<OrderOfDish> tmpOrderOfDish) {
 		this.orderDish=tmpOrderOfDish;
 	}
-	public String toString(){
-		String res=" orderID- "+this.orderID+" difficultyRating- "+this.difficultyRating+" orderStatus- "+this.orderStatus+" orderDish- "+this.orderDish+" customerAddress- "+this.customerAddress+" actualDeliveryTime- "+this.actualDeliveryTime+" actualCookTime- "+this.actualCookTime+" expectedDeliveryTime- "+this.expectedDeliveryTime+" expectedcookTime- "+this.expectedcookTime+" totalReward- "+this.totalReward;
-		return res;
-	}
+//	public String toString(){
+//		String res=" orderID- "+this.orderID+" difficultyRating- "+this.difficultyRating+" orderStatus- "+this.orderStatus+" orderDish- "+this.orderDish+" customerAddress- "+this.customerAddress+" actualDeliveryTime- "+this.actualDeliveryTime+" actualCookTime- "+this.actualCookTime+" expectedDeliveryTime- "+this.expectedDeliveryTime+" expectedcookTime- "+this.expectedcookTime+" totalReward- "+this.totalReward;
+//		return res;
+//	}
 	
 	public int numberOfMeals(){
 		int retnumberOfMeals = 0;
@@ -238,8 +238,38 @@ public class Order implements OrderInterface {
 	
 	
 	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Order [ID=");
+		builder.append(orderID);
+		builder.append("][Status=");
+		builder.append(orderStatus);
+		builder.append("][difficultyRating=");
+		builder.append(difficultyRating);
+		builder.append("][");
+		builder.append(customerAddress);
+		builder.append("][expectedcookTime=");
+		builder.append(expectedcookTime);
+		builder.append(", actualCookTime=");
+		builder.append(actualCookTime);
+		builder.append(", expectedDeliveryTime=");
+		builder.append(expectedDeliveryTime);
+		builder.append(", actualDeliveryTime=");
+		builder.append(actualDeliveryTime);
+		builder.append(", totalReward=");
+		builder.append(totalReward);
+		builder.append(", orderDish=");
+		builder.append(orderDish);
+		builder.append("]");
+		return builder.toString();
+	}
 	public String toStringForLogger(){	
 		String res="["+ this.orderID + "][numberOfMeals=" + this.numberOfMeals()+"]";
+		return res;
+	}
+	public String toStringTimes() {
+		String res="["+ this.orderID + "][expectedTimeToDeliver=" + this.expectedDeliveryTime + "][realTimeSpentToDeliver=" + this.actualDeliveryTime +"]";
 		return res;
 	}
 }

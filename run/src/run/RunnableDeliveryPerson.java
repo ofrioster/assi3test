@@ -3,9 +3,13 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 import java.lang.Math;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, Runnable{
-	
+	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 	private String deliveryPersonName;
 	private Address restaurantAddres; //the type might change we get (x,y)
 	private Double speedOfDeliveryPerson;
@@ -81,9 +85,9 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 //		System.out.println("count down count "+this.ordersLatch.getCount());
 //		removeFinishOrder(orderToDeliver);
 		this.ordersLatch.countDown();
-		System.out.println("Order ID: "+orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
+		//System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
 		
-		
+		logger.log(Level.INFO, "Order DELIVERED:" + orderToDeliver.toStringTimes());
 		
 	}
 
@@ -95,6 +99,8 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public void shutDown(){
 		this.shutDown=true;
+		logger.log(Level.INFO, "DeliveryPerson has been shut down.");
+		
 //		System.out.println("deliveryPersonName: "+ this.deliveryPersonName+ " shutdown");
 	}
 	public void run(){

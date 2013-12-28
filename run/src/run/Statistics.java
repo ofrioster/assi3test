@@ -8,10 +8,15 @@ public class Statistics implements StatisticsInterface {
 	private Vector<Order> deliveredOrders;
 	private Vector<Ingredient> ingredientsConsumed;
 	
+	private Vector<Double> expectedRewards;
+	private Vector<Double> receivedRewards;
 	public Statistics(){
 		this.moneyGain=0.0;
 		this.deliveredOrders=new Vector<Order>();
 		this.ingredientsConsumed=new Vector<Ingredient>();
+		 this.expectedRewards = new  Vector<Double>();
+		 this.receivedRewards = new Vector<Double>();
+		 
 	}
 	/**
 	 * @param newOrder that has been finish
@@ -23,6 +28,11 @@ public class Statistics implements StatisticsInterface {
 		if(newOrder.getOrderStatus()==4){
 			this.deliveredOrders.add(newOrder);
 			this.moneyGain=newOrder.getTotalReward();
+			this.receivedRewards.add(newOrder.getTotalReward());
+			this.expectedRewards.add(newOrder.calculateReward());
+			
+			
+			
 			this.addinConsumedIgredients(newOrder);
 		}
 		else{
@@ -57,7 +67,9 @@ public class Statistics implements StatisticsInterface {
 	public synchronized void upDateMoneyGain(Order order){
 //		System.out.println("order.getTotalReward() "+order.getTotalReward());
 //		System.out.println("this.moneyGain "+this.moneyGain);
-		this.moneyGain=this.moneyGain+ order.getTotalReward();
+		this.moneyGain=this.moneyGain + order.getTotalReward();
+		this.receivedRewards.add(order.getTotalReward());
+		this.expectedRewards.add(order.calculateReward());
 //		System.out.println("dish name "+order.getOrderDish().get(0).gestDish().getDishName());
 //		System.out.println("order.getTotalReward() "+order.getTotalReward());
 //		System.out.println("this.moneyGain "+this.moneyGain);
@@ -93,6 +105,27 @@ public class Statistics implements StatisticsInterface {
 	}
 	public Vector<Ingredient> getIngredientsConsumed(){
 		return this.ingredientsConsumed;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Statistics: MoneyGained=");
+		builder.append(moneyGain);
+		builder.append("\n Expected Rewards: ");
+		builder.append(expectedRewards);
+		builder.append("\n Received Rewards: ");
+		builder.append(receivedRewards);
+		builder.append("\n");
+		for ( Order order : deliveredOrders){
+			builder.append("\n Order:");
+			builder.append(order);
+		}
+		builder.append("\n");
+		for ( Ingredient ingredient : ingredientsConsumed){
+			builder.append("\n Ingredient:");
+			builder.append(ingredient);
+		}
+		return builder.toString();
 	}
 
 }

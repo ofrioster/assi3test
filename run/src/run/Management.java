@@ -248,8 +248,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			this.collectionOfDeliveryPerson.get(i).shutDown();
 		}
 		for (int i=0;i<this.collectionOfOrders.size();i++){
-			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" reward: "+this.collectionOfOrders.get(i).getTotalReward());
-			System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" expected reward: "+this.collectionOfOrders.get(i).calculateReward());
+			//System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" reward: "+this.collectionOfOrders.get(i).getTotalReward());
+			//System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" expected reward: "+this.collectionOfOrders.get(i).calculateReward());
 		}
 		this.shutDown=true;
 	}

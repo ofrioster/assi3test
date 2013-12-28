@@ -1,40 +1,134 @@
-Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseMenuFile
+Dec 28, 2013 2:34:23 PM run.ReadXMLFile ParseMenuFile
 CONFIG: Finished Parsing The Menu
-Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseOrderListFile
+Dec 28, 2013 2:34:23 PM run.ReadXMLFile ParseOrderListFile
 CONFIG: Finished Parsing The Order List
-Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseRestauranFilet
+Dec 28, 2013 2:34:23 PM run.ReadXMLFile ParseRestauranFilet
 CONFIG: Finished Parsing The Restaurant Config
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Initializing simulation process...
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: System contains: [chefs=4][deliveryPeople=5][orders=5]
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Orders To Cook:5
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Attempting to send order:[2][numberOfMeals=2]
-Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+Dec 28, 2013 2:34:23 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:2
-Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+Dec 28, 2013 2:34:23 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder][orderId=2][numberOfMeals=2]
-Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+Dec 28, 2013 2:34:23 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] waiting for 2 meals to finish simulating...
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Orders To Cook:4
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Attempting to send order:[3][numberOfMeals=6]
-Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+Dec 28, 2013 2:34:23 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:3
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Orders To Cook:3
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Attempting to send order:[1][numberOfMeals=6]
-Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+Dec 28, 2013 2:34:23 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:1
-Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+Dec 28, 2013 2:34:23 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder][orderId=1][numberOfMeals=6]
-Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+Dec 28, 2013 2:34:23 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] waiting for 6 meals to finish simulating...
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Orders To Cook:2
-Dec 28, 2013 11:44:25 AM run.Management run
+Dec 28, 2013 2:34:23 PM run.Management run
 INFO: Attempting to send order:[0][numberOfMeals=8]
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:2
+Dec 28, 2013 2:34:38 PM run.RunnableChef addOrder
+INFO: Order ACCEPTED:0
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=3][numberOfMeals=6]
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 6 meals to finish simulating...
+Dec 28, 2013 2:34:38 PM run.Management run
+INFO: Orders To Cook:1
+Dec 28, 2013 2:34:38 PM run.Management run
+INFO: Attempting to send order:[4][numberOfMeals=10]
+Dec 28, 2013 2:34:38 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[2][expectedTimeToDeliver=4][realTimeSpentToDeliver=4]
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+Dec 28, 2013 2:34:38 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:1
+Dec 28, 2013 2:34:53 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+Dec 28, 2013 2:34:53 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:3
+Dec 28, 2013 2:34:53 PM run.RunnableChef addOrder
+INFO: Order ACCEPTED:4
+Dec 28, 2013 2:34:53 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=0][numberOfMeals=8]
+Dec 28, 2013 2:34:53 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 8 meals to finish simulating...
+Dec 28, 2013 2:34:53 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[1][expectedTimeToDeliver=3][realTimeSpentToDeliver=3]
+Dec 28, 2013 2:34:53 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[3][expectedTimeToDeliver=12][realTimeSpentToDeliver=12]
+Dec 28, 2013 2:35:08 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+Dec 28, 2013 2:35:08 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:0
+Dec 28, 2013 2:35:08 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=4][numberOfMeals=10]
+Dec 28, 2013 2:35:08 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 10 meals to finish simulating...
+Dec 28, 2013 2:35:08 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[0][expectedTimeToDeliver=3][realTimeSpentToDeliver=3]
+Dec 28, 2013 2:35:23 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+Dec 28, 2013 2:35:23 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:4
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[4][expectedTimeToDeliver=6][realTimeSpentToDeliver=6]
+Dec 28, 2013 2:35:23 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+Dec 28, 2013 2:35:23 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+Dec 28, 2013 2:35:23 PM run.Driver main
+INFO: Statistics: MoneyGained=1336.0
+ Expected Rewards: [108.0, 190.0, 324.0, 298.0, 416.0]
+ Received Rewards: [108.0, 190.0, 324.0, 298.0, 416.0]
+
+ Order:Order [ID=2][Status=4][difficultyRating=10][Address [x=19, y=25]][expectedcookTime=15000, actualCookTime=15005, expectedDeliveryTime=4, actualDeliveryTime=4, totalReward=108.0, orderDish=[OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=103], Ingredient [ingredientName=Bread][ingredientAmount=18], Ingredient [ingredientName=Olive Oil][ingredientAmount=28], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=13], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=33], Ingredient [ingredientName=Egg][ingredientAmount=4], Ingredient [ingredientName=Salt][ingredientAmount=8], Ingredient [ingredientName=Black Pepper][ingredientAmount=8]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Pan amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=10, reward=54.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=1][Status=4][difficultyRating=40][Address [x=10, y=20]][expectedcookTime=15000, actualCookTime=15010, expectedDeliveryTime=3, actualDeliveryTime=3, totalReward=190.0, orderDish=[OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=502], Ingredient [ingredientName=Butter][ingredientAmount=47], Ingredient [ingredientName=Salt][ingredientAmount=22], Ingredient [ingredientName=Olive Oil][ingredientAmount=17]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=20, reward=30.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=252], Ingredient [ingredientName=Egg][ingredientAmount=3], Ingredient [ingredientName=Salt][ingredientAmount=9]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Cup amount of kitchenTool- 1,  kitchenToolName- Bowl amount of kitchenTool- 1], difficultyRating=20, reward=35.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=3][Status=4][difficultyRating=10][Address [x=50, y=50]][expectedcookTime=15000, actualCookTime=15004, expectedDeliveryTime=12, actualDeliveryTime=12, totalReward=324.0, orderDish=[OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=103], Ingredient [ingredientName=Bread][ingredientAmount=18], Ingredient [ingredientName=Olive Oil][ingredientAmount=28], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=13], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=33], Ingredient [ingredientName=Egg][ingredientAmount=4], Ingredient [ingredientName=Salt][ingredientAmount=8], Ingredient [ingredientName=Black Pepper][ingredientAmount=8]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Pan amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=10, reward=54.0]][quantity=6][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=0][Status=4][difficultyRating=50][Address [x=1, y=2]][expectedcookTime=15000, actualCookTime=15006, expectedDeliveryTime=3, actualDeliveryTime=3, totalReward=298.0, orderDish=[OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=252], Ingredient [ingredientName=Egg][ingredientAmount=3], Ingredient [ingredientName=Salt][ingredientAmount=9]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Cup amount of kitchenTool- 1,  kitchenToolName- Bowl amount of kitchenTool- 1], difficultyRating=20, reward=35.0]][quantity=2][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=502], Ingredient [ingredientName=Butter][ingredientAmount=47], Ingredient [ingredientName=Salt][ingredientAmount=22], Ingredient [ingredientName=Olive Oil][ingredientAmount=17]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=20, reward=30.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=103], Ingredient [ingredientName=Bread][ingredientAmount=18], Ingredient [ingredientName=Olive Oil][ingredientAmount=28], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=13], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=33], Ingredient [ingredientName=Egg][ingredientAmount=4], Ingredient [ingredientName=Salt][ingredientAmount=8], Ingredient [ingredientName=Black Pepper][ingredientAmount=8]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Pan amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=10, reward=54.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=4][Status=4][difficultyRating=50][Address [x=20, y=33]][expectedcookTime=15000, actualCookTime=15011, expectedDeliveryTime=6, actualDeliveryTime=6, totalReward=416.0, orderDish=[OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=252], Ingredient [ingredientName=Egg][ingredientAmount=3], Ingredient [ingredientName=Salt][ingredientAmount=9]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Cup amount of kitchenTool- 1,  kitchenToolName- Bowl amount of kitchenTool- 1], difficultyRating=20, reward=35.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=103], Ingredient [ingredientName=Bread][ingredientAmount=18], Ingredient [ingredientName=Olive Oil][ingredientAmount=28], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=13], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=33], Ingredient [ingredientName=Egg][ingredientAmount=4], Ingredient [ingredientName=Salt][ingredientAmount=8], Ingredient [ingredientName=Black Pepper][ingredientAmount=8]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Pan amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Stove amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=10, reward=54.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=502], Ingredient [ingredientName=Butter][ingredientAmount=47], Ingredient [ingredientName=Salt][ingredientAmount=22], Ingredient [ingredientName=Olive Oil][ingredientAmount=17]], dishKitchenTolls=[ kitchenToolName- Spoon amount of kitchenTool- 1,  kitchenToolName- Oven amount of kitchenTool- 1,  kitchenToolName- Knife amount of kitchenTool- 1,  kitchenToolName- Plate amount of kitchenTool- 1], difficultyRating=20, reward=30.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+
+ Ingredient:Ingredient [ingredientName=Cherry Tomato][ingredientAmount=103]
+ Ingredient:Ingredient [ingredientName=Bread][ingredientAmount=18]
+ Ingredient:Ingredient [ingredientName=Olive Oil][ingredientAmount=28]
+ Ingredient:Ingredient [ingredientName=Bread Crumbs][ingredientAmount=13]
+ Ingredient:Ingredient [ingredientName=Gouda Cheese][ingredientAmount=33]
+ Ingredient:Ingredient [ingredientName=Egg][ingredientAmount=4]
+ Ingredient:Ingredient [ingredientName=Salt][ingredientAmount=8]
+ Ingredient:Ingredient [ingredientName=Black Pepper][ingredientAmount=8]
+ Ingredient:Ingredient [ingredientName=Potato][ingredientAmount=502]
+ Ingredient:Ingredient [ingredientName=Butter][ingredientAmount=47]
+ Ingredient:Ingredient [ingredientName=Salt][ingredientAmount=22]
+ Ingredient:Ingredient [ingredientName=Olive Oil][ingredientAmount=17]
+ Ingredient:Ingredient [ingredientName=Flour][ingredientAmount=252]
+ Ingredient:Ingredient [ingredientName=Egg][ingredientAmount=3]
+ Ingredient:Ingredient [ingredientName=Salt][ingredientAmount=9]

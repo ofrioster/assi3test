@@ -52,10 +52,21 @@ public class Ingredient implements Ingredient_Interface{
 	public int getNumberOfIngredient(){
 		return this.ingredientAmount.availablePermits();
 	}
-	public String toString(){
-		String res=" ingredientName- "+this.ingredientName+" ingredientAmount- "+this.ingredientAmount.availablePermits();
-		return res;
-				
+//	public String toString(){
+//		String res=" ingredientName- "+this.ingredientName+" ingredientAmount- "+this.ingredientAmount.availablePermits();
+//		return res;
+//	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Ingredient [ingredientName=");
+		builder.append(ingredientName);
+		builder.append("][ingredientAmount=");
+		builder.append(ingredientAmount.availablePermits());
+		builder.append("]");
+		return builder.toString();
 	}
+	
+	
 }
 

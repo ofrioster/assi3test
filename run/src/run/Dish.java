@@ -81,8 +81,29 @@ public class Dish implements DishInterface{
 	public void setReward(Double reward){
 		this.reward=reward;
 	}
-	public String toString(){
-		String res=" dishName- "+ this.dishName+" dishIngredients- "+dishIngredients.toString()+" dishKitchenTolls- "+this.dishKitchenTolls.toString()+" dishExpectedCookTime- "+this.dishExpectedCookTime+ " difficultyRating- "+this.difficultyRating+" reward- "+this.reward;
-		return res;
+//	public String toString(){
+//		String res=" dishName- "+ this.dishName+" dishIngredients- "+dishIngredients.toString()+" dishKitchenTolls- "+this.dishKitchenTolls.toString()+" dishExpectedCookTime- "+this.dishExpectedCookTime+ " difficultyRating- "+this.difficultyRating+" reward- "+this.reward;
+//		return res;
+//	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Dish [dishName=");
+		builder.append(dishName);
+		builder.append(", dishExpectedCookTime=");
+		builder.append(dishExpectedCookTime);
+		builder.append(", dishIngredients=");
+		builder.append(dishIngredients);
+		builder.append(", dishKitchenTolls=");
+		builder.append(dishKitchenTolls);
+		builder.append(", difficultyRating=");
+		builder.append(difficultyRating);
+		builder.append(", reward=");
+		builder.append(reward);
+		builder.append("]");
+		return builder.toString();
 	}
+	
+	
 }
