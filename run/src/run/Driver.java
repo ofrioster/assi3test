@@ -25,12 +25,21 @@ public class Driver {
 //	    logger.log(Level.INFO, "message 1");
 //	    logger.log(Level.SEVERE, "message 2");
 //	    logger.log(Level.FINE, "message 3");
+	    
+		Vector<Dish> Dishes;
+		Vector<Order> Orders;
+		Restaurant Restaurant ;
 		
-		
-		
-		Vector<Dish> Dishes = ReadXMLFile.ParseMenuFile("Menu.xml");
-		Vector<Order> Orders =  ReadXMLFile.ParseOrderListFile("OrdersList.xml",Dishes);
-		Restaurant Restaurant = ReadXMLFile.ParseRestauranFilet("InitialData.xml") ;
+        if (args.length > 0) {
+    		 Dishes = ReadXMLFile.ParseMenuFile(args[0]);
+    		 Orders =  ReadXMLFile.ParseOrderListFile(args[1],Dishes);
+    		 Restaurant = ReadXMLFile.ParseRestauranFilet(args[2]) ;
+        }else{   
+		 Dishes = ReadXMLFile.ParseMenuFile("Menu.xml");
+		 Orders =  ReadXMLFile.ParseOrderListFile("OrdersList.xml",Dishes);
+		Restaurant = ReadXMLFile.ParseRestauranFilet("InitialData.xml") ;
+        }
+        
 		Warehouse warehouseTest=new Warehouse(Restaurant.getKitchenTolls(),Restaurant.getIngredients());
 		CountDownLatch latchObject = new CountDownLatch (Orders.size());
 		Statistics statistics=new Statistics(warehouseTest);
