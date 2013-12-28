@@ -64,10 +64,6 @@ public class Driver {
 		System.out.println("total run time: "+totalRunTime);///***delete
 	    logger.log(Level.INFO, statistics.toString());
 	//    System.out.println("statistics.getIngredientsConsumed().size(): "+statistics.getIngredientsConsumed().size());
-	    System.out.println(Restaurant.getIngredients().get(0));
-	    System.out.println(Restaurant.getIngredients().get(1));
-	    System.out.println(Restaurant.getIngredients().get(2));
-	    System.out.println(Restaurant.getIngredients().get(3));
 	    System.out.println(" END!!!!");
 	
 	}

@@ -11,7 +11,7 @@ public class Ingredient implements Ingredient_Interface{
 	public Ingredient(String name,int amount) {
 		this.ingredientAmount=new Semaphore(amount);
 		this.ingredientName=name;
-		this.ingredientInitialAmount=new Integer(amount);
+		this.ingredientInitialAmount=amount;
 		System.out.println(name+": "+amount);
 	}
 	/**
