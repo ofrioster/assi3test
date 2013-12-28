@@ -83,6 +83,7 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	//acquire one ingredients
 	public Boolean acquireIngredients(Ingredient ingredientToacquire){
 		Boolean res=true;
+//		System.out.println("IngredientName: "+ingredientToacquire.getIngredientName()+" amount: "+ingredientToacquire.getNumberOfIngredient());
 	//	System.out.println("warehouseName: "+this.warehouseName);
 		if (!this.warehouseName.getIngredient(ingredientToacquire)){
 //			System.out.println("number of ingredients " + ingredientToacquire.getIngredientName()+ " " +this.warehouseName.getNumberOfIngredientsAvailable(ingredientToacquire));

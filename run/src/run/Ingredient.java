@@ -32,7 +32,9 @@ public class Ingredient implements Ingredient_Interface{
 	
 	public synchronized  boolean getIngredient(int amount){
 		Boolean res=true;
+//		System.out.println("amount: "+amount);
 		for (int i=0;i<amount;i++){
+//			System.out.println("ingredientName: "+this.ingredientName);
 			if(this.ingredientAmount.tryAcquire()){
 				//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
 				}
@@ -47,6 +49,9 @@ public class Ingredient implements Ingredient_Interface{
 	
 	public void returnIngredient(){
 		this.ingredientAmount.release();
+	}
+	public void returnIngredient(int amount){
+		this.ingredientAmount.release(amount);
 	}
 	
 	public int getNumberOfIngredient(){

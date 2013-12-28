@@ -1,84 +1,60 @@
-Dec 28, 2013 3:23:54 PM run.ReadXMLFile ParseMenuFile
+דצמ 28, 2013 5:44:31 PM run.ReadXMLFile ParseMenuFile
 CONFIG: Finished Parsing The Menu
-Dec 28, 2013 3:23:54 PM run.ReadXMLFile ParseOrderListFile
+דצמ 28, 2013 5:44:31 PM run.ReadXMLFile ParseOrderListFile
 CONFIG: Finished Parsing The Order List
-Dec 28, 2013 3:23:54 PM run.ReadXMLFile ParseRestauranFilet
+דצמ 28, 2013 5:44:31 PM run.ReadXMLFile ParseRestauranFilet
 CONFIG: Finished Parsing The Restaurant Config
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: Initializing simulation process...
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: System contains: [chefs=4][deliveryPeople=5][orders=5]
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: Orders To Cook:5
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: Attempting to send order:[2][numberOfMeals=2]
-Dec 28, 2013 3:23:54 PM run.RunnableChef addOrder
+דצמ 28, 2013 5:44:31 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:2
-Dec 28, 2013 3:23:54 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:31 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder][orderId=2][numberOfMeals=2]
-Dec 28, 2013 3:23:54 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:31 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] waiting for 2 meals to finish simulating...
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: Orders To Cook:4
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:31 PM run.Management run
 INFO: Attempting to send order:[3][numberOfMeals=6]
-Dec 28, 2013 3:23:54 PM run.RunnableChef addOrder
+דצמ 28, 2013 5:44:31 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:3
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:32 PM run.Management run
 INFO: Orders To Cook:3
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:32 PM run.Management run
 INFO: Attempting to send order:[1][numberOfMeals=6]
-Dec 28, 2013 3:23:54 PM run.RunnableChef addOrder
+דצמ 28, 2013 5:44:32 PM run.RunnableChef addOrder
 INFO: Order ACCEPTED:1
-Dec 28, 2013 3:23:54 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:32 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder][orderId=1][numberOfMeals=6]
-Dec 28, 2013 3:23:54 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:32 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] waiting for 6 meals to finish simulating...
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:32 PM run.Management run
 INFO: Orders To Cook:2
-Dec 28, 2013 3:23:54 PM run.Management run
+דצמ 28, 2013 5:44:32 PM run.Management run
 INFO: Attempting to send order:[0][numberOfMeals=8]
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:46 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] All meals have been cooked!
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:46 PM run.CallableCookWholeOrder call
 INFO: Order COMPLETE:2
-Dec 28, 2013 3:24:09 PM run.RunnableChef addOrder
-INFO: Order ACCEPTED:0
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:46 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder][orderId=3][numberOfMeals=6]
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:46 PM run.RunnableChef addOrder
+INFO: Order ACCEPTED:0
+דצמ 28, 2013 5:44:46 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] waiting for 6 meals to finish simulating...
-Dec 28, 2013 3:24:09 PM run.Management run
+דצמ 28, 2013 5:44:47 PM run.Management run
 INFO: Orders To Cook:1
-Dec 28, 2013 3:24:09 PM run.Management run
+דצמ 28, 2013 5:44:47 PM run.Management run
 INFO: Attempting to send order:[4][numberOfMeals=10]
-Dec 28, 2013 3:24:09 PM run.RunnableDeliveryPerson deliverOrder
+דצמ 28, 2013 5:44:47 PM run.RunnableDeliveryPerson deliverOrder
 INFO: Order DELIVERED:[2][expectedTimeToDeliver=3][realTimeSpentToDeliver=3]
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:47 PM run.CallableCookWholeOrder call
 INFO: [CallableCookWholeOrder] All meals have been cooked!
-Dec 28, 2013 3:24:09 PM run.CallableCookWholeOrder call
+דצמ 28, 2013 5:44:47 PM run.CallableCookWholeOrder call
 INFO: Order COMPLETE:1
-Dec 28, 2013 3:24:24 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder] All meals have been cooked!
-Dec 28, 2013 3:24:24 PM run.CallableCookWholeOrder call
-INFO: Order COMPLETE:3
-Dec 28, 2013 3:24:24 PM run.RunnableChef addOrder
-INFO: Order ACCEPTED:4
-Dec 28, 2013 3:24:24 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder][orderId=0][numberOfMeals=8]
-Dec 28, 2013 3:24:24 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder] waiting for 8 meals to finish simulating...
-Dec 28, 2013 3:24:24 PM run.RunnableDeliveryPerson deliverOrder
-INFO: Order DELIVERED:[1][expectedTimeToDeliver=2][realTimeSpentToDeliver=2]
-Dec 28, 2013 3:24:24 PM run.RunnableDeliveryPerson deliverOrder
-INFO: Order DELIVERED:[3][expectedTimeToDeliver=11][realTimeSpentToDeliver=11]
-Dec 28, 2013 3:24:39 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder] All meals have been cooked!
-Dec 28, 2013 3:24:39 PM run.CallableCookWholeOrder call
-INFO: Order COMPLETE:0
-Dec 28, 2013 3:24:39 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder][orderId=4][numberOfMeals=10]
-Dec 28, 2013 3:24:39 PM run.CallableCookWholeOrder call
-INFO: [CallableCookWholeOrder] waiting for 10 meals to finish simulating...
-Dec 28, 2013 3:24:39 PM run.RunnableDeliveryPerson deliverOrder
-INFO: Order DELIVERED:[0][expectedTimeToDeliver=3][realTimeSpentToDeliver=3]

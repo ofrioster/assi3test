@@ -79,19 +79,34 @@ public class Statistics implements StatisticsInterface {
 	/** 
 	 * @param order to add her inredients
 	 */
-	public void addinConsumedIgredients(Order order){
+	public synchronized void addinConsumedIgredients(Order order){
 		Boolean found=false;
+		System.out.println("order ID: "+order.getOrderID());
 		for (int i=0; i<order.getOrderDish().size();i++){
 			for (int w=0; w<order.getOrderDish().get(i).gestDish().getDishIngredients().size();w++){
+		//		System.out.println(order.getOrderDish().get(i).gestDish().getDishIngredients().get(w));
 				found=false;
 				for (int k=0; k<this.ingredientsConsumed.size() &&!found;k++){
-					if (order.getOrderDish().get(i).gestDish().getDishIngredients().get(w).getIngredientName()==this.ingredientsConsumed.get(k).getIngredientName()){
-						this.ingredientsConsumed.get(k).returnIngredient();
+					if (order.getOrderDish().get(i).gestDish().getDishIngredients().get(w).getIngredientName().equals(this.ingredientsConsumed.get(k).getIngredientName())){
 						found=true;
+						for (int t=0;t<order.getOrderDish().get(i).getquantity();t++){
+							int amoutToAdd=order.getOrderDish().get(i).gestDish().getDishIngredients().get(w).getNumberOfIngredient();
+							this.ingredientsConsumed.get(k).returnIngredient(amoutToAdd);
+						}
 					}
 				}
 				if(!found){
-					this.ingredientsConsumed.add(order.getOrderDish().get(i).gestDish().getDishIngredients().get(w));
+					Ingredient newIngredient=new Ingredient((order.getOrderDish().get(i).gestDish().getDishIngredients().get(w)));
+					this.ingredientsConsumed.add(newIngredient);
+					int amoutOfDish=order.getOrderDish().get(i).getquantity();
+					if (amoutOfDish>1){
+						int amoutToAdd=order.getOrderDish().get(i).gestDish().getDishIngredients().get(w).getNumberOfIngredient()*(amoutOfDish-1);
+						this.ingredientsConsumed.get(this.ingredientsConsumed.size()-1).returnIngredient(amoutToAdd);
+					}
+//					System.out.println()
+			//		for (int t=0;t<order.getOrderDish().get(i).getquantity();t++){
+			//			this.ingredientsConsumed.get(this.ingredientsConsumed.size()).returnIngredient();
+			//		}
 				}
 			}
 			

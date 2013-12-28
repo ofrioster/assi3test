@@ -63,6 +63,7 @@ public class Driver {
 		long totalRunTime=System.currentTimeMillis()-startTime;	///***delete
 		System.out.println("total run time: "+totalRunTime);///***delete
 	    logger.log(Level.INFO, statistics.toString());
+	//    System.out.println("statistics.getIngredientsConsumed().size(): "+statistics.getIngredientsConsumed().size());
 		System.out.println(" END!!!!");
 	
 	}

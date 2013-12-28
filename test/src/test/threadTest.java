@@ -12,15 +12,24 @@ public class threadTest implements Runnable{
 	}
 	public synchronized void waitfunc(){
 		System.out.println("waitfunc");
-		try {
+		while(true){
+			this.loopFunc();
+			
+		}
+		/*try {
 			System.out.println("wait");
 			this.wait();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 	public synchronized void synchronizedTest(){
 		this.waitfunc();
+	}
+	public void loopFunc(){
+		while (true){
+			
+		}
 	}
 }
