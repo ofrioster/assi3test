@@ -17,3 +17,26 @@ arnon:
  do the logger
  do the ant
  
+ 
+ Ofri:
+ 
+
+to chef 
+
+ingredient consumed ??
+
+Dec 23, 2013 5:39:38 PM runnables.RunnableChef takeOrder
+INFO: Order REFUSED: 4 [difficulty=50][availableEndurance=25]
+
+Dec 23, 2013 5:39:38 PM other.players.Management beginSimulation
+INFO:  Nothing to do.. going to sleep. 
+
+Dec 23, 2013 5:39:52 PM other.players.Management beginSimulation
+INFO:  WOKEN UP!
+
+Dec 23, 2013 5:39:52 PM other.players.Management beginSimulation
+INFO: Sending shutting down requests to the chefs...
+
+Dec 23, 2013 5:39:52 PM other.players.Management beginSimulation
+INFO: Waiting for chef shutdown completion...
+
