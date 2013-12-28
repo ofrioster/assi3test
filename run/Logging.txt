@@ -58,3 +58,73 @@ INFO: Order DELIVERED:[2][expectedTimeToDeliver=3][realTimeSpentToDeliver=3]
 INFO: [CallableCookWholeOrder] All meals have been cooked!
 דצמ 28, 2013 5:44:47 PM run.CallableCookWholeOrder call
 INFO: Order COMPLETE:1
+דצמ 28, 2013 5:45:01 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+דצמ 28, 2013 5:45:01 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:3
+דצמ 28, 2013 5:45:01 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=0][numberOfMeals=8]
+דצמ 28, 2013 5:45:01 PM run.RunnableChef addOrder
+INFO: Order ACCEPTED:4
+דצמ 28, 2013 5:45:01 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 8 meals to finish simulating...
+דצמ 28, 2013 5:45:02 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[1][expectedTimeToDeliver=2][realTimeSpentToDeliver=2]
+דצמ 28, 2013 5:45:02 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[3][expectedTimeToDeliver=12][realTimeSpentToDeliver=12]
+דצמ 28, 2013 5:45:16 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+דצמ 28, 2013 5:45:16 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:0
+דצמ 28, 2013 5:45:17 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[0][expectedTimeToDeliver=2][realTimeSpentToDeliver=2]
+דצמ 28, 2013 5:45:17 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=4][numberOfMeals=10]
+דצמ 28, 2013 5:45:17 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 10 meals to finish simulating...
+דצמ 28, 2013 5:45:32 PM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] All meals have been cooked!
+דצמ 28, 2013 5:45:32 PM run.CallableCookWholeOrder call
+INFO: Order COMPLETE:4
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson deliverOrder
+INFO: Order DELIVERED:[4][expectedTimeToDeliver=5][realTimeSpentToDeliver=5]
+דצמ 28, 2013 5:45:32 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableChef shutDown
+INFO: Chef has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+דצמ 28, 2013 5:45:32 PM run.RunnableDeliveryPerson shutDown
+INFO: DeliveryPerson has been shut down.
+דצמ 28, 2013 5:45:32 PM run.Driver main
+INFO: Statistics: MoneyGained=1336.0
+ Expected Rewards: [108.0, 190.0, 324.0, 298.0, 416.0]
+ Received Rewards: [108.0, 190.0, 324.0, 298.0, 416.0]
+
+ Order:Order [ID=2][Status=4][difficultyRating=10][Address [x=19, y=25]][expectedcookTime=15000, actualCookTime=15003, expectedDeliveryTime=3, actualDeliveryTime=3, totalReward=108.0, orderDish=[OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=100], Ingredient [ingredientName=Bread][ingredientAmount=15], Ingredient [ingredientName=Olive Oil][ingredientAmount=25], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=10], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=30], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=5], Ingredient [ingredientName=Black Pepper][ingredientAmount=5]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Pan, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=10, reward=54.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=1][Status=4][difficultyRating=40][Address [x=10, y=20]][expectedcookTime=15000, actualCookTime=15004, expectedDeliveryTime=2, actualDeliveryTime=2, totalReward=190.0, orderDish=[OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=500], Ingredient [ingredientName=Butter][ingredientAmount=45], Ingredient [ingredientName=Salt][ingredientAmount=20], Ingredient [ingredientName=Olive Oil][ingredientAmount=15]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=20, reward=30.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=250], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=7]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Cup, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Bowl, kitchenToolSemaphore=1]], difficultyRating=20, reward=35.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=3][Status=4][difficultyRating=10][Address [x=50, y=50]][expectedcookTime=15000, actualCookTime=15004, expectedDeliveryTime=12, actualDeliveryTime=12, totalReward=324.0, orderDish=[OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=100], Ingredient [ingredientName=Bread][ingredientAmount=15], Ingredient [ingredientName=Olive Oil][ingredientAmount=25], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=10], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=30], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=5], Ingredient [ingredientName=Black Pepper][ingredientAmount=5]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Pan, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=10, reward=54.0]][quantity=6][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=0][Status=4][difficultyRating=50][Address [x=1, y=2]][expectedcookTime=15000, actualCookTime=15002, expectedDeliveryTime=2, actualDeliveryTime=2, totalReward=298.0, orderDish=[OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=250], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=7]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Cup, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Bowl, kitchenToolSemaphore=1]], difficultyRating=20, reward=35.0]][quantity=2][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=500], Ingredient [ingredientName=Butter][ingredientAmount=45], Ingredient [ingredientName=Salt][ingredientAmount=20], Ingredient [ingredientName=Olive Oil][ingredientAmount=15]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=20, reward=30.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=100], Ingredient [ingredientName=Bread][ingredientAmount=15], Ingredient [ingredientName=Olive Oil][ingredientAmount=25], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=10], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=30], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=5], Ingredient [ingredientName=Black Pepper][ingredientAmount=5]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Pan, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=10, reward=54.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+ Order:Order [ID=4][Status=4][difficultyRating=50][Address [x=20, y=33]][expectedcookTime=15000, actualCookTime=15006, expectedDeliveryTime=5, actualDeliveryTime=5, totalReward=416.0, orderDish=[OrderOfDish [dish=Dish [dishName=Ramen Soup, dishExpectedCookTime=10000, dishIngredients=[Ingredient [ingredientName=Flour][ingredientAmount=250], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=7]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Cup, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Bowl, kitchenToolSemaphore=1]], difficultyRating=20, reward=35.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=The Ultimate Breakfast, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Cherry Tomato][ingredientAmount=100], Ingredient [ingredientName=Bread][ingredientAmount=15], Ingredient [ingredientName=Olive Oil][ingredientAmount=25], Ingredient [ingredientName=Bread Crumbs][ingredientAmount=10], Ingredient [ingredientName=Gouda Cheese][ingredientAmount=30], Ingredient [ingredientName=Egg][ingredientAmount=1], Ingredient [ingredientName=Salt][ingredientAmount=5], Ingredient [ingredientName=Black Pepper][ingredientAmount=5]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Pan, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Stove, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=10, reward=54.0]][quantity=4][quantityLeft=0][orderStatus=3], OrderOfDish [dish=Dish [dishName=Hasselback Potatoes, dishExpectedCookTime=15000, dishIngredients=[Ingredient [ingredientName=Potato][ingredientAmount=500], Ingredient [ingredientName=Butter][ingredientAmount=45], Ingredient [ingredientName=Salt][ingredientAmount=20], Ingredient [ingredientName=Olive Oil][ingredientAmount=15]], dishKitchenTolls=[KitchenTool [kitchenToolName=Spoon, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Oven, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Knife, kitchenToolSemaphore=1], KitchenTool [kitchenToolName=Plate, kitchenToolSemaphore=1]], difficultyRating=20, reward=30.0]][quantity=2][quantityLeft=0][orderStatus=3]]]
+
+ Ingredient:Ingredient [ingredientName=Cherry Tomato][ingredientAmount=1400]
+ Ingredient:Ingredient [ingredientName=Bread][ingredientAmount=210]
+ Ingredient:Ingredient [ingredientName=Olive Oil][ingredientAmount=500]
+ Ingredient:Ingredient [ingredientName=Bread Crumbs][ingredientAmount=140]
+ Ingredient:Ingredient [ingredientName=Gouda Cheese][ingredientAmount=420]
+ Ingredient:Ingredient [ingredientName=Egg][ingredientAmount=22]
+ Ingredient:Ingredient [ingredientName=Salt][ingredientAmount=326]
+ Ingredient:Ingredient [ingredientName=Black Pepper][ingredientAmount=70]
+ Ingredient:Ingredient [ingredientName=Potato][ingredientAmount=5000]
+ Ingredient:Ingredient [ingredientName=Butter][ingredientAmount=450]
+ Ingredient:Ingredient [ingredientName=Flour][ingredientAmount=2000]

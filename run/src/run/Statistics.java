@@ -81,7 +81,7 @@ public class Statistics implements StatisticsInterface {
 	 */
 	public synchronized void addinConsumedIgredients(Order order){
 		Boolean found=false;
-		System.out.println("order ID: "+order.getOrderID());
+//		System.out.println("order ID: "+order.getOrderID());
 		for (int i=0; i<order.getOrderDish().size();i++){
 			for (int w=0; w<order.getOrderDish().get(i).gestDish().getDishIngredients().size();w++){
 		//		System.out.println(order.getOrderDish().get(i).gestDish().getDishIngredients().get(w));
