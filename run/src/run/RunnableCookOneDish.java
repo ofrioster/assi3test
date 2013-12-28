@@ -163,9 +163,28 @@ public class RunnableCookOneDish extends Observable implements RunnableCookOneDi
 	public Dish getDish(){
 		return this.dishName.gestDish();
 	}
-	public String toString(){
-		String res=" dishName- "+this.dishName.toString()+" warehouseName- "+this.warehouseName.toString()+" kitchenToolsInUse- "+this.kitchenToolsInUse.toString()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock.getCount();
-		return res;
+//	public String toString(){
+//		String res=" dishName- "+this.dishName.toString()+" warehouseName- "+this.warehouseName.toString()+" kitchenToolsInUse- "+this.kitchenToolsInUse.toString()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock.getCount();
+//		return res;
+//	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RunnableCookOneDish [dishName=");
+		builder.append(dishName);
+		builder.append(", warehouseName=");
+		builder.append(warehouseName);
+		builder.append(", kitchenToolsInUse=");
+		builder.append(kitchenToolsInUse);
+		builder.append(", NumberOfDishesLeftToCock=");
+		builder.append(NumberOfDishesLeftToCock);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

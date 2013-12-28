@@ -195,11 +195,13 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	public void addManagement(Management management){
 		this.management=management;
 	}
-	public String toString(){
-		String res=" chefName- "+this.chefName+" chefEfficiencyRating- "+this.chefEfficiencyRating+" enduranceRating- "+this.enduranceRating+" currectPressure- "+this.currectPressure+" orderVector- "+this.orderVector.toString();
-		return res;
-		
-	}
+//	public String toString(){
+//		String res=" chefName- "+this.chefName+" chefEfficiencyRating- "+this.chefEfficiencyRating+" enduranceRating- "+this.enduranceRating+" currectPressure- "+this.currectPressure+" orderVector- "+this.orderVector.toString();
+//		return res;
+//		
+//	}
+	
+	
 	public void run(){
 		while (!this.shutDown){
 			this.updateCurrectPressure();
@@ -214,6 +216,25 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 			}
 			
 		}
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RunnableChef [chefName=");
+		builder.append(chefName);
+		builder.append(", chefEfficiencyRating=");
+		builder.append(chefEfficiencyRating);
+		builder.append(", enduranceRating=");
+		builder.append(enduranceRating);
+		builder.append(", currectPressure=");
+		builder.append(currectPressure);
+		for ( Order order : orderVector){
+			builder.append("\n Order:");
+			builder.append(order);
+		}
+		
+		builder.append("]");
+		return builder.toString();
 	}
 	public int getCurrectPressure() {
 		return this.currectPressure;

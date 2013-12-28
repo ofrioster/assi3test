@@ -194,8 +194,43 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			this.totalNumberOfDishs=this.totalNumberOfDishs+ this.dishOrderVector.get(i).getquantity();
 		}
 	}
-	public String toString(){
-		String res=" order name- "+ this.order.getOrderID() +" warehouseName- "+this.warehouseName+" chef name- "+ this.chef.getChefName()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock;
-		return res;
+//	public String toString(){
+//		String res=" order name- "+ this.order.getOrderID() +" warehouseName- "+this.warehouseName+" chef name- "+ this.chef.getChefName()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock;
+//		return res;
+//	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CallableCookWholeOrder [dishOrderVector=");
+		builder.append(dishOrderVector);
+		builder.append(", order=");
+		builder.append(order);
+		builder.append(", warehouseName=");
+		builder.append(warehouseName);
+		builder.append(", orderFinish=");
+		builder.append(orderFinish);
+		builder.append(", chef=");
+		builder.append(chef);
+		builder.append(", threadsVector=");
+		builder.append(threadsVector);
+		builder.append(", startTime=");
+		builder.append(startTime);
+		builder.append(", endTime=");
+		builder.append(endTime);
+		builder.append(", totalTime=");
+		builder.append(totalTime);
+		builder.append(", statistics=");
+		builder.append(statistics);
+		builder.append(", totalNumberOfDishs=");
+		builder.append(totalNumberOfDishs);
+		builder.append(", NumberOfDishesLeftToCock=");
+		builder.append(NumberOfDishesLeftToCock);
+		builder.append(", collectionOfOrdersToDeliver=");
+		builder.append(collectionOfOrdersToDeliver);
+		builder.append(", management=");
+		builder.append(management);
+		builder.append("]");
+		return builder.toString();
 	}
 }

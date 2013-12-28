@@ -71,9 +71,26 @@ public class Restaurant implements RestaurantInterface {
 		this.Chefs = Chefs;
 		
 	}
-	public String toString(){
-		String res=" restaurantAddres- "+this.restaurantAddres.toString()+" Ingredients- "+this.Ingredients.toString()+" KitchenTools- "+this.KitchenTools.toString()+" Chefs- "+this.Chefs.toString()+" DeliveryPersonals- "+this.DeliveryPersonals.toString();
-		return res;
+//	public String toString(){
+//		String res=" restaurantAddres- "+this.restaurantAddres.toString()+" Ingredients- "+this.Ingredients.toString()+" KitchenTools- "+this.KitchenTools.toString()+" Chefs- "+this.Chefs.toString()+" DeliveryPersonals- "+this.DeliveryPersonals.toString();
+//		return res;
+//	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Restaurant [restaurantAddres=");
+		builder.append(restaurantAddres);
+		builder.append(", Ingredients=");
+		builder.append(Ingredients);
+		builder.append(", KitchenTools=");
+		builder.append(KitchenTools);
+		builder.append(", Chefs=");
+		builder.append(Chefs);
+		builder.append(", DeliveryPersonals=");
+		builder.append(DeliveryPersonals);
+		builder.append("]");
+		return builder.toString();
 	}
 
 

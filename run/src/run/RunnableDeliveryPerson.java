@@ -144,17 +144,41 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void setordersLatch(CountDownLatch latchObject) {
 		this.ordersLatch = 	latchObject;
 	}
-	public String toString(){
-		String res=" deliveryPersonName- "+this.deliveryPersonName+" restaurantAddres- "+this.restaurantAddres.toString()+" speedOfDeliveryPerson- "+this.speedOfDeliveryPerson+" collectionDeliverdOrders- "+this.collectionDeliverdOrders.toString()+" shutDown- "+this.shutDown+" totalDeliveryTime- "+this.totalDeliveryTime+" ordersLatch- "+this.ordersLatch;
-		return res;
-	}
-	
+//	public String toString(){
+//		String res=" deliveryPersonName- "+this.deliveryPersonName+" restaurantAddres- "+this.restaurantAddres.toString()+" speedOfDeliveryPerson- "+this.speedOfDeliveryPerson+" collectionDeliverdOrders- "+this.collectionDeliverdOrders.toString()+" shutDown- "+this.shutDown+" totalDeliveryTime- "+this.totalDeliveryTime+" ordersLatch- "+this.ordersLatch;
+//		return res;
+//	}
+//	
 	public void removeFinishOrder(Order orderHasDeliver){
 		for (int i=0;i<this.collectionDeliverdOrders.size();i++){
 			if (this.collectionDeliverdOrders.get(i).getOrderID().equals(orderHasDeliver.getOrderID())){
 				this.collectionDeliverdOrders.remove(i);
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("RunnableDeliveryPerson [deliveryPersonName=");
+		builder.append(deliveryPersonName);
+		builder.append(", restaurantAddres=");
+		builder.append(restaurantAddres);
+		builder.append(", speedOfDeliveryPerson=");
+		builder.append(speedOfDeliveryPerson);
+		builder.append(", collectionDeliverdOrders=");
+		builder.append(collectionDeliverdOrders);
+		
+		for ( Order order : collectionDeliverdOrders){
+			builder.append("\n Order:");
+			builder.append(order);
+		}
+		builder.append("totalDeliveryTime=");
+		builder.append(totalDeliveryTime);
+		builder.append(", ordersLatch=");
+		builder.append(ordersLatch);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
