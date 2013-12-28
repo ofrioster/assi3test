@@ -7,6 +7,5 @@ public interface Ingredient_Interface {
 	public void returnIngredient();
 	public int getNumberOfIngredient();
 	public String toString();
-	public void returnIngredient(int amount);
 
 }

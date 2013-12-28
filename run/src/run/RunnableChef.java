@@ -33,7 +33,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.orderVector=new Vector<Order>();
 		this.poolOfThreads=new Vector<Thread>();
 		this.CallableCookWholeOrder=new ArrayList<CallableCookWholeOrder>();
-		this.statistics=new Statistics();
+		this.statistics=new Statistics(this.warehouse);
 		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
 		this.executorService1=Executors.newCachedThreadPool();
 		this.chefOrders=new ArrayList<Order>();
@@ -48,7 +48,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.orderVector=new Vector<Order>();
 		this.poolOfThreads=new Vector<Thread>();
 		this.CallableCookWholeOrder=new ArrayList<CallableCookWholeOrder>();
-		this.statistics=new Statistics();
+		this.statistics=new Statistics(this.warehouse);
 		this.CallableCookWholeOrder2=new ArrayList<Future<Order>>();
 		this.executorService1=Executors.newCachedThreadPool();
 		this.chefOrders=new ArrayList<Order>();

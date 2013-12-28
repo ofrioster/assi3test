@@ -6,10 +6,13 @@ public class Ingredient implements Ingredient_Interface{
 	
 	private String ingredientName;
 	private Semaphore ingredientAmount;
+	private int ingredientInitialAmount;
 	
 	public Ingredient(String name,int amount) {
 		this.ingredientAmount=new Semaphore(amount);
 		this.ingredientName=name;
+		this.ingredientInitialAmount=new Integer(amount);
+		System.out.println(name+": "+amount);
 	}
 	/**
 	 * @param ingredientToCopy
@@ -18,6 +21,7 @@ public class Ingredient implements Ingredient_Interface{
 	public Ingredient(Ingredient ingredientToCopy) {
 		this.ingredientAmount=new Semaphore(ingredientToCopy.getNumberOfIngredient());
 		this.ingredientName=ingredientToCopy.getIngredientName();
+		this.ingredientInitialAmount=ingredientToCopy.getNumberOfIngredient();
 	}
 
 
@@ -67,11 +71,16 @@ public class Ingredient implements Ingredient_Interface{
 		builder.append("Ingredient [ingredientName=");
 		builder.append(ingredientName);
 		builder.append("][ingredientAmount=");
+		builder.append(this.ingredientInitialAmount);
+		builder.append("][consumed=");
+		builder.append(this.ingredientInitialAmount-ingredientAmount.availablePermits());
+		builder.append("][left=");
 		builder.append(ingredientAmount.availablePermits());
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
+
 	
 }
 

@@ -20,6 +20,7 @@ public interface Warehouse_Interface {
 	public boolean  getKitchenTolls(Vector <KitchenTool> KitchenTools);
 	public void returnUnuseKitchenTolls(KitchenTool KitchenTollsname);
 	public boolean  getKitchenTollsUnsynchronized(KitchenTool KitchenToolsname);
+	public Ingredient  getTheIngredient(Ingredient ingredientsName);
 	
 
 }

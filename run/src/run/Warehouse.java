@@ -70,6 +70,17 @@ public class Warehouse implements Warehouse_Interface{
 		return res;
 		
 	}
+	public Ingredient  getTheIngredient(Ingredient ingredientsName){
+		Ingredient res=new Ingredient();
+		for (int i=0; i<this.ingredientsAvailable.size();i++){
+	//		System.out.println(ingredientsName+"  -----  "+this.ingredientsAvailable.get(i));
+			if(this.ingredientsAvailable.get(i).getIngredientName().equals(ingredientsName.getIngredientName())){
+				return this.ingredientsAvailable.get(i);
+		}
+		}
+		return res;
+		
+	}
 	
 	/** (non-Javadoc)
 	 * @return true/false if you can have the kitchen tool
