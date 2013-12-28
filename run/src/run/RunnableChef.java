@@ -3,9 +3,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.Observer;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RunnableChef implements RunnableChefInterface,Runnable{
-	
+	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 	private String chefName;
 	private Double chefEfficiencyRating;
 	private Double enduranceRating;
@@ -119,9 +122,10 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	 * @ accept new order if dish difficulty< EnduranceRating - CurrectPressure
 	 */
 	public synchronized void addOrder(Order newOrder){
-		System.out.println(" chef::::: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
+		//System.out.println(" chef::::: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
 		this.setCurrectPressure(newOrder);
 		this.chefOrders.add(newOrder);
+		logger.log(Level.INFO, "Order ACCEPTED:" + newOrder.getOrderID());
 	}
 	/*//	System.out.println(" 3333 ");
 	//	System.out.println(" chef start addOrder dish name- "+ newOrder.getOrderID());
@@ -156,10 +160,10 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		//	System.out.println(" chef start addOrder dish name------- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
 //			System.out.println("start addOrder orderID- "+ newOrder.getOrderID());
 			int dishDifficuly=newOrder.getDifficultyRating();
-			System.out.println(" chef  addOrder dish name: "+ newOrder.getOrderID()+" chef name: "+this.chefName+" dishDifficuly: "+dishDifficuly+" enduranceRating: "+enduranceRating+" currectPressure: "+currectPressure);
+			//System.out.println(" chef  addOrder dish name: "+ newOrder.getOrderID()+" chef name: "+this.chefName+" dishDifficuly: "+dishDifficuly+" enduranceRating: "+enduranceRating+" currectPressure: "+currectPressure);
 	//		if ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown){
 			//	System.out.println("here");
-				System.out.println(" chef  addOrder dish name------- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
+				//System.out.println(" chef  addOrder dish name------- "+ newOrder.getOrderID()+" chef name: "+this.chefName);
 				newOrder.setOrderStatus(2);
 				this.currectPressure=this.currectPressure+dishDifficuly;
 				this.orderVector.add(newOrder);

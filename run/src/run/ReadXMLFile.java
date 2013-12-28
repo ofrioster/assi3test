@@ -81,7 +81,7 @@ public class ReadXMLFile {
 				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),
 						new Restaurant());
 				// System.out.println(Restaurant.toString());
-				logger.log(Level.SEVERE,
+				logger.log(Level.CONFIG,
 						"Finished Parsing The Restaurant Config");
 				return Restaurant;
 			}

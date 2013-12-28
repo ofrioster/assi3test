@@ -162,11 +162,11 @@ public class Order implements OrderInterface {
 		return this.expectedcookTime;
 	}
 	public void setTotalReward(){
-		System.out.println("orderID: "+this.orderID+" this.actualCookTime+this.actualDeliveryTime "+(this.actualCookTime+this.actualDeliveryTime)+" this.expectedcookTime+this.expectedDeliveryTime: "+(this.expectedcookTime+this.expectedDeliveryTime));
-		System.out.println("orderID: "+this.orderID+" this.actualCookTime "+this.actualCookTime);
-		System.out.println("orderID: "+this.orderID+" this.actualDeliveryTime "+this.actualDeliveryTime);
-		System.out.println("orderID: "+this.orderID+" this.expectedcookTime "+this.expectedcookTime);
-		System.out.println("orderID: "+this.orderID+" this.expectedDeliveryTime: "+this.expectedDeliveryTime);
+		//System.out.println("orderID: "+this.orderID+" this.actualCookTime+this.actualDeliveryTime "+(this.actualCookTime+this.actualDeliveryTime)+" this.expectedcookTime+this.expectedDeliveryTime: "+(this.expectedcookTime+this.expectedDeliveryTime));
+		//System.out.println("orderID: "+this.orderID+" this.actualCookTime "+this.actualCookTime);
+		//System.out.println("orderID: "+this.orderID+" this.actualDeliveryTime "+this.actualDeliveryTime);
+		//System.out.println("orderID: "+this.orderID+" this.expectedcookTime "+this.expectedcookTime);
+		//System.out.println("orderID: "+this.orderID+" this.expectedDeliveryTime: "+this.expectedDeliveryTime);
 		if ((this.actualCookTime+this.actualDeliveryTime)>(1.15*(this.expectedcookTime+this.expectedDeliveryTime))){
 			this.totalReward=0.5*(this.calculateReward());
 		}
@@ -223,5 +223,23 @@ public class Order implements OrderInterface {
 		String res=" orderID- "+this.orderID+" difficultyRating- "+this.difficultyRating+" orderStatus- "+this.orderStatus+" orderDish- "+this.orderDish+" customerAddress- "+this.customerAddress+" actualDeliveryTime- "+this.actualDeliveryTime+" actualCookTime- "+this.actualCookTime+" expectedDeliveryTime- "+this.expectedDeliveryTime+" expectedcookTime- "+this.expectedcookTime+" totalReward- "+this.totalReward;
 		return res;
 	}
-
+	
+	public int numberOfMeals(){
+		int retnumberOfMeals = 0;
+		for (OrderOfDish dish : this.orderDish){
+			retnumberOfMeals += dish.getquantity();
+			
+			
+		
+		}
+		return retnumberOfMeals;
+	}
+	
+	
+	
+	
+	public String toStringForLogger(){	
+		String res="["+ this.orderID + "][numberOfMeals=" + this.numberOfMeals()+"]";
+		return res;
+	}
 }

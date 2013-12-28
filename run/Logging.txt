@@ -1,28 +1,40 @@
-דצמ 27, 2013 9:51:17 AM run.Driver main
-INFO: message 1
-דצמ 27, 2013 9:51:17 AM run.Driver main
-SEVERE: message 2
-דצמ 27, 2013 9:51:17 AM run.Driver main
-FINE: message 3
-דצמ 27, 2013 9:51:17 AM run.ReadXMLFile ParseMenuFile
+Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseMenuFile
 CONFIG: Finished Parsing The Menu
-דצמ 27, 2013 9:51:17 AM run.ReadXMLFile ParseOrderListFile
+Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseOrderListFile
 CONFIG: Finished Parsing The Order List
-דצמ 27, 2013 9:51:17 AM run.ReadXMLFile ParseRestauranFilet
-SEVERE: Finished Parsing The Restaurant Config
-דצמ 27, 2013 9:51:17 AM run.Management run
-INFO: INFO: Initializing simulation process...
-דצמ 27, 2013 9:51:17 AM run.Management run
+Dec 28, 2013 11:44:25 AM run.ReadXMLFile ParseRestauranFilet
+CONFIG: Finished Parsing The Restaurant Config
+Dec 28, 2013 11:44:25 AM run.Management run
+INFO: Initializing simulation process...
+Dec 28, 2013 11:44:25 AM run.Management run
 INFO: System contains: [chefs=4][deliveryPeople=5][orders=5]
-דצמ 27, 2013 9:51:17 AM run.Management run
+Dec 28, 2013 11:44:25 AM run.Management run
 INFO: Orders To Cook:5
-דצמ 27, 2013 9:51:17 AM run.Management run
+Dec 28, 2013 11:44:25 AM run.Management run
+INFO: Attempting to send order:[2][numberOfMeals=2]
+Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+INFO: Order ACCEPTED:2
+Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=2][numberOfMeals=2]
+Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 2 meals to finish simulating...
+Dec 28, 2013 11:44:25 AM run.Management run
 INFO: Orders To Cook:4
-דצמ 27, 2013 9:51:17 AM run.Management run
+Dec 28, 2013 11:44:25 AM run.Management run
+INFO: Attempting to send order:[3][numberOfMeals=6]
+Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+INFO: Order ACCEPTED:3
+Dec 28, 2013 11:44:25 AM run.Management run
 INFO: Orders To Cook:3
-דצמ 27, 2013 9:51:17 AM run.Management run
+Dec 28, 2013 11:44:25 AM run.Management run
+INFO: Attempting to send order:[1][numberOfMeals=6]
+Dec 28, 2013 11:44:25 AM run.RunnableChef addOrder
+INFO: Order ACCEPTED:1
+Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder][orderId=1][numberOfMeals=6]
+Dec 28, 2013 11:44:25 AM run.CallableCookWholeOrder call
+INFO: [CallableCookWholeOrder] waiting for 6 meals to finish simulating...
+Dec 28, 2013 11:44:25 AM run.Management run
 INFO: Orders To Cook:2
-דצמ 27, 2013 9:51:32 AM run.Management run
-INFO: Orders To Cook:1
-דצמ 27, 2013 9:52:17 AM run.Driver main
-INFO: run.Statistics@56d9fc12
+Dec 28, 2013 11:44:25 AM run.Management run
+INFO: Attempting to send order:[0][numberOfMeals=8]

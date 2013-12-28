@@ -3,9 +3,11 @@ import java.util.Vector;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable,Callable<Order>{
-
+	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	//private Vector<Dish> dishVector;
 	private Vector<OrderOfDish> dishOrderVector;
 	private Order order;
@@ -62,7 +64,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	}
 	// start threads to cook the orders
 	public void run(){
-		System.out.println("!!!!!run cook whole order has start");
+		//System.out.println("!!!!!run cook whole order has start");
 	//	System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
@@ -100,7 +102,9 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		
 	}
 	public Order call() throws InterruptedException{
-		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
+		//System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
+		//[CallableCookWholeOrder][orderId=0][numberOfMeals=8]
+		logger.log(Level.INFO, "[CallableCookWholeOrder][orderId="+ this.order.getOrderID()+"][numberOfMeals="+this.totalNumberOfDishs+"]");		
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
@@ -112,6 +116,7 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				this.threadsVector.add(t);
 			}
 		}
+		logger.log(Level.INFO, "[CallableCookWholeOrder] waiting for "+ this.totalNumberOfDishs +" meals to finish simulating...");
 //		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID()+" mid time: "+(System.currentTimeMillis()-startTime));
 		try {
 		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
@@ -127,9 +132,11 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.totalTime);
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
+		logger.log(Level.INFO, "[CallableCookWholeOrder] All meals have been cooked!");
+		logger.log(Level.INFO, "Order COMPLETE:" + order.getOrderID());
 	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.order.getActualCookTime());
 		this.collectionOfOrdersToDeliver.add(this.order);
-		System.out.println(" order has done cocking"+ order.getOrderID());
+		//System.out.println(" order has done cocking"+ order.getOrderID());
 		return this.order;
 		
 	}

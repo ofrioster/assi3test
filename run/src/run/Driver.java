@@ -22,9 +22,9 @@ public class Driver {
 	      throw new RuntimeException("Problems with creating the log files");
 	    }
 
-	    logger.log(Level.INFO, "message 1");
-	    logger.log(Level.SEVERE, "message 2");
-	    logger.log(Level.FINE, "message 3");
+//	    logger.log(Level.INFO, "message 1");
+//	    logger.log(Level.SEVERE, "message 2");
+//	    logger.log(Level.FINE, "message 3");
 		
 		
 		

@@ -63,7 +63,8 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		if (!this.collectionDeliverdOrders.isEmpty()){
 			this.collectionDeliverdOrders.remove(0);
 		}
-		System.out.println("000 deliverOrder ID: "+orderToDeliver.getOrderID());
+		
+		//System.out.println("000 deliverOrder ID: "+orderToDeliver.getOrderID());
 		long startTime=System.currentTimeMillis();
 		try {
 			Thread.sleep(calculateDeliveryTime(calculateDeliveryDistance(orderToDeliver.getCustomerAddress())));
@@ -141,6 +142,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		String res=" deliveryPersonName- "+this.deliveryPersonName+" restaurantAddres- "+this.restaurantAddres.toString()+" speedOfDeliveryPerson- "+this.speedOfDeliveryPerson+" collectionDeliverdOrders- "+this.collectionDeliverdOrders.toString()+" shutDown- "+this.shutDown+" totalDeliveryTime- "+this.totalDeliveryTime+" ordersLatch- "+this.ordersLatch;
 		return res;
 	}
+	
 	public void removeFinishOrder(Order orderHasDeliver){
 		for (int i=0;i<this.collectionDeliverdOrders.size();i++){
 			if (this.collectionDeliverdOrders.get(i).getOrderID().equals(orderHasDeliver.getOrderID())){

@@ -186,7 +186,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	 */
 	public synchronized void run(){
 //		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
-	    logger.log(Level.INFO, "INFO: Initializing simulation process...");
+	    logger.log(Level.INFO, "Initializing simulation process...");
 	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
 	    this.collectionOfChefsArryList=this.sortRunnableChefArray(this.collectionOfChefsArryList);
 	    this.collectionOfOrdersToCockArrayList=this.sortOrderArray(this.collectionOfOrdersToCockArrayList);
@@ -207,6 +207,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
 			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
+					//Attempting to send order: [0][numberOfMeals=8]
+					logger.log(Level.INFO, "Attempting to send order:"+this.collectionOfOrdersToCockArrayList.get(0).toStringForLogger());
 					this.startToCookDish(this.collectionOfOrdersToCockArrayList.get(0));
 					this.collectionOfOrdersToCockArrayList.remove(0);
 			//		orderCount++;
@@ -327,9 +329,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			res.add(arryToSort.get(k));
 			arryToSort.remove(k);
 		}
+		/*
 		for(int i=0;i<res.size();i++){
 			System.out.println("sort order ID: "+res.get(i).getOrderID()+" dish diffculty: "+res.get(i).getDifficultyRating());
 		}
+		*/
 		return res;
 		
 	}
