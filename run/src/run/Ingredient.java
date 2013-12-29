@@ -12,7 +12,7 @@ public class Ingredient implements Ingredient_Interface{
 		this.ingredientAmount=new Semaphore(amount);
 		this.ingredientName=name;
 		this.ingredientInitialAmount=amount;
-		System.out.println(name+": "+amount);
+//		System.out.println(name+": "+amount);
 	}
 	/**
 	 * @param ingredientToCopy

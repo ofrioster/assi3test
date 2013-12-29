@@ -125,6 +125,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		//System.out.println(" chef::::: "+this.chefName+" addOrder dish name- "+ newOrder.getOrderID());
 		this.setCurrectPressure(newOrder);
 		this.chefOrders.add(newOrder);
+		this.notifyAll();
 		logger.log(Level.INFO, "Order ACCEPTED:" + newOrder.getOrderID());
 	}
 	/*//	System.out.println(" 3333 ");
@@ -205,16 +206,15 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	public void run(){
 		while (!this.shutDown){
 			this.updateCurrectPressure();
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
+	//		try {
+	//			Thread.sleep(50);
+	//		} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	//			e.printStackTrace();
+	//		}
 			if (!this.chefOrders.isEmpty()){
 				this.cookOrder(this.chefOrders.get(0));
 			}
-			
 		}
 	}
 	@Override
