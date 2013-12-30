@@ -24,15 +24,15 @@ public class Driver {
 		Vector<Dish> Dishes;
 		Vector<Order> Orders;
 		Restaurant Restaurant ;
-		
+		//-Darg0=InitialData.xml -Darg1=Menu.xml -Darg2=OrdersList.xml
         if (args.length > 0) {
-    		 Dishes = ReadXMLFile.ParseMenuFile(args[0]);
-    		 Orders =  ReadXMLFile.ParseOrderListFile(args[1],Dishes);
-    		 Restaurant = ReadXMLFile.ParseRestauranFilet(args[2]) ;
+   		 Restaurant = ReadXMLFile.ParseRestauranFilet(args[0]) ;
+   		 Dishes = ReadXMLFile.ParseMenuFile(args[1]);
+    	 Orders =  ReadXMLFile.ParseOrderListFile(args[2],Dishes);
         }else{   
+    	 Restaurant = ReadXMLFile.ParseRestauranFilet("InitialData.xml") ;
 		 Dishes = ReadXMLFile.ParseMenuFile("Menu.xml");
 		 Orders =  ReadXMLFile.ParseOrderListFile("OrdersList.xml",Dishes);
-		Restaurant = ReadXMLFile.ParseRestauranFilet("InitialData.xml") ;
         }
         
 		Warehouse warehouseTest=new Warehouse(Restaurant.getKitchenTolls(),Restaurant.getIngredients());
