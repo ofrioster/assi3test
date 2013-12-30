@@ -88,7 +88,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 //		System.out.println("count down count "+this.ordersLatch.getCount());
 //		removeFinishOrder(orderToDeliver);
 		this.ordersLatch.countDown();
-//		System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
+		System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
 		
 		logger.log(Level.INFO, "Order DELIVERED:" + orderToDeliver.toStringTimes());
 		
@@ -109,7 +109,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void run(){
 	//	System.out.println("run");
 		this.isAlive=true;
-		while (!this.shutDown){
+		while (!this.shutDown&&this.isAlive){
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

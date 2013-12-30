@@ -110,6 +110,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public synchronized RunnableChef findUnbusyChef(Order newOrder){
 		Boolean found=false;
 		RunnableChef res;
+//		System.out.println(" add new order to chef: " +newOrder.getOrderID());
 		while (!found){
 			try{
 				res=this.collectionOfChefsArryList.get(0);
@@ -286,6 +287,7 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 //				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
+				System.out.println(" add new order to delivery person: " +this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				if (!deliveryPerson.isAlive()){
 					Thread t=new Thread(deliveryPerson);
 					t.start();

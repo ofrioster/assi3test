@@ -43,7 +43,7 @@ public class Ingredient implements Ingredient_Interface{
 				//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
 				}
 			else {
-					System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
+	//				System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
 					res= false;
 				}
 		}
