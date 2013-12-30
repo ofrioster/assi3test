@@ -18,11 +18,13 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	private long totalDeliveryTime;
 	CountDownLatch ordersLatch;
 	private Statistics statistics;
+	private Boolean isAlive;
 	
 	public RunnableDeliveryPerson(){
 		this.collectionDeliverdOrders=new ArrayList<Order>();
 		this.shutDown=false;
 		this.totalDeliveryTime=0;
+		this.isAlive=false;
 	}
 	
 	public RunnableDeliveryPerson(String deliveryPersonName,Address restaurantAddres,Double speedOfDeliveryPerson,CountDownLatch ordersLatch,Statistics statistics){
@@ -34,6 +36,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		this.collectionDeliverdOrders=new ArrayList<Order>();
 		this.ordersLatch=ordersLatch;
 		this.statistics=statistics;
+		this.isAlive=false;
 	}
 	public void setStatistics(Statistics statistics){
 		this.statistics=statistics;
@@ -85,7 +88,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 //		System.out.println("count down count "+this.ordersLatch.getCount());
 //		removeFinishOrder(orderToDeliver);
 		this.ordersLatch.countDown();
-		//System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
+//		System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
 		
 		logger.log(Level.INFO, "Order DELIVERED:" + orderToDeliver.toStringTimes());
 		
@@ -105,6 +108,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public void run(){
 	//	System.out.println("run");
+		this.isAlive=true;
 		while (!this.shutDown){
 			try {
 				Thread.sleep(50);
@@ -115,8 +119,14 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 			if (!this.collectionDeliverdOrders.isEmpty()){
 				this.deliverOrder(this.collectionDeliverdOrders.get(0));
 			}
+			else if(this.collectionDeliverdOrders.isEmpty()){
+				this.isAlive=false;
+			}
 			
 		}
+	}
+	public Boolean isAlive(){
+		return this.isAlive;
 	}
 
 

@@ -7,6 +7,8 @@ import java.util.Observer;
 import java.util.Observable;
 import java.util.Vector;
 
+import javax.print.attribute.standard.SheetCollate;
+
 public class Management implements ManagementInterface,Observer,Runnable {
 	
 	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -93,6 +95,10 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		RunnableChef chef=this.findUnbusyChef(orderToCook);
 	//	System.out.println("managemant- startToCookDish- befor order ID-"+orderToCook.getOrderID());
 		chef.addOrder(orderToCook);
+		if(!chef.isAlive()){
+			Thread t=new Thread(chef);
+			t.start();
+		}
 	}
 	
 	/** (non-Javadoc)
@@ -174,6 +180,10 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			if(order.getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 				deliveryPerson.addDeliverdOrder(order);
+				if(!deliveryPerson.isAlive()){
+					Thread t=new Thread(deliveryPerson);
+					t.start();
+				}
 			}
 		}
 		catch(Exception e){
@@ -191,8 +201,8 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	    this.collectionOfChefsArryList=this.sortRunnableChefArray(this.collectionOfChefsArryList);
 	    this.collectionOfOrdersToCockArrayList=this.sortOrderArray(this.collectionOfOrdersToCockArrayList);
 		this.sendCollectionOfOrdersToDeliverToChef();
-		this.startThreadsOfDeliveryPerson();
-		this.startThreadsOfChef();
+//		this.startThreadsOfDeliveryPerson();
+//		this.startThreadsOfChef();
 		this.setChefWarehouse();
 		while (!this.shutDown && (this.collectionOfOrdersToCockArrayList.size()>0 )){
 			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCockArrayList.size());
@@ -276,6 +286,10 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
 //				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
+				if (!deliveryPerson.isAlive()){
+					Thread t=new Thread(deliveryPerson);
+					t.start();
+				}
 //				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
 	//			System.out.println("888 orderCount "+ this.orderCount);

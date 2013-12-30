@@ -26,6 +26,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	private ArrayList<Order> chefOrders;
 	private Warehouse warehouse;
 	private int numberOfOrders;
+	private Boolean isAlive;
 	
 	public RunnableChef(){
 		this.currectPressure=0;
@@ -38,6 +39,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.executorService1=Executors.newCachedThreadPool();
 		this.chefOrders=new ArrayList<Order>();
 		this.numberOfOrders=0;
+		this.isAlive=false;
 	}
 	public RunnableChef( String chefName, Double chefEfficiencyRating, Double enduranceRating,Warehouse warehouse){
 		this.chefName=chefName;
@@ -54,6 +56,7 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 		this.chefOrders=new ArrayList<Order>();
 		this.warehouse=warehouse;
 		this.numberOfOrders=0;
+		this.isAlive=false;
 	}
 	public void setWarehouse(Warehouse warehouse){
 		this.warehouse=warehouse;
@@ -183,10 +186,14 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	 * @	finish all the cooking and do not start new ones
 	 */
 	public void shutDown(){
+		this.isAlive=false;
 		this.executorService1.shutdown();
 		this.shutDown=true;
 		logger.log(Level.INFO, "Chef has been shut down.");
 	//	System.out.println("chef: "+ this.chefName+ " shutdown");
+	}
+	public Boolean isAlive(){
+		return this.isAlive;
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){
 		int dishDifficuly=newOrder.getDifficultyRating();
@@ -204,7 +211,8 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	
 	
 	public void run(){
-		while (!this.shutDown){
+		this.isAlive=true;
+		while (!this.shutDown&& this.isAlive){
 			this.updateCurrectPressure();
 	//		try {
 	//			Thread.sleep(50);
@@ -214,6 +222,9 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	//		}
 			if (!this.chefOrders.isEmpty()){
 				this.cookOrder(this.chefOrders.get(0));
+			}
+			else if (this.chefOrders.isEmpty()){
+				this.isAlive=false;
 			}
 		}
 	}

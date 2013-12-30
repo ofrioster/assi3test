@@ -21,5 +21,6 @@ public interface RunnableDeliveryPersonInterface {
 	public void setStatistics(Statistics statistics);
 	public String toString();
 	public void removeFinishOrder(Order orderHasDeliver);
+	public Boolean isAlive();
 
 }
