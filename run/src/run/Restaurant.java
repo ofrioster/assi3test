@@ -66,11 +66,28 @@ public class Restaurant implements RestaurantInterface {
 		builder.append(", KitchenTools=");
 		builder.append(KitchenTools);
 		builder.append(", Chefs=");
-		builder.append(Chefs);
+		toStringChefs();
 		builder.append(", DeliveryPersonals=");
-		builder.append(DeliveryPersonals);
+		toStringDeliveryPersonals();
 		builder.append("]");
 		return builder.toString();
 	}
+
+	public String toStringChefs() {
+		StringBuilder builder = new StringBuilder();
+		for ( RunnableChef chef : Chefs){
+			builder.append("\n Chef:");
+			builder.append(chef);
+		}		return builder.toString();
+	}
+
+	public String toStringDeliveryPersonals() {
+		StringBuilder builder = new StringBuilder();
+		for ( RunnableDeliveryPerson DeliveryPerson : DeliveryPersonals){
+			builder.append("\n DeliveryPerson:");
+			builder.append(DeliveryPerson);
+		}		return builder.toString();
+	}
+	
 
 }

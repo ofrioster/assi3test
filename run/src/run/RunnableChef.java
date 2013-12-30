@@ -138,6 +138,10 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	public Boolean canTheChefTakeOrder(Order newOrder){
 		int dishDifficuly=newOrder.getDifficultyRating();
+		if ((dishDifficuly<= (enduranceRating-currectPressure))){
+		    logger.log(Level.INFO, "Order REFUSED: "+newOrder.getOrderID() +" [difficulty="+ dishDifficuly +"][availableEndurance="+(enduranceRating-currectPressure)+"]");
+			
+		}
 		return ((dishDifficuly<= (enduranceRating-currectPressure))&& !shutDown);
 	}
 	
@@ -159,9 +163,9 @@ public class RunnableChef implements RunnableChefInterface,Runnable{
 	}
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RunnableChef [chefName=");
+		builder.append("Chef [Name=");
 		builder.append(chefName);
-		builder.append(", chefEfficiencyRating=");
+		builder.append(", EfficiencyRating=");
 		builder.append(chefEfficiencyRating);
 		builder.append(", enduranceRating=");
 		builder.append(enduranceRating);

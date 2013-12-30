@@ -148,14 +148,15 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("RunnableDeliveryPerson [deliveryPersonName=");
+		builder.append("DeliveryPerson [Name=");
 		builder.append(deliveryPersonName);
-		builder.append(", restaurantAddres=");
-		builder.append(restaurantAddres);
-		builder.append(", speedOfDeliveryPerson=");
+		//builder.append(", restaurantAddress=");
+		//builder.append(restaurantAddres);
+		builder.append(", Speed=");
 		builder.append(speedOfDeliveryPerson);
-		builder.append(", collectionDeliverdOrders=");
-		builder.append(collectionDeliverdOrders);
+		//builder.append("\n");
+		//builder.append(", collectionDeliverdOrders=");
+		//builder.append(collectionDeliverdOrders);
 		
 		for ( Order order : collectionDeliverdOrders){
 			builder.append("\n Order:");
@@ -164,7 +165,7 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		builder.append("totalDeliveryTime=");
 		builder.append(totalDeliveryTime);
 		builder.append(", ordersLatch=");
-		builder.append(ordersLatch);
+		builder.append(ordersLatch.getCount());
 		builder.append("]");
 		return builder.toString();
 	}

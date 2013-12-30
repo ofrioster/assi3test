@@ -112,7 +112,7 @@ public class Management implements ManagementInterface,Runnable {
 				if (res.canTheChefTakeOrder(newOrder)){
 					return res;
 				}
-				}
+			}
 			catch (Exception e) {
 			}
 		}
