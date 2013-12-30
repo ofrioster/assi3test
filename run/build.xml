@@ -19,6 +19,6 @@
         </jar>
     </target>
     <target name="run" depends="jar" description="run the Jar file for the application">
-	<java fork="true" jar="build/Driver.jar" ></java>
+	<java fork="true" jar="build/Driver.jar" ><arg value="${arg0}"/><arg value="${arg1}"/><arg value="${arg2}"/></java>
     </target>
 </project>
