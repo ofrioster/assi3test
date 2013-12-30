@@ -36,14 +36,10 @@ public class Ingredient implements Ingredient_Interface{
 	
 	public synchronized  boolean getIngredient(int amount){
 		Boolean res=true;
-//		System.out.println("amount: "+amount);
 		for (int i=0;i<amount;i++){
-//			System.out.println("ingredientName: "+this.ingredientName);
 			if(this.ingredientAmount.tryAcquire()){
-				//		System.out.println(this.ingredientName+" - "+this.ingredientAmount.availablePermits());
 				}
 			else {
-	//				System.out.println("this.ingredientAmount.availablePermits() "+this.ingredientAmount.availablePermits());
 					res= false;
 				}
 		}
@@ -61,10 +57,6 @@ public class Ingredient implements Ingredient_Interface{
 	public int getNumberOfIngredient(){
 		return this.ingredientAmount.availablePermits();
 	}
-//	public String toString(){
-//		String res=" ingredientName- "+this.ingredientName+" ingredientAmount- "+this.ingredientAmount.availablePermits();
-//		return res;
-//	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -80,7 +72,5 @@ public class Ingredient implements Ingredient_Interface{
 		return builder.toString();
 	}
 
-
-	
 }
 

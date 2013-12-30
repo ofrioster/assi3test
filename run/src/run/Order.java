@@ -8,7 +8,6 @@ public class Order implements OrderInterface {
 	private int orderStatus;
 	private Vector<OrderOfDish> orderDish;
 	private Address customerAddress;
-	// the status are:
 	private final int INCOMPLETE=1;
 	private final int INPROGRESS=2;
 	private final int COMPLETE=3;
@@ -28,7 +27,6 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
-//		System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	public Order(String orderID, Vector<OrderOfDish> orderDish,Address customerAddress){
 		this.orderID=orderID;
@@ -38,7 +36,6 @@ public class Order implements OrderInterface {
 		this.customerAddress=customerAddress;
 		this.expectedcookTime=this.calculateCookTime(orderDish);
 		this.setDifficultyRating();
-	//	System.out.println("order ID: "+ this.orderID+ " expectedcookTime: "+this.expectedcookTime);
 	}
 	
 	public Order(String orderID, int orderStatus,Address customerAddress){
@@ -66,7 +63,6 @@ public class Order implements OrderInterface {
 		}
 		this.difficultyRating=0;
 		this.setDifficultyRating();
-	//	this.expectedcookTime=this.expectedcookTime+this.calculateCookTime(orderDish);
 	}
 	/** (non-Javadoc)
 	 *@param the status are:
@@ -162,11 +158,6 @@ public class Order implements OrderInterface {
 		return this.expectedcookTime;
 	}
 	public void setTotalReward(){
-		//System.out.println("orderID: "+this.orderID+" this.actualCookTime+this.actualDeliveryTime "+(this.actualCookTime+this.actualDeliveryTime)+" this.expectedcookTime+this.expectedDeliveryTime: "+(this.expectedcookTime+this.expectedDeliveryTime));
-		//System.out.println("orderID: "+this.orderID+" this.actualCookTime "+this.actualCookTime);
-		//System.out.println("orderID: "+this.orderID+" this.actualDeliveryTime "+this.actualDeliveryTime);
-		//System.out.println("orderID: "+this.orderID+" this.expectedcookTime "+this.expectedcookTime);
-		//System.out.println("orderID: "+this.orderID+" this.expectedDeliveryTime: "+this.expectedDeliveryTime);
 		if ((this.actualCookTime+this.actualDeliveryTime)>(1.15*(this.expectedcookTime+this.expectedDeliveryTime))){
 			this.totalReward=0.5*(this.calculateReward());
 		}
@@ -180,7 +171,6 @@ public class Order implements OrderInterface {
 	public Double calculateReward(){
 		Double res=0.0;
 		for (int i=0; i<this.orderDish.size();i++){
-		//	System.out.println("888 dish.reward- "+this.orderDish.get(i).gestDish().getReward()+" 888 dish.name- "+this.orderDish.get(i).gestDish().getDishName()+" 888 order ID- "+this.orderID);
 			res= res+(this.orderDish.get(i).gestDish().getReward()*this.orderDish.get(i).getquantity());
 		}
 		return res;
@@ -208,10 +198,8 @@ public class Order implements OrderInterface {
 	}
 	public void setDifficultyRating(){
 		for (int i=0;i<this.orderDish.size();i++){
-		//	System.out.println( "dish difficulty: "+this.orderDish.get(i).gestDish().getDishDifficultyRating());
 			this.difficultyRating=this.difficultyRating+ this.orderDish.get(i).gestDish().getDishDifficultyRating();
 		}
-	//	System.out.println(" order difficulty: "+this.difficultyRating);
 	}
 	public void setAddress(Address tmpAddress) {
 		this.customerAddress=tmpAddress;
@@ -219,10 +207,6 @@ public class Order implements OrderInterface {
 	public void setOrderOfDish(Vector<OrderOfDish> tmpOrderOfDish) {
 		this.orderDish=tmpOrderOfDish;
 	}
-//	public String toString(){
-//		String res=" orderID- "+this.orderID+" difficultyRating- "+this.difficultyRating+" orderStatus- "+this.orderStatus+" orderDish- "+this.orderDish+" customerAddress- "+this.customerAddress+" actualDeliveryTime- "+this.actualDeliveryTime+" actualCookTime- "+this.actualCookTime+" expectedDeliveryTime- "+this.expectedDeliveryTime+" expectedcookTime- "+this.expectedcookTime+" totalReward- "+this.totalReward;
-//		return res;
-//	}
 	
 	public int numberOfMeals(){
 		int retnumberOfMeals = 0;

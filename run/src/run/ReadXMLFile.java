@@ -32,7 +32,6 @@ public class ReadXMLFile {
 			if (doc.hasChildNodes()) {
 
 				Dishes = ParseMenu(doc.getChildNodes());
-				// System.out.println(Dishes.toString());
 				logger.log(Level.CONFIG, "Finished Parsing The Menu");
 				return Dishes;
 			}
@@ -52,10 +51,8 @@ public class ReadXMLFile {
 			Document doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
-				// Restaurant retRestaurant = new Restaurant();
 				Vector<Order> Orders = ParseOrderList(doc.getChildNodes(),
 						Dishes);
-				// System.out.println(Orders.toString());
 				logger.log(Level.CONFIG, "Finished Parsing The Order List");
 				return Orders;
 
@@ -77,10 +74,8 @@ public class ReadXMLFile {
 			Document doc = dBuilder.parse(file);
 
 			if (doc.hasChildNodes()) {
-				// Restaurant retRestaurant = new Restaurant();
 				Restaurant Restaurant = ParseRestaurant(doc.getChildNodes(),
 						new Restaurant());
-				// System.out.println(Restaurant.toString());
 				logger.log(Level.CONFIG,
 						"Finished Parsing The Restaurant Config");
 				return Restaurant;
@@ -96,10 +91,7 @@ public class ReadXMLFile {
 			Vector<Dish> Dishes) {
 		Vector<Order> tmpOrders = new Vector<Order>();
 		for (int count = 0; count < nodeList.getLength(); count++) {
-			// Dish tempdish = null;
 			Node tempNode = nodeList.item(count);
-
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
 				case "OrderList":
@@ -127,18 +119,12 @@ public class ReadXMLFile {
 	private static String id(Node tempNode) {
 		String ret = "err";
 		if (tempNode.hasAttributes()) {
-
-			// get attributes names and values
 			NamedNodeMap nodeMap = tempNode.getAttributes();
-
 			for (int i = 0; i < nodeMap.getLength(); i++) {
-
 				Node node = nodeMap.item(i);
 				if (node.getNodeName() == "id") {
 					ret = node.getNodeValue();
 				}
-				// System.out.println("attr name : " + node.getNodeName());
-				// System.out.println("attr value : " + node.getNodeValue());
 
 			}
 
@@ -149,12 +135,9 @@ public class ReadXMLFile {
 	private static Order ParseOrder(NodeList nodeList, Order order,
 			Vector<Dish> Dishes) {
 		Address tmpAddress = null;
-		// Vector<OrderOfDish> tmpOrderOfDish = new Vector<OrderOfDish>();
-
 		for (int count = 0; count < nodeList.getLength(); count++) {
 
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
@@ -172,8 +155,6 @@ public class ReadXMLFile {
 					break;
 				}
 
-				// System.out.println("Node Name =" + tempNode.getNodeName() +
-				// " [CLOSE]"
 			}
 
 		}
@@ -190,7 +171,6 @@ public class ReadXMLFile {
 		OrderOfDish tmpOrderOfDish = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
@@ -221,11 +201,9 @@ public class ReadXMLFile {
 
 	private static Restaurant ParseRestaurant(NodeList nodeList,
 			Restaurant retRestaurant) {
-		// Restaurant retRestaurant = new Restaurant();
 		Address tmpAddress = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
 				case "Restaurant":
@@ -259,7 +237,6 @@ public class ReadXMLFile {
 			Restaurant retRestaurant) {
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
 				case "Tools":
@@ -295,16 +272,12 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "DeliveryPerson"))) {
 
 				if (tempNode.hasChildNodes()) {
-
-					// loop again if has child nodes
 					DeliveryPersonals.add(ParseDeliveryPerson(tempNode
 							.getChildNodes()));
-					// System.out.println("----------------------------------------");
 
 				}
 
@@ -312,24 +285,16 @@ public class ReadXMLFile {
 
 		}
 		return DeliveryPersonals;
-		// return null;
 	}
 
 	private static RunnableDeliveryPerson ParseDeliveryPerson(NodeList nodeList) {
-
-		// String tmpName = null;
 		RunnableDeliveryPerson tempDeliveryPerson = new RunnableDeliveryPerson();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "name":
-					// tempdish = new Dish();
-					// tempChef
-					// System.out.println("----------------------------------------");
 					tempDeliveryPerson.setDeliveryPersonName(tempNode
 							.getTextContent());
 					break;
@@ -340,9 +305,6 @@ public class ReadXMLFile {
 					break;
 
 				case "enduranceRating":
-
-					// Double.parseDouble(tempNode.getTextContent());
-					// tempChef.setEnduranceRating(Double.parseDouble(tempNode.getTextContent()));
 					break;
 
 				default:
@@ -358,18 +320,13 @@ public class ReadXMLFile {
 	}
 
 	private static RunnableChef ParseChef(NodeList nodeList) {
-		// String tmpName = null;
 		RunnableChef tempChef = new RunnableChef();
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "name":
-					// tempdish = new Dish();
-					// tempChef
-					// System.out.println("----------------------------------------");
 					tempChef.setChefName(tempNode.getTextContent());
 					break;
 
@@ -381,8 +338,6 @@ public class ReadXMLFile {
 					break;
 
 				case "enduranceRating":
-
-					// Double.parseDouble(tempNode.getTextContent());
 					tempChef.setEnduranceRating(Double.parseDouble(tempNode
 							.getTextContent()));
 					break;
@@ -404,15 +359,11 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "Chef"))) {
 
 				if (tempNode.hasChildNodes()) {
-
-					// loop again if has child nodes
 					Chefs.add(ParseChef(tempNode.getChildNodes()));
-					// System.out.println("----------------------------------------");
 
 				}
 
@@ -420,13 +371,11 @@ public class ReadXMLFile {
 
 		}
 		return Chefs;
-		// return null;
 	}
 
 	private static Address ParseAddress(NodeList nodeList) {
 		Address tmpAddress = new Address();
 		for (int count = 0; count < nodeList.getLength(); count++) {
-			// Dish tempdish = null;
 			Node tempNode = nodeList.item(count);
 
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -451,10 +400,7 @@ public class ReadXMLFile {
 	private static Vector<Dish> ParseMenu(NodeList nodeList) {
 		Vector<Dish> Dishes = new Vector<Dish>();
 		for (int count = 0; count < nodeList.getLength(); count++) {
-			// Dish tempdish = null;
 			Node tempNode = nodeList.item(count);
-
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 				switch (tempNode.getNodeName()) {
 				case "Menu":
@@ -481,16 +427,13 @@ public class ReadXMLFile {
 		Dish tempdish = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-
 				switch (tempNode.getNodeName()) {
 				case "name":
 					tempdish = new Dish();
 					tempdish.setDishName(tempNode.getTextContent());
 					break;
 				case "difficultyRating":
-					// int t = Integer.parseInt(tempNode.getTextContent());
 					tempdish.setDishDifficultyRating(Integer.parseInt(tempNode
 							.getTextContent()));
 					break;
@@ -534,16 +477,11 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& (tempNode.getNodeName() == "Ingredient")) {
 
 				if (tempNode.hasChildNodes()) {
-
-					// loop again if has child nodes
 					Ingredients.add(ParseIngredient(tempNode.getChildNodes()));
-
-					// System.out.println("----------------------------------------");
 
 				}
 
@@ -559,12 +497,10 @@ public class ReadXMLFile {
 		Ingredient tempIngredient = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "KitchenTool":
-					// tempdish = new Dish();
 					break;
 
 				case "name":
@@ -594,17 +530,12 @@ public class ReadXMLFile {
 
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if ((tempNode.getNodeType() == Node.ELEMENT_NODE)
 					&& ((tempNode.getNodeName() == "KitchenTool"))
 					|| (tempNode.getNodeName() == "Tool")) {
 
 				if (tempNode.hasChildNodes()) {
-
-					// loop again if has child nodes
 					KitchenTools.add(ParseTool(tempNode.getChildNodes()));
-					// System.out.println("----------------------------------------");
-
 				}
 
 			}
@@ -619,14 +550,10 @@ public class ReadXMLFile {
 		KitchenTool tempTool = null;
 		for (int count = 0; count < nodeList.getLength(); count++) {
 			Node tempNode = nodeList.item(count);
-			// make sure it's element node.
 			if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
 
 				switch (tempNode.getNodeName()) {
 				case "KitchenTool":
-					// tempdish = new Dish();
-					System.out
-							.println("----------------------------------------");
 					break;
 
 				case "name":

@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 public class CallableCookWholeOrder extends Observable implements CallableCookWholeOrderInterface, Runnable,Callable<Order>{
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-	//private Vector<Dish> dishVector;
 	private Vector<OrderOfDish> dishOrderVector;
 	private Order order;
 	private Warehouse warehouseName;
@@ -62,19 +61,13 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 		}
 		return this.orderFinish;
 	}
-	// start threads to cook the orders
+
 	public void run(){
-		//System.out.println("!!!!!run cook whole order has start");
-	//	System.out.println("run cook whole order has start- dish name-" +this.dishOrderVector.get(0).gestDish().getDishName());
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
 		for (int i=0; i<dishOrderVector.size();i++){
 			for (int k=0; k<this.dishOrderVector.get(i).getquantity();k++){
-
-	//			System.out.println(this.dishOrderVector.get(i).getquantity());
 				this.dishOrderVector.get(i).setOneDishIsDone();
-	//			System.out.println("this "+ this.chef.getChefName());
-	//			this.dishOrderVector.get(i).setOneDishIsDone();
 				RunnableCookOneDish r= new RunnableCookOneDish(this.dishOrderVector.get(i), warehouseName, chef,this.NumberOfDishesLeftToCock);
 				Thread t= new Thread(r);
 				t.start();
@@ -82,28 +75,17 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			}
 		}
 		try {
-		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	//	System.out.println("await whole order has finish");
 		this.update1();
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;
-//		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
-//		this.collectionOfOrdersToDeliver=new Vector<Order>();
 		this.collectionOfOrdersToDeliver.add(this.order);
-		//this.management.
-		//notifyObservers(this.order);
-//		System.out.println("run cook whole order has finish");
-		
 	}
 	public Order call() throws InterruptedException{
-		//System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID());
-		//[CallableCookWholeOrder][orderId=0][numberOfMeals=8]
 		logger.log(Level.INFO, "[CallableCookWholeOrder][orderId="+ this.order.getOrderID()+"][numberOfMeals="+this.totalNumberOfDishs+"]");		
 		this.orderFinish=false;
 		this.startTime=System.currentTimeMillis();
@@ -117,55 +99,25 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			}
 		}
 		logger.log(Level.INFO, "[CallableCookWholeOrder] waiting for "+ this.totalNumberOfDishs +" meals to finish simulating...");
-//		System.out.println("run cook whole order has start- dish name-" +this.order.getOrderID()+" mid time: "+(System.currentTimeMillis()-startTime));
 		try {
-		//	System.out.println("this.NumberOfDishesLeftToCock.getCount() "+this.NumberOfDishesLeftToCock.getCount());
 			this.NumberOfDishesLeftToCock.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	//	System.out.println("await whole order has finish");
 		this.update1();
 		this.endTime=System.currentTimeMillis();
 		this.totalTime=this.endTime-this.startTime;
-	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.totalTime);
 		this.order.setActualCookTime(this.totalTime);
 		order.setOrderStatus(3);
 		logger.log(Level.INFO, "[CallableCookWholeOrder] All meals have been cooked!");
 		logger.log(Level.INFO, "Order COMPLETE:" + order.getOrderID());
-	//	System.out.println("orderID: "+this.order.getOrderID()+" total cocking time: "+this.order.getActualCookTime());
 		this.collectionOfOrdersToDeliver.add(this.order);
-		//System.out.println(" order has done cocking"+ order.getOrderID());
 		return this.order;
 		
 	}
-	/*
-	  public void update(Observable obj, Boolean finish) {
-	//	  System.out.println("update cook whole order has start");
-		  long endTime=System.currentTimeMillis();
-		  if (finish){
-			  Boolean orderFinish=true;
-			  for (int i=0; i<this.dishOrderVector.size() && orderFinish;i++){
-				  if (this.dishOrderVector.get(i).getOrderStatus()!=3){
-					  orderFinish=false;
-				  }
-			  }
-			  if (orderFinish){
-				  this.endTime=endTime;
-				  this.totalTime=this.endTime-this.startTime;
-				  this.order.setActualCookTime(this.totalTime);
-				  order.setOrderStatus(3);
-		//		  this.statistics.addDeliveredOrder(order);
-		//		  notifyObservers(this.order); 
-			  }
-			  
-		  }
-	  }
-	*/
+	
 	  public void update1() {
-//		  System.out.println("update1 cook whole order has start");
-		  long endTime=System.currentTimeMillis();
 			  Boolean orderFinish=true;
 			  for (int i=0; i<this.dishOrderVector.size() && orderFinish;i++){
 				  if (this.dishOrderVector.get(i).getOrderStatus()!=3){
@@ -173,13 +125,8 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 				  }
 			  }
 			  if (orderFinish){
-			//	  this.endTime=endTime;
-			//	  this.totalTime=this.endTime-this.startTime;
-			//	  this.order.setActualCookTime(this.totalTime);
 				  order.setOrderStatus(3);
-			//	  System.out.println("notifyObservers(this.order);");
 				  notifyObservers(this.order);
-			//	  System.out.println("notifyObservers(this.order);");
 			  }
 	  }
 	public Long getTotalCookingTime(){
@@ -194,10 +141,6 @@ public class CallableCookWholeOrder extends Observable implements CallableCookWh
 			this.totalNumberOfDishs=this.totalNumberOfDishs+ this.dishOrderVector.get(i).getquantity();
 		}
 	}
-//	public String toString(){
-//		String res=" order name- "+ this.order.getOrderID() +" warehouseName- "+this.warehouseName+" chef name- "+ this.chef.getChefName()+" NumberOfDishesLeftToCock- "+this.NumberOfDishesLeftToCock;
-//		return res;
-//	}
 
 	@Override
 	public String toString() {

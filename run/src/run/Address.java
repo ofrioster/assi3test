@@ -40,10 +40,7 @@ public class Address implements AddressInterface{
 		Double res=Math.sqrt(x1+y1);
 		return res;
 	}
-//	public String toString(){
-//		String res= " Address x= "+this.x+" Address y= "+this.y;
-//		return res;
-//	}
+
 
 	@Override
 	public String toString() {

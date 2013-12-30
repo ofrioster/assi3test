@@ -1,6 +1,5 @@
 package run;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 import java.lang.Math;
 import java.util.logging.Level;
@@ -11,12 +10,12 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
 	private String deliveryPersonName;
-	private Address restaurantAddres; //the type might change we get (x,y)
+	private Address restaurantAddres; 
 	private Double speedOfDeliveryPerson;
 	private ArrayList<Order> collectionDeliverdOrders;
 	private Boolean shutDown;
 	private long totalDeliveryTime;
-	CountDownLatch ordersLatch;
+	private CountDownLatch ordersLatch;
 	private Statistics statistics;
 	private Boolean isAlive;
 	
@@ -52,7 +51,6 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public void addDeliverdOrder(Order order){
 		this.collectionDeliverdOrders.add(order);
-	//	System.out.println("8888 Order add- "+order.getOrderID());
 	}
 	public Double calculateDeliveryDistance(Address deliveryAddress){
 		return this.restaurantAddres.calculateDistance(deliveryAddress);
@@ -66,17 +64,13 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	}
 	public synchronized void deliverOrder(Order orderToDeliver){
 		orderToDeliver.setActualDeliveryTime(System.currentTimeMillis());
-	//	System.out.println("size "+this.collectionDeliverdOrders.size());
 		if (!this.collectionDeliverdOrders.isEmpty()){
 			this.collectionDeliverdOrders.remove(0);
 		}
-		
-		//System.out.println("000 deliverOrder ID: "+orderToDeliver.getOrderID());
 		long startTime=System.currentTimeMillis();
 		try {
 			Thread.sleep(calculateDeliveryTime(calculateDeliveryDistance(orderToDeliver.getCustomerAddress())));
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		orderToDeliver.setExpectedDeliveryTime(System.currentTimeMillis()-startTime);
@@ -84,18 +78,12 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		orderToDeliver.setActualDeliveryTime(System.currentTimeMillis()-orderToDeliver.getActualDeliveryTime());
 		orderToDeliver.setTotalReward();
 		this.statistics.addDeliveredOrder(orderToDeliver);
-//		this.collectionDeliverdOrders.remove(orderToDeliver);
-//		System.out.println("count down count "+this.ordersLatch.getCount());
-//		removeFinishOrder(orderToDeliver);
 		this.ordersLatch.countDown();
-		System.out.println("Order ID: "+ orderToDeliver.getOrderID()+" count down count "+this.ordersLatch.getCount());
-		
 		logger.log(Level.INFO, "Order DELIVERED:" + orderToDeliver.toStringTimes());
 		
 	}
 
 	public void addOrder(Order newOrder){
-	//	System.out.println("addOrder(Order newOrder)");
 		this.totalDeliveryTime=this.totalDeliveryTime+ this.calculateDeliveryTime(calculateDeliveryDistance(newOrder.getCustomerAddress()));
 		newOrder.setActualDeliveryTime(System.currentTimeMillis());
 		this.collectionDeliverdOrders.add(newOrder);
@@ -103,17 +91,13 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void shutDown(){
 		this.shutDown=true;
 		logger.log(Level.INFO, "DeliveryPerson has been shut down.");
-		
-//		System.out.println("deliveryPersonName: "+ this.deliveryPersonName+ " shutdown");
 	}
 	public void run(){
-	//	System.out.println("run");
 		this.isAlive=true;
 		while (!this.shutDown&&this.isAlive){
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (!this.collectionDeliverdOrders.isEmpty()){
@@ -154,11 +138,6 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 	public void setordersLatch(CountDownLatch latchObject) {
 		this.ordersLatch = 	latchObject;
 	}
-//	public String toString(){
-//		String res=" deliveryPersonName- "+this.deliveryPersonName+" restaurantAddres- "+this.restaurantAddres.toString()+" speedOfDeliveryPerson- "+this.speedOfDeliveryPerson+" collectionDeliverdOrders- "+this.collectionDeliverdOrders.toString()+" shutDown- "+this.shutDown+" totalDeliveryTime- "+this.totalDeliveryTime+" ordersLatch- "+this.ordersLatch;
-//		return res;
-//	}
-//	
 	public void removeFinishOrder(Order orderHasDeliver){
 		for (int i=0;i<this.collectionDeliverdOrders.size();i++){
 			if (this.collectionDeliverdOrders.get(i).getOrderID().equals(orderHasDeliver.getOrderID())){
@@ -167,7 +146,6 @@ public class RunnableDeliveryPerson implements RunnableDeliveryPersonInterface, 
 		}
 	}
 
-	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RunnableDeliveryPerson [deliveryPersonName=");

@@ -12,7 +12,7 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		long startTime=System.currentTimeMillis(); 	///***delete
+
 
 	    
 	    try {
@@ -20,12 +20,7 @@ public class Driver {
 	    } catch (IOException e) {
 	      e.printStackTrace();
 	      throw new RuntimeException("Problems with creating the log files");
-	    }
-
-//	    logger.log(Level.INFO, "message 1");
-//	    logger.log(Level.SEVERE, "message 2");
-//	    logger.log(Level.FINE, "message 3");
-	    
+	    } 
 		Vector<Dish> Dishes;
 		Vector<Order> Orders;
 		Restaurant Restaurant ;
@@ -50,14 +45,11 @@ public class Driver {
 			deliveryPerson.setRestaurantAddres(Restaurant.getAddress());
 		}
 		
-		Management managementTest=new Management(Orders,Restaurant.getChefs() , Restaurant.getDeliveryPersonals(), warehouseTest, latchObject,statistics);
+		Management managementTest=new Management(Orders,Restaurant.getChefs() , Restaurant.getDeliveryPersonals(), warehouseTest,statistics);
 		managementTest.setReceiveAllOrders(true);
 		Thread t=new Thread(managementTest);
 		t.start();
-		
-		//System.out.println("order1.getOrderStatus() "+order1.getOrderStatus());
 		try {
-	//		System.out.println("await");
 			latchObject.await();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -68,11 +60,7 @@ public class Driver {
 		for(long i=0;i<9999;i++){
 			
 		}
-	//	System.out.println(" SEMI END!!!!");
-		long totalRunTime=System.currentTimeMillis()-startTime;	///***delete
-		System.out.println("total run time: "+totalRunTime);///***delete
 	    logger.log(Level.INFO, statistics.toString());
-	//    System.out.println("statistics.getIngredientsConsumed().size(): "+statistics.getIngredientsConsumed().size());
 	    System.out.println(" END!!!!");
 	
 	}

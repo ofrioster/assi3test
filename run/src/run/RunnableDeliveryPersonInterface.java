@@ -4,11 +4,8 @@ public interface RunnableDeliveryPersonInterface {
 	
 	public String getDeliveryPersonName();
 	public Double getSpeedOfDeliveryPerson();
-	
 	public  void setDeliveryPersonName(String PersonName);
 	public  void setSpeedOfDeliveryPerson(Double DeliveryPerson);
-
-	
 	public Address getRestaurantAddres();
 	public void addDeliverdOrder(Order order);
 	public Double calculateDeliveryDistance(Address deliveryAddress);

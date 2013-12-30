@@ -5,7 +5,6 @@ import java.util.Vector;
 
 public interface StatisticsInterface {
 
-//	public void addMoneyGain (double actualCookTime,double avtualDeliveryTime, double expectedCookTime,double expectedDeliveryTime);
 	public void addDeliveredOrder(Order order);
 	public void upDateMoneyGain(Order order);
 	public void addinConsumedIgredients(Order order);

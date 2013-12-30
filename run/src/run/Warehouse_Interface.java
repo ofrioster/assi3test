@@ -11,9 +11,7 @@ public interface Warehouse_Interface {
 	public void addIngredient(Ingredient ingredient);
 	public int getNumberOfKitchenTolls(KitchenTool KitchenTolls);
 	public int getNumberOfIngredientsAvailable(Ingredient ingredients);
-	//take one ingredient from the warehouse
 	public boolean getIngredient(Ingredient ingredientsName);
-	//take one kitchen tool from the warehouse
 	public boolean getKitchenTolls(KitchenTool KitchenTollsname);
 	public void returnKitchenTolls(KitchenTool KitchenTollsname);
 	public String toString();
@@ -21,6 +19,5 @@ public interface Warehouse_Interface {
 	public void returnUnuseKitchenTolls(KitchenTool KitchenTollsname);
 	public boolean  getKitchenTollsUnsynchronized(KitchenTool KitchenToolsname);
 	public Ingredient  getTheIngredient(Ingredient ingredientsName);
-	
 
 }

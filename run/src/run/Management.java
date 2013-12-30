@@ -1,15 +1,11 @@
 package run;
-import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.ArrayList;
-import java.util.Observer;
-import java.util.Observable;
 import java.util.Vector;
 
-import javax.print.attribute.standard.SheetCollate;
 
-public class Management implements ManagementInterface,Observer,Runnable {
+public class Management implements ManagementInterface,Runnable {
 	
 	  private final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -22,17 +18,15 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	private ArrayList<Order> collectionOfOrdersToCockArrayList;
 	private Warehouse warehouseName;
 	private Statistics statistics;
-	private long numberOfOrderThatProcess;
 	private Boolean receiveAllOrders; 
 	private Boolean shutDown;
-	private CountDownLatch ordersLatch;
 	private int orderCount;
 	
 	public Management(){
 		
 	}
 	
-	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,CountDownLatch ordersLatch,Statistics statistics){
+	public Management(Vector<Order> collectionOfOrders,Vector<RunnableChef> collectionOfChefs,Vector<RunnableDeliveryPerson> collectionOfDeliveryPerson,Warehouse warehouseName,Statistics statistics){
 		this.collectionOfOrders=collectionOfOrders;
 		this.collectionOfOrdersToCock=this.copyOrdersVector(collectionOfOrders);
 		this.collectionOfChefs=collectionOfChefs;
@@ -40,16 +34,15 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		this.warehouseName=warehouseName;
 		this.receiveAllOrders=false;
 		this.shutDown=false;
-		this.ordersLatch=ordersLatch;
 		this.statistics=statistics;
 		this.orderCount=0;
 		this.collectionOfOrdersToDeliver=new Vector<Order>();
-	/**/	this.collectionOfChefsArryList=new ArrayList<RunnableChef>();
+		this.collectionOfChefsArryList=new ArrayList<RunnableChef>();
 			for (int i=0; i<this.collectionOfChefs.size();i++){
 				this.collectionOfChefsArryList.add(this.collectionOfChefs.get(i));
 			}
 			this.collectionOfOrdersToCockArrayList=new ArrayList<Order>();
-	/**/	for (int i=0; i<this.collectionOfOrdersToCock.size();i++){
+		for (int i=0; i<this.collectionOfOrdersToCock.size();i++){
 				this.collectionOfOrdersToCockArrayList.add(this.collectionOfOrdersToCock.get(i));
 			}
 	}
@@ -85,8 +78,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			t.start();
 		}
 	}
-	//start all the cook and the threads
-//	public void startCooking();
 	/** (non-Javadoc)
 	 * @add order to chef
 	 */
@@ -110,21 +101,12 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public synchronized RunnableChef findUnbusyChef(Order newOrder){
 		Boolean found=false;
 		RunnableChef res;
-//		System.out.println(" add new order to chef: " +newOrder.getOrderID());
 		while (!found){
 			try{
 				res=this.collectionOfChefsArryList.get(0);
 				for (int i=0; i<this.collectionOfChefsArryList.size();i++){
-					int k=this.collectionOfChefsArryList.get(i).getCurrectPressure();
-					int w=k;
-					int e=w;
-	//				System.out.println("chef name: "+this.collectionOfChefsArryList.get(i)+" currect presher: "+res.getCurrectPressure());
-	//				System.out.println(this.collectionOfChefs.get(i).getCurrectPressure());
-	//				System.out.println(this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder));
-					Boolean testing=this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder);
 					if (res.getCurrectPressure()>this.collectionOfChefsArryList.get(i).getCurrectPressure() && this.collectionOfChefs.get(i).canTheChefTakeOrder(newOrder)){
 						res=this.collectionOfChefsArryList.get(i);
-//						System.out.println(this.collectionOfChefsArryList.get(i).getChefName());
 					}
 				}
 				if (res.canTheChefTakeOrder(newOrder)){
@@ -132,17 +114,20 @@ public class Management implements ManagementInterface,Observer,Runnable {
 				}
 				}
 			catch (Exception e) {
-				// TODO: handle exception
 			}
 		}
 		RunnableChef e=new RunnableChef();
 		return e;
 	}
-	//add the order that has been finish to statistics
+	/** (non-Javadoc)
+	 * @ add the order that has been finish to statistics
+	 */
 	public void addOrderToStatistics(Order finishOrder){
 		this.statistics.addDeliveredOrder(finishOrder);
 	}
-	//return the total money the gain
+	/** (non-Javadoc)
+	 * @return the total money the gain
+	 */
 	public Double getMoneyGain(){
 		return this.statistics.getMoneyGain();
 	}
@@ -170,76 +155,29 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		return res;
 	}
 
+
 	/** (non-Javadoc)
-	 * @ this function run when Observable get notifyObservers
-	 * @ if the Order have been finish, send it to the delivery person
-	 */
-	public void update(Observable o, Object arg) {
-//		System.out.println(" update work!!!!");
-		try{
-			Order order=(Order)arg;
-			if(order.getOrderStatus()==3){
-				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
-				deliveryPerson.addDeliverdOrder(order);
-				if(!deliveryPerson.isAlive()){
-					Thread t=new Thread(deliveryPerson);
-					t.start();
-				}
-			}
-		}
-		catch(Exception e){
-			//may need to add
-		}
-		
-	}
-	/* (non-Javadoc)
 	 * @start the Management that will stop only when the orders has finish
 	 */
 	public synchronized void run(){
-//		System.out.println("Dish difficultyRating: "+this.collectionOfOrdersToCockArrayList.get(0).getOrderDish().get(0).gestDish().getDishDifficultyRating());
 	    logger.log(Level.INFO, "Initializing simulation process...");
 	    logger.log(Level.INFO, "System contains: " +  "[chefs=" + collectionOfChefs.size() + "][deliveryPeople=" + collectionOfDeliveryPerson.size() + "][orders="+collectionOfOrders.size()+"]");
 	    this.collectionOfChefsArryList=this.sortRunnableChefArray(this.collectionOfChefsArryList);
 	    this.collectionOfOrdersToCockArrayList=this.sortOrderArray(this.collectionOfOrdersToCockArrayList);
 		this.sendCollectionOfOrdersToDeliverToChef();
-//		this.startThreadsOfDeliveryPerson();
-//		this.startThreadsOfChef();
 		this.setChefWarehouse();
 		while (!this.shutDown && (this.collectionOfOrdersToCockArrayList.size()>0 )){
 			logger.log(Level.INFO, "Orders To Cook:"+ this.collectionOfOrdersToCockArrayList.size());
-			
-	//		System.out.println(this.collectionOfOrders.size());
-	//		System.out.println(this.collectionOfOrdersToCock.size());
-			
 			if(this.collectionOfOrdersToCockArrayList.size()>0){
-				int k=this.collectionOfOrdersToCockArrayList.size();
-			//	synchronized (collectionOfOrdersToCock) {
-			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(0).getOrderID());
-			//	System.out.println("managemant befor order ID-"+this.collectionOfOrdersToCock.get(1).getOrderID());
-			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.get(0).getOrderDish().get(0).gestDish().getDishName());
-			//	System.out.println("managemant befor- "+this.collectionOfOrdersToCock.size());
-					//Attempting to send order: [0][numberOfMeals=8]
 					logger.log(Level.INFO, "Attempting to send order:"+this.collectionOfOrdersToCockArrayList.get(0).toStringForLogger());
 					this.startToCookDish(this.collectionOfOrdersToCockArrayList.get(0));
 					this.collectionOfOrdersToCockArrayList.remove(0);
-			//		orderCount++;
-			//		System.out.println("managemant after - "+this.collectionOfOrdersToCock.size());
-				//}
 			}
-	//		System.out.println(this.collectionOfOrders.size());
-	//		System.out.println(this.collectionOfOrdersToCock.size());
 			this.update1();
 		}
-		/*
-		while(!this.receiveAllOrders &&!this.shutDown){
-			this.update1();
-		}
-		*/
 		while(!this.shutDown){
 			this.update1();
 		}
-	//	this.waitUntilAllOrdersDeliverd();
-		System.out.println("management END");
 	}
 	
 	
@@ -250,17 +188,11 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		return this.receiveAllOrders;
 	}
 	public void ShutDown( ){
-	//	System.out.println("management start shoutdown");
 		for (int i=0;i<this.collectionOfChefs.size();i++){
 			this.collectionOfChefs.get(i).shutDown();
 		}
-	//	System.out.println("shef has shoutdouwn");
 		for (int i=0;i<this.collectionOfDeliveryPerson.size();i++){
 			this.collectionOfDeliveryPerson.get(i).shutDown();
-		}
-		for (int i=0;i<this.collectionOfOrders.size();i++){
-			//System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" reward: "+this.collectionOfOrders.get(i).getTotalReward());
-			//System.out.println("order ID: "+this.collectionOfOrders.get(i).getOrderID()+" expected reward: "+this.collectionOfOrders.get(i).calculateReward());
 		}
 		this.shutDown=true;
 	}
@@ -274,27 +206,18 @@ public class Management implements ManagementInterface,Observer,Runnable {
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.receiveAllOrders=true;
-//		System.out.println("update1 - this.orderCount "+this.orderCount);
-//		System.out.println("update1 - this.ordersLatch.getCount "+this.ordersLatch.getCount());
 		for (int i=this.orderCount;i<this.collectionOfOrdersToDeliver.size();i++){
 			this.orderCount++;
-//			System.out.println("here");
 			if(this.collectionOfOrdersToDeliver.get(i).getOrderStatus()==3){
 				RunnableDeliveryPerson deliveryPerson=this.findUnBusyDeliveryPerson();
-//				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				deliveryPerson.addDeliverdOrder(this.collectionOfOrdersToDeliver.get(i));
-				System.out.println(" add new order to delivery person: " +this.collectionOfOrdersToDeliver.get(i).getOrderID());
 				if (!deliveryPerson.isAlive()){
 					Thread t=new Thread(deliveryPerson);
 					t.start();
 				}
-//				System.out.println("order ID to deliver "+ this.collectionOfOrdersToDeliver.get(i).getOrderID());
-	//			System.out.println("888 "+ this.collectionOfOrdersToDeliver.size());
-	//			System.out.println("888 orderCount "+ this.orderCount);
 			}
 			else{
 				this.receiveAllOrders=false;
@@ -303,7 +226,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	}
 
 	public void waitUntilAllOrdersDeliverd(){
-	//	System.out.println("waitUntilAllOrdersDeliverd");
 		Boolean allOrdersDeliverd=false;
 		while (!allOrdersDeliverd){
 			allOrdersDeliverd=true;
@@ -318,7 +240,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 	public Vector<Order> copyOrdersVector(Vector<Order> vectorToCopy) {
 		Vector<Order> res= new Vector<Order>();
 		for (int i=0;i<vectorToCopy.size();i++){
-			//Order newOrder=new Order(vectorToCopy.get(i));
 			res.add(vectorToCopy.get(i));
 		}
 		return res;
@@ -345,11 +266,6 @@ public class Management implements ManagementInterface,Observer,Runnable {
 			res.add(arryToSort.get(k));
 			arryToSort.remove(k);
 		}
-		/*
-		for(int i=0;i<res.size();i++){
-			System.out.println("sort order ID: "+res.get(i).getOrderID()+" dish diffculty: "+res.get(i).getDifficultyRating());
-		}
-		*/
 		return res;
 		
 	}

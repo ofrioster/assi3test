@@ -40,13 +40,12 @@ public class Warehouse implements Warehouse_Interface{
 		return res;
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @ Assume that we have enough ingredients
 	 */
 	public int getNumberOfIngredientsAvailable(Ingredient ingredients){
 		int res=-1;
 		for (int i=0;i<this.ingredientsAvailable.size();i++){
-			//if (this.ingredientsAvailable.get(i).getIngredientName()==ingredients.getIngredientName()){
 			if (this.ingredientsAvailable.get(i).getIngredientName().equals(ingredients.getIngredientName())){
 				return this.ingredientsAvailable.get(i).getNumberOfIngredient();
 			}
@@ -54,13 +53,12 @@ public class Warehouse implements Warehouse_Interface{
 		return res;
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @return true if you can have the ingredient
 	 */
 	public boolean  getIngredient(Ingredient ingredientsName){
 		boolean res=false;
 		for (int i=0; i<this.ingredientsAvailable.size();i++){
-	//		System.out.println(ingredientsName+"  -----  "+this.ingredientsAvailable.get(i));
 			if(this.ingredientsAvailable.get(i).getIngredientName().equals(ingredientsName.getIngredientName())){
 				if(this.ingredientsAvailable.get(i).getIngredient(ingredientsName.getNumberOfIngredient())){
 					return true;
@@ -73,7 +71,6 @@ public class Warehouse implements Warehouse_Interface{
 	public Ingredient  getTheIngredient(Ingredient ingredientsName){
 		Ingredient res=new Ingredient();
 		for (int i=0; i<this.ingredientsAvailable.size();i++){
-	//		System.out.println(ingredientsName+"  -----  "+this.ingredientsAvailable.get(i));
 			if(this.ingredientsAvailable.get(i).getIngredientName().equals(ingredientsName.getIngredientName())){
 				return this.ingredientsAvailable.get(i);
 		}
@@ -88,7 +85,6 @@ public class Warehouse implements Warehouse_Interface{
 	public boolean  getKitchenTolls(KitchenTool KitchenToolsname){
 		boolean res=true;
 		for (int i=0;i<this.kitchenCollectionTolls.size();i++){
-		//	if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
 			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenToolsname.getKitchenToolName())){	
 				return this.kitchenCollectionTolls.get(i).getKitchenTool();
 			}
@@ -99,7 +95,6 @@ public class Warehouse implements Warehouse_Interface{
 	public boolean  getKitchenTollsUnsynchronized(KitchenTool KitchenToolsname){
 		boolean res=true;
 		for (int i=0;i<this.kitchenCollectionTolls.size();i++){
-		//	if (this.kitchenCollectionTolls.get(i).getKitchenToolName()==KitchenToolsname.getKitchenToolName()){
 			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenToolsname.getKitchenToolName())){	
 				return this.kitchenCollectionTolls.get(i).getKitchenToolUnsynchronized();
 			}
@@ -112,10 +107,8 @@ public class Warehouse implements Warehouse_Interface{
 		Boolean found=false;
 		for( int i=0;i<this.kitchenCollectionTolls.size() && !found;i++){
 			if (this.kitchenCollectionTolls.get(i).getKitchenToolName().equals(KitchenTollsname.getKitchenToolName())){
-//				System.out.println("returnKitchenTolls-warehouse");
 				this.kitchenCollectionTolls.get(i).returnKitchenTool();
 				found=true;
-				//this.notifyAll();
 			}
 		}
 		
@@ -128,17 +121,6 @@ public class Warehouse implements Warehouse_Interface{
 		Boolean res=true;
 		for (int i=0; i<KitchenTools.size() &&res;i++){
 			if(!this.getKitchenTolls(KitchenTools.get(i))){
-	/*		if(!this.getKitchenTollsUnsynchronized(KitchenTools.get(i))){
-				for (int k=0;k<i;k++){
-					this.returnUnuseKitchenTolls(KitchenTools.get(k));
-				}
-				res=false;
-				try {
-					this.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 				res=false;
 			}
 		}
@@ -151,9 +133,6 @@ public class Warehouse implements Warehouse_Interface{
 				this.kitchenCollectionTolls.get(i).returnUnuseKitchenTool();
 				found=true;
 			}
-		}
-		
+		}	
 	}
-	
-
 }

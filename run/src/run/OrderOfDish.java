@@ -6,10 +6,9 @@ public class OrderOfDish implements OrderOfDishInterface{
 	private int quantity;
 	private int quantityLeft;
 	private int orderStatus;
-	// the status are:
-	private final int incomplete=1;
-	private final int inProgress=2;
-	private final int complete=3;
+	private final int INCOMPLETE=1;
+	private final int INPROGRESS=2;
+	private final int COMPLETE=3;
 	
 	
 	public OrderOfDish (Dish dish,int quantity){
@@ -53,7 +52,6 @@ public class OrderOfDish implements OrderOfDishInterface{
 	 */
 	public synchronized void setOrderStatus(int status){
 		this.orderStatus=status;
-	//	System.out.println("setOrderStatus111 "+status);
 	}
 	
 	public synchronized void setOneDishIsDone(){

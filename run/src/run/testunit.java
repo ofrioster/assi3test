@@ -9,7 +9,6 @@ public class testunit {
 
 	@Test
 	public void test1() {
-		//test1
 		Warehouse test1=new Warehouse();
 		Ingredient ingredients1=new Ingredient("ingredient2",1);
 		KitchenTool KitchenTolls=new KitchenTool("KitchenTolls3",1);
@@ -30,7 +29,6 @@ public class testunit {
 		}
 	}
 		
-		////test2
 	public void test2(){
 		Warehouse test2=new Warehouse();
 		for (int i=3; i<5;i++){

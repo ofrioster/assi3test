@@ -12,20 +12,13 @@ public class MyLogger {
   static private SimpleFormatter formatterTxt;
 
   static public void setup() throws IOException {
-
-   // Get the global logger to configure it
     Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
     logger.setLevel(Level.ALL);
     fileTxt = new FileHandler("Logging.txt");
-
-    // create txt Formatter
     formatterTxt = new SimpleFormatter();
     fileTxt.setFormatter(formatterTxt);
     logger.addHandler(fileTxt);
     fileTxt.setLevel(Level.ALL);
-
-
 
  }
 }
