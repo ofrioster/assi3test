@@ -61,6 +61,8 @@ public class Driver {
 			
 		}
 	    logger.log(Level.INFO, statistics.toString());
+	    logger.log(Level.INFO, Restaurant.toString());
+
 	    System.out.println(" END!!!!");
 	
 	}
